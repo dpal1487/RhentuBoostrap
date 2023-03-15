@@ -105,8 +105,8 @@
                                                 <path d="M21 5H2.99999C2.69999 5 2.49999 5.10005 2.29999 5.30005L11.2 13.3C11.7 13.7 12.4 13.7 12.8 13.3L21.7 5.30005C21.5 5.10005 21.3 5 21 5Z" fill="currentColor" />
                                             </svg>
                                         </span>
-                                        @if ($user->email = "")
-                                        {{ $user->email }}
+                                        @if($user->email = "")
+                                            {{ $user->email }}
                                         @endif
                                         N/A
                                         <!--end::Svg Icon--></a>

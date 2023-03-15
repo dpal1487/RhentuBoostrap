@@ -50,12 +50,7 @@ class UserController extends Controller
         $address = DB::table('addresses')
                 ->where('addresses.id' , $result->address_id)
                 ->first();
-
-
-                    // dd($data);
-
-
-        // dd($data);
+        // dd($result);
         return view('pages.users.address' , ['user' => $data , 'address' =>$address ]);
 
      }
@@ -72,8 +67,25 @@ class UserController extends Controller
      public function items($id)
      {
         $data = User::where('id' , $id)->first();
-        // dd($data);
-        return view('pages.users.items' , ['user' => $data]);
+
+        // $result = DB::table('item_images')
+        //         ->join('users', 'users.id' , '=' , 'user_addresses.user_id' )
+        //         ->where('users.id' , $id)
+        //         ->first();
+
+        // $item = DB::table('addresses')
+        //         ->where('addresses.id' , $result->address_id)
+        //         ->first();
+
+        $items = DB::table('items')
+                ->join('users', 'users.id' , '=' , 'items.user_id' )
+                // ->join('item_images' , 'images.id' , '=' , 'item_images.item_id')
+                ->select('items.id as id' , 'users.id' , 'users.first_name', 'users.last_name', 'users.mobile', 'users.email' ,'items.name','items.slug','items.base_url','items.description','items.rent_price','items.security_price')
+                ->where('users.id' , $id)
+                ->get();
+
+        // dd($items);
+        return view('pages.users.items' , ['user' => $data , 'items' => $items]);
 
      }
 

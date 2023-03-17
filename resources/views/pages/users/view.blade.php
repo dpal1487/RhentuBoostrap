@@ -46,7 +46,7 @@
                     <th>Name</th>
                     <th>Email</th>
                     <th>Mobile</th>
-                    <th>Gender</th>
+                    {{-- <th>Gender</th> --}}
                     <th width="100px">Action</th>
                 </tr>
             </thead>
@@ -57,7 +57,7 @@
                 <td>{{ $row->first_name }} {{ $row->last_name }}</td>
                 <td>{{ $row->email }}</td>
                 <td>{{ $row->mobile }}</td>
-                <td>{{ $row->gender }}</td>
+                {{-- <td>{{ $row->gender }}</td> --}}
                 <td>
                     <a class="btn btn-primary btn-sm" href="/users/{{$row->id }}/overview">View</a>
                 </td>
@@ -68,7 +68,17 @@
         </table>
     </div>
 
+        @section('javascript')
 
+        <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+        <script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
+
+        <script>
+            $(document).ready(function () {
+                $('#example').DataTable();
+            });
+        </script>
+        @endsection
 
 
 

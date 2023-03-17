@@ -8,7 +8,6 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
-use App\Events\LoginHistory;
 
 class LoginRequest extends FormRequest
 {
@@ -49,12 +48,6 @@ class LoginRequest extends FormRequest
                 'email' => trans('auth.failed'),
             ]);
         }
-
-        $user = Auth::user();
-
-        // event(new LoginHistory($user));
-
-
 
         RateLimiter::clear($this->throttleKey());
     }

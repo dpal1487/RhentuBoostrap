@@ -118,7 +118,7 @@
                               <div
                                   class="overlay overflow-hidden position-relative border border-4 border-success rounded">
                                   <div class="overlay-wrapper">
-                                      <img src="assets/media/demos/demo1.png" alt="demo"
+                                      <img src="{{ asset('assets/media/demos/demo1.png') }}" alt="demo"
                                           class="w-100" />
                                   </div>
                                   <div class="overlay-layer bg-dark bg-opacity-10">
@@ -288,7 +288,7 @@
                               <div
                                   class="overlay overflow-hidden position-relative border border-4 border-gray-200 rounded">
                                   <div class="overlay-wrapper">
-                                      <img src="assets/media/demos/demo11.png" alt="demo"
+                                      <img src="{{ asset('assets/media/demos/demo11.png')}}" alt="demo"
                                           class="w-100" />
                                   </div>
                                   <div class="overlay-layer bg-dark bg-opacity-10">
@@ -458,7 +458,7 @@
                               <div
                                   class="overlay overflow-hidden position-relative border border-4 border-gray-200 rounded">
                                   <div class="overlay-wrapper">
-                                      <img src="assets/media/demos/demo21.png" alt="demo"
+                                      <img src="{{ asset('assets/media/demos/demo21.png')}}" alt="demo"
                                           class="w-100" />
                                   </div>
                                   <div class="overlay-layer bg-dark bg-opacity-10">

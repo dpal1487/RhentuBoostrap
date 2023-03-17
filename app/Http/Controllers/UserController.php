@@ -2,7 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\AddressResource;
+use App\Http\Resources\ItemResource;
+use App\Http\Resources\UserResource;
+use App\Models\Address;
+use App\Models\Item;
+use App\Models\ItemStatus;
 use App\Models\User;
+use App\Models\UserAddress;
 use Illuminate\Http\Request;
 use DataTables;
 use DB;
@@ -25,40 +32,24 @@ class UserController extends Controller
 
      public function overview($id)
      {
-        // $data = User::where('id' , $id)->first();
+        $data = User::find($id);
 
-        $data = User::join('countries' , 'users.country_id'  , '=' , 'countries.id')
-        ->leftjoin('files' , 'users.image_id'  , '=' , 'files.id')
-        ->where('users.id' , $id)
-        ->select('users.id as id' , 'users.first_name', 'users.last_name', 'users.mobile', 'users.email' , 'countries.name' , 'files.file_name', 'files.file_path', 'files.file_size')
-        ->first();
-        // ->get();
-        // dd($data);
-        return view('pages.users.overview' , ['user' => $data]);
+        return view('pages.users.overview')->with('data', new UserResource($data));
 
      }
 
      public function address($id)
      {
-        $data = User::where('id' , $id)->first();
-
-        $result = DB::table('user_addresses')
-                    ->join('users', 'users.id' , '=' , 'user_addresses.user_id' )
-                    ->where('users.id' , $id)
-                    ->first();
-
-        $address = DB::table('addresses')
-                ->where('addresses.id' , $result->address_id)
-                ->first();
-        // dd($result);
-        return view('pages.users.address' , ['user' => $data , 'address' =>$address ]);
-
+        $data = User::find($id);
+        $address = UserAddress::where('user_id',$id)->first();
+        return view('pages.users.address' )->with(['user' => $data , 'address'=> new AddressResource($address)]);
      }
 
 
      public function packages($id)
      {
-        $data = User::where('id' , $id)->first();
+        $data = User::find($id);
+
         // dd($data);
         return view('pages.users.packages' , ['user' => $data]);
 
@@ -66,32 +57,25 @@ class UserController extends Controller
 
      public function items($id)
      {
-        $data = User::where('id' , $id)->first();
+        $data = User::find($id);
 
-        // $result = DB::table('item_images')
-        //         ->join('users', 'users.id' , '=' , 'user_addresses.user_id' )
-        //         ->where('users.id' , $id)
-        //         ->first();
+        $itemStatus = ItemStatus::all();
 
-        // $item = DB::table('addresses')
-        //         ->where('addresses.id' , $result->address_id)
-        //         ->first();
 
-        $items = DB::table('items')
-                ->join('users', 'users.id' , '=' , 'items.user_id' )
-                // ->join('item_images' , 'images.id' , '=' , 'item_images.item_id')
-                ->select('items.id as id' , 'users.id' , 'users.first_name', 'users.last_name', 'users.mobile', 'users.email' ,'items.name','items.slug','items.base_url','items.description','items.rent_price','items.security_price')
-                ->where('users.id' , $id)
-                ->get();
+
+        $items = Item::where(['user_id'=>$id])->get();
 
         // dd($items);
-        return view('pages.users.items' , ['user' => $data , 'items' => $items]);
+        return view('pages.users.items' , ['user' => $data , 'itemstatus' => $itemStatus , 'items' =>ItemResource::collection($items) ]);
 
      }
 
+    
+
      public function reports($id)
      {
-        $data = User::where('id' , $id)->first();
+        $data = User::find($id);
+
         // dd($data);
         return view('pages.users.reports' , ['user' => $data]);
 

@@ -1,38 +1,40 @@
+
 <x-app-layout>
 
-    <!--begin::Toolbar-->
-    <div id="kt_app_toolbar" class="app-toolbar py-3 py-lg-6">
-        <!--begin::Toolbar container-->
-        <div id="kt_app_toolbar_container" class="app-container container-fluid d-flex flex-stack">
-            <!--begin::Page title-->
-            <div class="page-title d-flex flex-column justify-content-center flex-wrap me-3">
-                <!--begin::Title-->
-                <h1 class="page-heading d-flex text-dark fw-bold fs-3 flex-column justify-content-center my-0">User Profile</h1>
-                <!--end::Title-->
-                <!--begin::Breadcrumb-->
-                <ul class="breadcrumb breadcrumb-separatorless fw-semibold fs-7 my-0 pt-1">
-                    <!--begin::Item-->
-                    <li class="breadcrumb-item text-muted">
-                        <a href="{{ route('dashboard') }}" class="text-muted text-hover-primary">Home</a>
+            <!--begin::Toolbar-->
+        <div id="kt_app_toolbar" class="app-toolbar py-3 py-lg-6">
+            <!--begin::Toolbar container-->
+            <div id="kt_app_toolbar_container" class="app-container container-fluid d-flex flex-stack">
+                <!--begin::Page title-->
+                <div class="page-title d-flex flex-column justify-content-center flex-wrap me-3">
+                    <!--begin::Title-->
+                    <h1 class="page-heading d-flex text-dark fw-bold fs-3 flex-column justify-content-center my-0">User Profile</h1>
+                    <!--end::Title-->
+                    <!--begin::Breadcrumb-->
+                    <ul class="breadcrumb breadcrumb-separatorless fw-semibold fs-7 my-0 pt-1">
+                        <!--begin::Item-->
+                        <li class="breadcrumb-item text-muted">
+                            <a href="{{ route('dashboard') }}" class="text-muted text-hover-primary">Home</a>
 
-                    </li>
-                    <!--end::Item-->
-                    <!--begin::Item-->
-                    <li class="breadcrumb-item">
-                        <span class="bullet bg-gray-400 w-5px h-2px"></span>
-                    </li>
-                    <!--end::Item-->
-                    <!--begin::Item-->
-                    <li class="breadcrumb-item text-muted">Dashboards</li>
-                    <!--end::Item-->
-                </ul>
-                <!--end::Breadcrumb-->
+                        </li>
+                        <!--end::Item-->
+                        <!--begin::Item-->
+                        <li class="breadcrumb-item">
+                            <span class="bullet bg-gray-400 w-5px h-2px"></span>
+                        </li>
+                        <!--end::Item-->
+                        <!--begin::Item-->
+                        <li class="breadcrumb-item text-muted">Dashboards</li>
+                        <!--end::Item-->
+                    </ul>
+                    <!--end::Breadcrumb-->
+                </div>
+                <!--end::Page title-->
             </div>
-            <!--end::Page title-->
+            <!--end::Toolbar container-->
         </div>
-        <!--end::Toolbar container-->
-    </div>
-    <!--end::Toolbar-->
+        <!--end::Toolbar-->
+
     <div id="kt_app_content" class="app-content flex-column-fluid">
         <!--begin::Content container-->
         <div id="kt_app_content_container" class="app-container container-xxl">
@@ -44,7 +46,7 @@
                         <!--begin: Pic-->
                         <div class="me-7 mb-4">
                             <div class="symbol symbol-100px symbol-lg-160px symbol-fixed position-relative">
-                                @if($user->file_name)
+                                @if($data->file_name)
                                 <img src="{{ asset('assets/media/avatars/300-2.jpg')}}" alt="image" />
                                 @else
                                 <img src="{{ asset('assets/media/avatars/300-1.jpg')}}" alt="image" />
@@ -61,7 +63,7 @@
                                 <div class="d-flex flex-column">
                                     <!--begin::Name-->
                                     <div class="d-flex align-items-center mb-2">
-                                        <a href="#" class="text-gray-900 text-hover-primary fs-2 fw-bold me-1">{{ $user->first_name }} {{ $user->last_name }}</a>
+                                        <a href="#" class="text-gray-900 text-hover-primary fs-2 fw-bold me-1">{{ $data->first_name }} {{ $data->last_name }}</a>
                                         <a href="#">
                                             <!--begin::Svg Icon | path: icons/duotune/general/gen026.svg-->
                                             <span class="svg-icon svg-icon-1 svg-icon-primary">
@@ -105,10 +107,13 @@
                                                 <path d="M21 5H2.99999C2.69999 5 2.49999 5.10005 2.29999 5.30005L11.2 13.3C11.7 13.7 12.4 13.7 12.8 13.3L21.7 5.30005C21.5 5.10005 21.3 5 21 5Z" fill="currentColor" />
                                             </svg>
                                         </span>
-                                        @if($user->email = "")
-                                            {{ $user->email }}
-                                        @endif
+                                        @if($data->email)
+                                            {{ $data->email }}
+                                        @else
                                         N/A
+
+                                        @endif
+
                                         <!--end::Svg Icon--></a>
                                     </div>
                                     <!--end::Info-->
@@ -209,27 +214,27 @@
                     <ul class="nav nav-stretch nav-line-tabs nav-line-tabs-2x border-transparent fs-5 fw-bold">
                         <!--begin::Nav item-->
                         <li class="nav-item mt-2">
-                            <a class="nav-link text-active-primary ms-0 me-10 py-5" href="/users/{{ $user->id }}/overview">Overview</a>
+                            <a class="nav-link text-active-primary ms-0 me-10 py-5" href="/users/{{ $data->id }}/overview">Overview</a>
                         </li>
                         <!--end::Nav item-->
                         <!--begin::Nav item-->
                         <li class="nav-item mt-2">
-                            <a class="nav-link text-active-primary ms-0 me-10 py-5" href="/users/{{ $user->id }}/address">Address</a>
+                            <a class="nav-link text-active-primary ms-0 me-10 py-5" href="/users/{{ $data->id }}/address">Address</a>
                         </li>
                         <!--end::Nav item-->
                         <!--begin::Nav item-->
                         <li class="nav-item mt-2">
-                            <a class="nav-link text-active-primary ms-0 me-10 py-5" href="/users/{{ $user->id }}/packages">Packages</a>
+                            <a class="nav-link text-active-primary ms-0 me-10 py-5" href="/users/{{ $data->id }}/packages">Packages</a>
                         </li>
                         <!--end::Nav item-->
                         <!--begin::Nav item-->
                         <li class="nav-item mt-2">
-                            <a class="nav-link text-active-primary ms-0 me-10 py-5" href="/users/{{ $user->id }}/items">Items</a>
+                            <a class="nav-link text-active-primary ms-0 me-10 py-5" href="/users/{{ $data->id }}/items">Items</a>
                         </li>
                         <!--end::Nav item-->
                         <!--begin::Nav item-->
                         <li class="nav-item mt-2">
-                            <a class="nav-link text-active-primary ms-0 me-10 py-5" href="/users/{{ $user->id }}/reports">Reports</a>
+                            <a class="nav-link text-active-primary ms-0 me-10 py-5" href="/users/{{ $data->id }}/reports">Reports</a>
                         </li>
                         <!--end::Nav item-->
 
@@ -249,7 +254,7 @@
 					    		</div>
 								<!--end::Card title-->
 						<!--begin::Action-->
-							<a href="settings.html" class="btn btn-primary align-self-center">Edit Profile</a>
+							{{-- <a href="settings.html" class="btn btn-primary align-self-center">Edit Profile</a> --}}
 								<!--end::Action-->
 										</div>
 										<!--begin::Card header-->
@@ -262,7 +267,7 @@
 												<!--end::Label-->
 												<!--begin::Col-->
 												<div class="col-lg-8">
-													<span class="fw-bold fs-6 text-gray-800">{{ $user->first_name }} {{ $user->last_name }}</span>
+													<span class="fw-bold fs-6 text-gray-800">{{ $data->first_name }} {{ $data->last_name }}</span>
 												</div>
 												<!--end::Col-->
 											</div>
@@ -276,7 +281,7 @@
 												<!--end::Label-->
 												<!--begin::Col-->
 												<div class="col-lg-8 d-flex align-items-center">
-													<span class="fw-bold fs-6 text-gray-800 me-2">{{ $user->mobile }}</span>
+													<span class="fw-bold fs-6 text-gray-800 me-2">{{ $data->mobile }}</span>
 													<span class="badge badge-success">Verified</span>
 												</div>
 												<!--end::Col-->
@@ -286,14 +291,21 @@
 											<div class="row mb-7">
 												<!--begin::Label-->
 												<label class="col-lg-4 fw-semibold text-muted">Email ID
-												<i class="fas fa-exclamation-circle ms-1 fs-7" data-bs-toggle="tooltip" title="Phone number must be active"></i></label>
+												<i class="fas fa-exclamation-circle ms-1 fs-7" data-bs-toggle="tooltip" title=""></i></label>
 												<!--end::Label-->
 												<!--begin::Col-->
 												<div class="col-lg-8 d-flex align-items-center">
-													<span class="fw-bold fs-6 text-gray-800 me-2">{{ $user->email }}</span>
+													<span class="fw-bold fs-6 text-gray-800 me-2">
+                                                        @if($data->email)
+                                                        {{ $data->email }}
+                                                    @else
+                                                    N/A
 
-                                                    @if ($user->email_verified_at == NULL)
-													<span class="fw-bold fs-6 text-gray-800 me-2">N/A</span>
+                                                    @endif
+                                                    </span>
+
+                                                    @if ($data->email_verified_at == NULL)
+													{{-- <span class="fw-bold fs-6 text-gray-800 me-2">N/A</span> --}}
 
 													<span class="badge badge-danger">Not Verified</span>
                                                     @else
@@ -303,18 +315,7 @@
 												<!--end::Col-->
 											</div>
 											<!--end::Input group-->
-											<!--begin::Input group-->
-											{{-- <div class="row mb-7">
-												<!--begin::Label-->
-												<label class="col-lg-4 fw-semibold text-muted">Company Site</label>
-												<!--end::Label-->
-												<!--begin::Col-->
-												<div class="col-lg-8">
-													<a href="#" class="fw-semibold fs-6 text-gray-800 text-hover-primary">keenthemes.com</a>
-												</div>
-												<!--end::Col-->
-											</div> --}}
-											<!--end::Input group-->
+
 											<!--begin::Input group-->
 											<div class="row mb-7">
 												<!--begin::Label-->
@@ -323,7 +324,7 @@
 												<!--end::Label-->
 												<!--begin::Col-->
 												<div class="col-lg-8">
-													<span class="fw-bold fs-6 text-gray-800">{{ $user->name }}</span>
+													<span class="fw-bold fs-6 text-gray-800">{{ $data->country->name }}</span>
 												</div>
 												<!--end::Col-->
 											</div>

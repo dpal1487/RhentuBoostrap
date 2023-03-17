@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Models\Admin;
-use DB;
+
+use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\RedirectResponse;
@@ -21,8 +21,6 @@ class RegisteredUserController extends Controller
      */
     public function create(): View
     {
-
-        // dd($country);
         return view('auth.register');
     }
 
@@ -33,24 +31,17 @@ class RegisteredUserController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
-        // dd($request);
         $request->validate([
-            'first_name' => ['required', 'string', 'max:255'],
-            'email' => 'required|string|email|max:255|unique:'.Admin::class,
-
-            'password' => ['required',  Rules\Password::defaults()],
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:'.User::class],
+            'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
-        Auth::login($user = Admin::create([
-            'role_id' => 1,
-            'first_name' => $request->first_name,
-            'last_name' => $request->last_name,
-            'mobile' => $request->mobile,
+        $user = User::create([
+            'name' => $request->name,
             'email' => $request->email,
-            'gender' => $request->gender,
-            'dob' => $request->date_of_birth,
             'password' => Hash::make($request->password),
-        ]));
+        ]);
 
         event(new Registered($user));
 

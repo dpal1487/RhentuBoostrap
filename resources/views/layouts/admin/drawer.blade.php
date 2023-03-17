@@ -74,7 +74,7 @@
                                  <!--begin::User-->
                                  <div class="symbol symbol-circle symbol-25px" data-bs-toggle="tooltip"
                                      data-bs-boundary="window" data-bs-placement="top" title="Nina Nilson">
-                                     <img src="assets/media/avatars/300-14.jpg" alt="img" />
+                                     <img src="{{ asset('assets/media/avatars/300-14.jpg')}}" alt="img" />
                                  </div>
                                  <!--end::User-->
                              </div>
@@ -101,12 +101,12 @@
                                      class="symbol-group symbol-hover flex-nowrap flex-grow-1 min-w-100px pe-2">
                                      <!--begin::User-->
                                      <div class="symbol symbol-circle symbol-25px">
-                                         <img src="assets/media/avatars/300-2.jpg" alt="img" />
+                                         <img src="{{ asset('assets/media/avatars/300-2.jpg')}}" alt="img" />
                                      </div>
                                      <!--end::User-->
                                      <!--begin::User-->
                                      <div class="symbol symbol-circle symbol-25px">
-                                         <img src="assets/media/avatars/300-14.jpg" alt="img" />
+                                         <img src="{{ asset('assets/media/avatars/300-14.jpg')}}" alt="img" />
                                      </div>
                                      <!--end::User-->
                                      <!--begin::User-->
@@ -146,7 +146,7 @@
                                  <div class="symbol-group symbol-hover flex-nowrap flex-grow-1 min-w-100px">
                                      <!--begin::User-->
                                      <div class="symbol symbol-circle symbol-25px">
-                                         <img src="assets/media/avatars/300-20.jpg" alt="img" />
+                                         <img src="{{ asset('assets/media/avatars/300-20.jpg')}}" alt="img" />
                                      </div>
                                      <!--end::User-->
                                      <!--begin::User-->
@@ -215,7 +215,7 @@
                                  <!--begin::User-->
                                  <div class="symbol symbol-circle symbol-25px" data-bs-toggle="tooltip"
                                      data-bs-boundary="window" data-bs-placement="top" title="Alan Nilson">
-                                     <img src="assets/media/avatars/300-1.jpg" alt="img" />
+                                     <img src="{{ asset('assets/media/avatars/300-1.jpg')}}" alt="img" />
                                  </div>
                                  <!--end::User-->
                              </div>
@@ -266,7 +266,7 @@
                                  <!--begin::User-->
                                  <div class="symbol symbol-circle symbol-25px" data-bs-toggle="tooltip"
                                      data-bs-boundary="window" data-bs-placement="top" title="Jan Hummer">
-                                     <img src="assets/media/avatars/300-23.jpg" alt="img" />
+                                     <img src="{{ asset('assets/media/avatars/300-23.jpg')}}" alt="img" />
                                  </div>
                                  <!--end::User-->
                              </div>
@@ -385,7 +385,7 @@
                                  <!--begin::User-->
                                  <div class="symbol symbol-circle symbol-25px" data-bs-toggle="tooltip"
                                      data-bs-boundary="window" data-bs-placement="top" title="Nina Nilson">
-                                     <img src="assets/media/avatars/300-14.jpg" alt="img" />
+                                     <img src="{{ asset('assets/media/avatars/300-14.jpg')}}" alt="img" />
                                  </div>
                                  <!--end::User-->
                              </div>
@@ -435,7 +435,7 @@
                                  <!--begin::User-->
                                  <div class="symbol symbol-circle symbol-25px" data-bs-toggle="tooltip"
                                      data-bs-boundary="window" data-bs-placement="top" title="Marcus Dotson">
-                                     <img src="assets/media/avatars/300-2.jpg" alt="img" />
+                                     <img src="{{ asset('assets/media/avatars/300-2.jpg')}}" alt="img" />
                                  </div>
                                  <!--end::User-->
                              </div>
@@ -451,7 +451,7 @@
                                      <!--begin::Image-->
                                      <div class="overlay-wrapper">
                                          <img alt="img" class="rounded w-150px"
-                                             src="assets/media/stock/600x400/img-29.jpg" />
+                                             src="{{ asset('assets/media/stock/600x400/img-29.jpg')}}" />
                                      </div>
                                      <!--end::Image-->
                                      <!--begin::Link-->
@@ -594,7 +594,7 @@
                                  <!--begin::User-->
                                  <div class="symbol symbol-circle symbol-25px" data-bs-toggle="tooltip"
                                      data-bs-boundary="window" data-bs-placement="top" title="Robert Rich">
-                                     <img src="assets/media/avatars/300-4.jpg" alt="img" />
+                                     <img src="{{ asset('assets/media/avatars/300-4.jpg')}}" alt="img" />
                                  </div>
                                  <!--end::User-->
                              </div>
@@ -855,7 +855,7 @@
                      <div class="d-flex align-items-center mb-2">
                          <!--begin::Avatar-->
                          <div class="symbol symbol-35px symbol-circle">
-                             <img alt="Pic" src="assets/media/avatars/300-25.jpg" />
+                             <img alt="Pic" src="{{ asset('assets/media/avatars/300-25.jpg')}}" />
                          </div>
                          <!--end::Avatar-->
                          <!--begin::Details-->
@@ -891,7 +891,7 @@
                          <!--end::Details-->
                          <!--begin::Avatar-->
                          <div class="symbol symbol-35px symbol-circle">
-                             <img alt="Pic" src="assets/media/avatars/300-1.jpg" />
+                             <img alt="Pic" src="{{ asset('assets/media/avatars/300-1.jpg')}}" />
                          </div>
                          <!--end::Avatar-->
                      </div>
@@ -913,7 +913,7 @@
                      <div class="d-flex align-items-center mb-2">
                          <!--begin::Avatar-->
                          <div class="symbol symbol-35px symbol-circle">
-                             <img alt="Pic" src="assets/media/avatars/300-25.jpg" />
+                             <img alt="Pic" src="{{ asset('assets/media/avatars/300-25.jpg')}}" />
                          </div>
                          <!--end::Avatar-->
                          <!--begin::Details-->
@@ -948,7 +948,7 @@
                          <!--end::Details-->
                          <!--begin::Avatar-->
                          <div class="symbol symbol-35px symbol-circle">
-                             <img alt="Pic" src="assets/media/avatars/300-1.jpg" />
+                             <img alt="Pic" src="{{ asset('assets/media/avatars/300-1.jpg')}}" />
                          </div>
                          <!--end::Avatar-->
                      </div>
@@ -970,7 +970,7 @@
                      <div class="d-flex align-items-center mb-2">
                          <!--begin::Avatar-->
                          <div class="symbol symbol-35px symbol-circle">
-                             <img alt="Pic" src="assets/media/avatars/300-25.jpg" />
+                             <img alt="Pic" src="{{ asset('assets/media/avatars/300-25.jpg')}}" />
                          </div>
                          <!--end::Avatar-->
                          <!--begin::Details-->
@@ -1008,7 +1008,7 @@
                          <!--end::Details-->
                          <!--begin::Avatar-->
                          <div class="symbol symbol-35px symbol-circle">
-                             <img alt="Pic" src="assets/media/avatars/300-1.jpg" />
+                             <img alt="Pic" src="{{ asset('assets/media/avatars/300-1.jpg')}}" />
                          </div>
                          <!--end::Avatar-->
                      </div>
@@ -1029,7 +1029,7 @@
                      <div class="d-flex align-items-center mb-2">
                          <!--begin::Avatar-->
                          <div class="symbol symbol-35px symbol-circle">
-                             <img alt="Pic" src="assets/media/avatars/300-25.jpg" />
+                             <img alt="Pic" src="{{ asset('assets/media/avatars/300-25.jpg')}}" />
                          </div>
                          <!--end::Avatar-->
                          <!--begin::Details-->
@@ -1065,7 +1065,7 @@
                          <!--end::Details-->
                          <!--begin::Avatar-->
                          <div class="symbol symbol-35px symbol-circle">
-                             <img alt="Pic" src="assets/media/avatars/300-1.jpg" />
+                             <img alt="Pic" src="{{ asset('assets/media/avatars/300-1.jpg')}}" />
                          </div>
                          <!--end::Avatar-->
                      </div>
@@ -1086,7 +1086,7 @@
                      <div class="d-flex align-items-center mb-2">
                          <!--begin::Avatar-->
                          <div class="symbol symbol-35px symbol-circle">
-                             <img alt="Pic" src="assets/media/avatars/300-25.jpg" />
+                             <img alt="Pic" src="{{ asset('assets/media/avatars/300-25.jpg')}}" />
                          </div>
                          <!--end::Avatar-->
                          <!--begin::Details-->

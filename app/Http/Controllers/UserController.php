@@ -51,7 +51,7 @@ class UserController extends Controller
 
         $itemStatus = ItemStatus::all();
 
-        $item = Item::where(['user_id'=>$id])->get();
+        $item = Item::where(['user_id'=>$id])->simplePaginate(3);
 
         return view('pages.users.items' , ['user' => $data , 'itemstatus' => $itemStatus , 'items' => ItemResource::collection($item)]);
 

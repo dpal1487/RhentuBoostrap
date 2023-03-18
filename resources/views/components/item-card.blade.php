@@ -38,12 +38,12 @@
     <div class="d-flex flex-wrap flex-sm-nowrap">
         <!--begin: Pic-->
         <div class="me-5 mb-4">
-            <div class="symbol symbol-100px symbol-lg-160px symbol-fixed position-relative">
-                <a href=" {{ route('item/details',['id' => $item->id]) }}">
+            <a href=" {{ route('item/details',['id' => $item->id]) }}" class="d-block symbol symbol-100px symbol-lg-160px symbol-fixed position-relative">
+                {{-- <a href=" {{ route('item/details',['id' => $item->id]) }}"> --}}
                 <img src="{{ asset('assets/media/avatars/300-1.jpg') }}" alt="image" class="rounded" />
-                </a>
+                {{-- </a> --}}
                 {{-- <div class="position-absolute translate-middle bottom-0 start-100 mb-6 bg-success rounded-circle border border-4 border-body h-20px w-20px"></div> --}}
-            </div>
+            </a>
         </div>
         <!--end::Pic-->
         <!--begin::Info-->
@@ -54,12 +54,10 @@
             <div class="d-flex justify-content-between align-items-start flex-wrap mb-0">
                 <!--begin::User-->
                 <div class="row col-md-12 mb-0">
-                    <div class="col-md-5">
-
-
+                    <div class="col-md-6">
                         <div class="d-flex flex-column">
                             <!--begin::Name-->
-                            <a href=" {{ route('item/details', $item->id) }}" class="text-gray-900  fs-2 fw-bold">{{ $item->name }}</a>
+                            <a href=" {{ route('item/details',['id' => $item->id]) }}" class="text-gray-900  fs-2 fw-bold">{{ $item->name }}</a>
                             <!--end::Name-->
                             <!--begin::Info-->
                             <div class="d-flex">
@@ -107,7 +105,7 @@
                             <!--end::Info-->
                         </div>
                     </div>
-                    <div class="col-md-7">
+                    <div class="col-md-6">
                         <p class="text-gray-900 fw-bold m-2">
                             <svg stroke="currentColor" stroke-width="0" role="img"
                                 viewBox="0 0 24 24" height="1em" width="1em"
@@ -256,7 +254,7 @@
                                         clip-rule="evenodd"></path>
                                 </svg>
                             </span>
-                            <!--end::Svg Icon-->0 Reviews
+                            <!--end::Svg Icon--><a href="{{ route('item/reviews', ['id' => $item->id]) }}" >0 Reviews</a>
 
                             <svg stroke="currentColor" fill="currentColor" stroke-width="0"
                                 version="1.1" viewBox="0 0 18 16" height="1em" width="1em"
@@ -268,7 +266,7 @@
                                     d="M5.112 12.427c0.864-0.565 1.939-0.994 3.122-1.256-0.235-0.278-0.449-0.588-0.633-0.922-0.475-0.863-0.726-1.813-0.726-2.748 0-1.344 0-2.614 0.478-3.653 0.464-1.008 1.299-1.633 2.488-1.867-0.264-1.195-0.968-1.98-2.841-1.98-3 0-3 2.015-3 4.5 0 1.548 0.898 3.095 2 3.716v0.825c-3.392 0.277-6 1.944-6 3.959h4.359c0.227-0.202 0.478-0.393 0.753-0.573z">
                                 </path>
                             </svg>
-                            <!--end::Svg Icon-->0 Customers
+                            <!--end::Svg Icon--><a href="{{ route('item/customers', ['id' => $item->id]) }}" > 0 Customers </a>
                         </div>
                         <!--begin::Svg Icon | path: icons/duotune/communication/com006.svg-->
                     </div>

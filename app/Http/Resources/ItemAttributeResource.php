@@ -14,6 +14,10 @@ class ItemAttributeResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
-        return parent::toArray($request);
+        return [
+            'item_id' => $this->item_id,
+            'attribute_id' => $this->attribute_id,
+            'attribute_value' => $this->attribute_value,
+        ];
     }
 }

@@ -20,7 +20,7 @@ class ItemController extends Controller
 
         $itemStatus = ItemStatus::all();
 
-        $item = Item::get();
+        $item = Item::simplePaginate(3);
 
         return view('pages.item.index' , [ 'itemstatus' => $itemStatus , 'items' => ItemResource::collection($item)]);
         // return view('pages.item.index' , ['result' =>$data]);

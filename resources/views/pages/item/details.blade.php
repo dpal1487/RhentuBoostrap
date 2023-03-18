@@ -124,46 +124,74 @@
                                 <p class="card-text fs-4">1</p>
                             </div>
                         </div>
-
-
-
                     </div>
                   </div>
                   <div class="card mb-5">
-                    <div class="card-body">
-                      <h5 class="card-title">Special title treatment</h5>
-                      <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                      <hr>
-                      <a href="#" class="btn btn-primary">Go somewhere</a>
+                    <div class="card-body p-2 m-3">
+                        <h5 class="card-title fs-1 mb-4 p-0">Details</h5>
+                            <div class="d-flex align-items-center gap-20 gap-y-0 mb-2">
+                                <span class="fs-4 w-25">Rent Type</span>
+                                <span class="fs-4">Per Day</span>
+                            </div>
+                            <div class="d-flex align-items-center gap-20 gap-y-0 mb-2">
+                                <span class="fs-4 w-25">Rent Price</span>
+                                <span class="fs-4">₹ 15000</span>
+                            </div>
+                            <div class="d-flex align-items-center gap-20 gap-y-0 mb-2">
+                                <span class="fs-4 w-25">Security Price</span>
+                                <span class="fs-4">₹ 120000</span>
+                            </div>
+                        <hr>
+                        <h5 class="card-title fs-1 mb-4 p-0">Description</h5>
+                        <span class="fs-4 w-25">asd fas df asdf as df</span>
                     </div>
                   </div>
-                  <div class="card mb-3">
-                    <div class="card-body">
-                      <h5 class="card-title">Special title treatment</h5>
-                      <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                      <a href="#" class="btn btn-primary">Go somewhere</a>
+                  <div class="card mb-5">
+                    <div class="card-body p-2 m-3">
+                        <h5 class="card-title fs-1 mb-4 p-0">Reviews</h5>
+                        <span class="fs-4 w-25">Place Rating : 0 average based on 0 reviews.</span>
+                    </div>
+                  </div>
+                  <div class="card mb-5">
+                    <div class="card-body p-2 m-3">
+                        <h5 class="card-title fs-1 mb-4 p-0">Found something unusual ?</h5>
+                        <span class="fs-4 w-25">Ad Id : 4</span>
                     </div>
                   </div>
                 </div>
-                <div class="col-sm-12 col-md-4">
-                  <div class="card">
-                    <div class="card-body">
-                      <h5 class="card-title">Special title treatment</h5>
-                      <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                      <a href="#" class="btn btn-primary">Go somewhere</a>
-                    </div>
-                  </div>
-                </div>
-              </div>
 
+                <div class="col-sm-12 col-md-4">
+                    <div class="card mb-3">
+                      <div class="card-body p-4">
+                          <div class="d-flex align-items-center justify-content-between">
+                              <div class="">
+                                <a class="user_link d-flex align-items-center gap-4" href="/item/user/userProfile?uid=4">
+                                    <img alt="user image" src="{{ asset('assets/media/avatars/300-1.jpg') }}" width="50" height="50" >
+                                    <div class="user_name fs-3 fw-bold text-theme-primary flex-root d-flex align-items-center justify-content-between">
+                                        <span>John Doe</span>
+                                        <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill="none" d="M0 0h24v24H0z"></path>
+                                            <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"></path>
+                                        </svg>
+                                    </div>
+                                </a>
+                              </div>
+
+                          </div>
+
+                      </div>
+                    </div>
+                    <div class="card mb-5">
+                      <div class="card-body p-2 m-3">
+                          <h5 class="card-title fs-1 mb-4 p-0">Posted In</h5>
+                          <img alt="user image" src="{{ asset('assets/image/googlemap.png') }}" style="aspect-ratio:1/1; width:100%;" >
+                      </div>
+                    </div>
+                  </div>
+              </div>
         </div>
         <!--end::Content container-->
     </div>
-
-
     @section('javascript')
     @endsection
-
-
-
 </x-app-layout>

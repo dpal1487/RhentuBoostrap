@@ -6,15 +6,16 @@ use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class ItemComponent extends Component
+class ItemCartStatus extends Component
 {
     /**
      * Create a new component instance.
      */
-    public $item;
-    public function __construct($item)
+
+     public $itemid;
+    public function __construct($itemid)
     {
-        $this->item = $item;
+        $this->itemid = $itemid;
     }
 
     /**
@@ -22,6 +23,6 @@ class ItemComponent extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.item-component');
+        return view('components.item-cart-status');
     }
 }

@@ -36,18 +36,24 @@ Route::middleware('auth')->group(function () {
     // user profile
 
     Route::get('users/index', [UserController::class, 'index'])->name('users/index');
-    // Route::get('/item/status', [UserController::class, 'updateStatus'])->name('/item/status');
+    Route::get('/item/status', [UserController::class, 'updateStatus'])->name('/item/status');
+    Route::get('users/{id}/items', [UserController::class, 'items'])->name('users/items');
+
     Route::get('users/{id}/overview', [UserController::class, 'overview'])->name('users/overview');
     Route::get('users/{id}/address', [UserController::class, 'address'])->name('users/address');
     Route::get('users/{id}/packages', [UserController::class, 'packages'])->name('users/packages');
-    Route::get('users/{id}/items', [UserController::class, 'items'])->name('users/items');
     Route::get('users/{id}/reports', [UserController::class, 'reports'])->name('users/reports');
 
+
+
     // item page
-    // Route::group(['prefix' => 'users'], function () {
-    //  });
-     Route::get('item' , [ItemController::class , 'index'])->name('item');
-     Route::post('/item/status' , [ItemController::class , 'updateStatus'])->name('/item/status');
+    Route::group(['prefix' => 'item'], function () {
+        Route::get('/' , [ItemController::class , 'index'])->name('item');
+        Route::get('/details' , [ItemController::class , 'details'])->name('item/details');
+        Route::post('/item/status' , [ItemController::class , 'updateStatus'])->name('/item/status');
+
+     });
+
 
 
 

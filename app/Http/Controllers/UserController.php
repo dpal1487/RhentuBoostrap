@@ -42,35 +42,42 @@ class UserController extends Controller
      {
         $data = User::find($id);
         $address = UserAddress::where('user_id',$id)->first();
-        return view('pages.users.address' )->with(['user' => $data , 'address'=> new AddressResource($address)]);
+        return view('pages.users.address' )->with(['user' => $data , 'address' => new AddressResource($address)]);
      }
 
-
-     public function packages($id)
-     {
-        $data = User::find($id);
-
-        // dd($data);
-        return view('pages.users.packages' , ['user' => $data]);
-
-     }
-
-     public function items($id)
+     public function items( $id)
      {
         $data = User::find($id);
 
         $itemStatus = ItemStatus::all();
 
+        $item = Item::where(['user_id'=>$id])->get();
 
-
-        $items = Item::where(['user_id'=>$id])->get();
-
-        // dd($items);
-        return view('pages.users.items' , ['user' => $data , 'itemstatus' => $itemStatus , 'items' =>ItemResource::collection($items) ]);
+        return view('pages.users.items' , ['user' => $data , 'itemstatus' => $itemStatus , 'items' => ItemResource::collection($item)]);
 
      }
 
-    
+     public function updateStatus(Request $request)
+     {
+     // dd($request);
+         $item = Item::find($request->item_id);
+         $item->status_id = $request->itemstatus_id;
+         $item->update();
+         return response()->json(['success'=>'Status change successfully.']);
+     }
+
+
+
+     public function packages($id)
+     {
+        $data = User::find($id);
+        // dd($data);
+        return view('pages.users.packages' , ['user' => $data]);
+     }
+
+
+
+
 
      public function reports($id)
      {

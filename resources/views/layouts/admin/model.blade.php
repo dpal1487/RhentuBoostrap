@@ -1431,11 +1431,11 @@
                                             <!--end::Input-->
                                             <!--begin::Card logos-->
                                             <div class="position-absolute translate-middle-y top-50 end-0 me-5">
-                                                <img src="assets/media/svg/card-logos/visa.svg" alt=""
+                                                <img src="{{ asset('assets/media/svg/card-logos/visa.svg') }}" alt=""
                                                     class="h-25px" />
-                                                <img src="assets/media/svg/card-logos/mastercard.svg"
+                                                <img src="{{ asset('assets/media/svg/card-logos/mastercard.svg') }}"
                                                     alt="" class="h-25px" />
-                                                <img src="assets/media/svg/card-logos/american-express.svg"
+                                                <img src="{{ asset('assets/media/svg/card-logos/american-express.svg') }}"
                                                     alt="" class="h-25px" />
                                             </div>
                                             <!--end::Card logos-->
@@ -1573,7 +1573,7 @@
                                     <!--end::Description-->
                                     <!--begin::Illustration-->
                                     <div class="text-center px-4 py-15">
-                                        <img src="assets/media/illustrations/sketchy-1/9.png" alt=""
+                                        <img src="{{ asset('assets/media/illustrations/sketchy-1/9.png') }}" alt=""
                                             class="mw-100 mh-300px" />
                                     </div>
                                     <!--end::Illustration-->
@@ -3362,7 +3362,7 @@
                 <!--end::Heading-->
                 <!--begin::Google Contacts Invite-->
                 <div class="btn btn-light-primary fw-bold w-100 mb-8">
-                    <img alt="Logo" src="assets/media/svg/brand-logos/google-icon.svg"
+                    <img alt="Logo" src="{{ asset('assets/media/svg/brand-logos/google-icon.svg') }}"
                         class="h-20px me-3" />Invite Gmail Contacts
                 </div>
                 <!--end::Google Contacts Invite-->

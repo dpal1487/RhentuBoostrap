@@ -16,7 +16,16 @@ class ItemResource extends JsonResource
     {
         return [
             'name'=>$this->name,
-            'image'=>ImageResource::collection($this->images),
+            'slug'=>$this->slug,
+            'base_url'=>$this->base_url,
+            'description'=>$this->description,
+            'rent_price'=>$this->rent_price,
+            'time_id'=>$this->time_id,
+            'security_price'=>$this->security_price,
+            'from_date'=>$this->from_date,
+            'to_date'=>$this->to_date,
+
+            'status' => new ItemStatusesResource($this->status),
         ];
     }
 }

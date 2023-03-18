@@ -8,7 +8,7 @@
      <!--begin::Card header-->
      <div class="card-header bgi-position-y-bottom bgi-position-x-end bgi-size-cover bgi-no-repeat rounded-0 border-0 py-4"
          id="kt_app_layout_builder_header"
-         style="background-image:url('assets/media/misc/layout/header-bg.jpg')">
+         style="background-image:url('{{ asset('assets/media/misc/layout/header-bg.jpg') }}')">
          <!--begin::Card title-->
          <h3 class="card-title fs-3 fw-bold text-white flex-column m-0">Metronic Builder
              <small class="text-white opacity-50 fs-7 fw-semibold pt-1">Get your product deeply
@@ -70,7 +70,7 @@
                                  <label class="form-check-image form-check-success">
                                      <!--begin::Image-->
                                      <div class="form-check-wrapper">
-                                         <img src="assets/media/misc/layout/demo1-light.png" class="mw-100"
+                                         <img src="{{ asset("assets/media/misc/layout/demo1-light.png") }}" class="mw-100"
                                              alt="" />
                                      </div>
                                      <!--end::Image-->
@@ -94,7 +94,7 @@
                                  <label class="form-check-image form-check-success">
                                      <!--begin::Image-->
                                      <div class="form-check-wrapper">
-                                         <img src="assets/media/misc/layout/demo1-dark.png" class="mw-100"
+                                         <img src="{{ asset('assets/media/misc/layout/demo1-dark.png') }}" class="mw-100"
                                              alt="" />
                                      </div>
                                      <!--end::Image-->
@@ -265,7 +265,7 @@
                                  <label class="form-check-image form-check-success active active">
                                      <!--begin::Image-->
                                      <div class="form-check-wrapper">
-                                         <img src="assets/media/misc/layout/dark-sidebar.png" class="mw-100"
+                                         <img src="{{ asset('assets/media/misc/layout/dark-sidebar.png') }}" class="mw-100"
                                              alt="" />
                                      </div>
                                      <!--end::Image-->
@@ -290,7 +290,7 @@
                                  <label class="form-check-image form-check-success">
                                      <!--begin::Image-->
                                      <div class="form-check-wrapper">
-                                         <img src="assets/media/misc/layout/light-sidebar.png" class="mw-100"
+                                         <img src="{{ asset('assets/media/misc/layout/light-sidebar.png') }}" class="mw-100"
                                              alt="" />
                                      </div>
                                      <!--end::Image-->
@@ -314,7 +314,7 @@
                                  <label class="form-check-image form-check-success">
                                      <!--begin::Image-->
                                      <div class="form-check-wrapper">
-                                         <img src="assets/media/misc/layout/dark-header.png" class="mw-100"
+                                         <img src="{{ asset('assets/media/misc/layout/dark-header.png') }}" class="mw-100"
                                              alt="" />
                                      </div>
                                      <!--end::Image-->
@@ -338,7 +338,7 @@
                                  <label class="form-check-image form-check-success">
                                      <!--begin::Image-->
                                      <div class="form-check-wrapper">
-                                         <img src="assets/media/misc/layout/light-header.png" class="mw-100"
+                                         <img src="{{ asset('assets/media/misc/layout/light-header.png')}}" class="mw-100"
                                              alt="" />
                                      </div>
                                      <!--end::Image-->

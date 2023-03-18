@@ -6,19 +6,18 @@ use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class UserOverview extends Component
+class ItemCard extends Component
 {
     /**
      * Create a new component instance.
      */
 
-     protected  $user;
-
-    public function __construct($user)
+     public $item;
+    //  public $itemstatus;
+    public function __construct( $item )
     {
-        //
-
-        $this->user = $user;
+        $this->item = $item;
+        // $this->itemstatus = $itemstatus;
     }
 
     /**
@@ -26,6 +25,6 @@ class UserOverview extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.user-overview');
+        return view('components.item-card');
     }
 }

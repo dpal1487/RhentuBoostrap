@@ -16,14 +16,13 @@ class AddressResource extends JsonResource
     {
         return [
             'address'=>$this->address,
-            // 'country'=>$this->country,
+            'user'=>$this->user,
             'state'=>$this->state,
             'city'=>$this->city,
             'locality'=>$this->locality,
             'pincode'=>$this->pincode,
             'latitude'=>$this->latitude,
-            'longitude'=>$this->longitude,
-
+            'longitude'=>$this->longitude
         ];
     }
 }

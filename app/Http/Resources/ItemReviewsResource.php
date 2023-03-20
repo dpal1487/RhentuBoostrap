@@ -14,6 +14,14 @@ class ItemReviewsResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
-        return parent::toArray($request);
+        return [
+            'item_id' =>$this->item_id,
+            'user_id' =>$this->user_id,
+            'title' =>$this->title,
+            'content' =>$this->content,
+            'rating' =>$this->rating,
+            'status' =>$this->status,
+            
+        ];
     }
 }

@@ -1,4 +1,4 @@
-<div class="card-body pb-0  position-relative ">
+<div class="card-body  position-relative shadow-sm mt-4 rounded-2 bg-white">
     <!--begin::Toolbar-->
     <div class="card-toolbar position-absolute w-fit top-0 end-0 p-5">
         <!--begin::Menu-->
@@ -146,10 +146,6 @@
                                         {{ $item->status->label }}</span>
                                         {{ $item->status->text }}
                                 </span>
-
-
-
-
                             </div>
                             <!--end::Info-->
                         </div>
@@ -254,7 +250,7 @@
                                         clip-rule="evenodd"></path>
                                 </svg>
                             </span>
-                            <!--end::Svg Icon--><a href="{{ route('item/reviews', ['id' => $item->id]) }}" >0 Reviews</a>
+                            <!--end::Svg Icon--><a href="{{ route('item/reviews',['id'=>$item->id]) }}" >0 Reviews</a>
 
                             <svg stroke="currentColor" fill="currentColor" stroke-width="0"
                                 version="1.1" viewBox="0 0 18 16" height="1em" width="1em"

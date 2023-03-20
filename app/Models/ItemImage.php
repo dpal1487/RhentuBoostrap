@@ -21,4 +21,8 @@ class ItemImage extends Model
   {
     return $this->hasMany(Image::class, 'id', 'image_id');
   }
+  public function file()
+  {
+    return $this->hasOne(File::class , 'id' , 'image_id');
+  }
 }

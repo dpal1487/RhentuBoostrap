@@ -33,7 +33,7 @@
         </noscript>
         <!--End::Google Tag Manager (noscript) -->
         <!--begin::Root-->
-        <div class="d-flex flex-column flex-root" id="kt_app_root">
+        <div class="d-flex flex-column flex-root" id="kt_app_root" style="height: 100vh">
             <!--begin::Authentication - Sign-in -->
             <div class="d-flex flex-column flex-lg-row flex-column-fluid">
                 <!--begin::Body-->

@@ -51,49 +51,27 @@ class ItemController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function details()
+    public function details($id)
     {
-        return view('pages.item.details');
+        // $item = Item::where(['id' => $id])->first();
+        $item = Item::where(['id'=>$id])->get();
+
+           return response()->json([
+            'data' =>ItemResource::collection($item)
+           ]);
+        return view('pages.item.details' , ['itemdetails' =>new ItemResource($item)]);
 
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
+
+
+    public function reviews($id)
     {
-        //
+        $item = Item::where(['id' => $id])->first();
+
+
+        return view('pages.item.reviews' , ['itemdetails' =>new ItemResource($item)]);
+
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Item $item)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Item $item)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Item $item)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Item $item)
-    {
-        //
-    }
 }

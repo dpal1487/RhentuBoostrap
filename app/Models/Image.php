@@ -11,6 +11,12 @@ class Image extends Model
   protected $fillable = ['name', 'small_path', 'medium_path', 'large_path', 'original_path'];
   public function image()
   {
-    return $this->hasOne(Image::class, 'id', 'image_id');
+    return $this->hasOne(ItemImage::class, 'image_id', 'id');
   }
+
+  public function images()
+  {
+    return $this->hasMany(ItemImage::class, 'image_id', 'id');
+  }
+
 }

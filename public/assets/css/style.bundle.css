@@ -48680,3 +48680,8 @@ html:not([data-theme=dark]) {
     color: #ffffff !important;
   }
 }
+
+body{
+    background-color: #eeeeee !important;
+    
+}

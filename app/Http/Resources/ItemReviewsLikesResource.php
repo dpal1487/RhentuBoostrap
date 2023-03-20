@@ -14,6 +14,10 @@ class ItemReviewsLikesResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
-        return parent::toArray($request);
+        return [
+            'review_id' =>$this->review_id,
+            'user_id' =>$this->user_id,
+
+        ];
     }
 }

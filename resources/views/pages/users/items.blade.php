@@ -293,7 +293,8 @@
                 </div>
             </div>
 
-            <div class="card mb-5 mb-xxl-5">
+            <div class="card mb-5 mb-xxl-5 bg-transparent ">
+
                 <div class="card-header cursor-pointer">
                     <!--begin::Card title-->
                     <div class="card-title m-0">
@@ -305,9 +306,9 @@
 
                 @foreach ($items as $item)
                   <x-item-card :item="$item" />
-                    <hr>
+                    {{-- <hr> --}}
                 @endforeach
-               
+
                 @if ($items->links()->paginator->hasPages())
                     <div class="mt-4 p-4 box has-text-centered w-fit mx-auto">
                         {{ $items->links() }}

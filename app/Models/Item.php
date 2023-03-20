@@ -10,6 +10,21 @@ class Item extends Model
 {
   protected $hidden = ['user_id',];
   protected $fillable = ['id', 'user_id', 'name', 'slug', 'category_id','base_url', 'description', 'rent_price', 'time_id', 'security_price', 'from_date', 'to_date', 'status_id'];
+
+  public function attributes()
+  {
+    return $this->hasMany(ItemAttribute::class, 'item_id', 'id');
+  }
+
+  public function customers()
+  {
+    return $this->hasMany(ItemCustomer::class, 'item_id', 'id');
+  }
+
+  public function favourties()
+  {
+    return $this->hasMany(Favourite::class, 'item_id', 'id');
+  }
   public function image()
   {
     return $this->hasOne(ItemImage::class, 'item_id', 'id');
@@ -17,6 +32,16 @@ class Item extends Model
   public function images()
   {
     return $this->hasMany(ItemImage::class, 'item_id', 'id');
+  }
+
+  public function location()
+  {
+    return $this->hasOne(ItemLocation::class, 'item_id', 'id');
+  }
+
+  public function address()
+  {
+    return $this->hasOne(ItemLocation::class , 'address_id' , 'id');
   }
   public function reviews()
   {
@@ -34,10 +59,7 @@ class Item extends Model
   {
     return $this->hasOne(Category::class, 'id', 'category_id');
   }
-  public function location()
-  {
-    return $this->hasOne(ItemLocation::class, 'item_id', 'id');
-  }
+
   public function visits()
   {
     return $this->hasMany(ItemVisit::class, 'item_id', 'id');
@@ -50,25 +72,16 @@ class Item extends Model
   {
     return $this->hasOne(User::class, 'id', 'user_id');
   }
-  public function attributes()
-  {
-    return $this->hasMany(ItemAttribute::class, 'item_id', 'id');
-  }
+
   public function attribute()
   {
     return $this->hasOne(ItemAttribute::class, 'item_id', 'id');
   }
-  public function favourties()
-  {
-    return $this->hasMany(Favourite::class, 'item_id', 'id');
-  }
-  public function customers()
-  {
-    return $this->hasMany(ItemCustomer::class, 'item_id', 'id');
-  }
+
   public function isFavourite()
   {
-    $user = Auth::guard('api')->user();
+    // $user = Auth::guard('api')->user();
+    $user = Auth::user();
     if ($user) {
       return $this->hasOne(Favourite::class, 'item_id', 'id')->where('user_id',$user->id);
     }

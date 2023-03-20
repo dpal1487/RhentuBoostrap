@@ -14,6 +14,16 @@ class ItemLocationsResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
-        return parent::toArray($request);
+        return [
+            'item_id' => $this->item_id,
+            'address' =>$this->address,
+            'state' =>$this->state,
+            'city' =>$this->city,
+            'locality' =>$this->locality,
+            'pincode' =>$this->pincode,
+            'country' =>$this->country,
+            'latitude' =>$this->latitude,
+            'longitude' => $this->longitude
+        ];
     }
 }

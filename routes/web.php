@@ -46,8 +46,8 @@ Route::middleware('auth')->group(function () {
     // item page
     Route::group(['prefix' => 'item'], function () {
         Route::get('/' , [ItemController::class , 'index'])->name('item');
-        Route::get('/details' , [ItemController::class , 'details'])->name('item/details');
-        Route::get('/reviews' , [ItemController::class , 'details'])->name('item/reviews');
+        Route::get('/details/{id}' , [ItemController::class , 'details'])->name('item/details');
+        Route::get('/reviews/{id}' , [ItemController::class , 'reviews'])->name('item/reviews');
         Route::get('/customers' , [ItemController::class , 'details'])->name('item/customers');
         Route::post('/item/status' , [ItemController::class , 'updateStatus'])->name('/item/status');
      });

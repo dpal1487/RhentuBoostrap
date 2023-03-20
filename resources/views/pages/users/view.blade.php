@@ -36,7 +36,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.1/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.datatables.net/1.11.4/css/dataTables.bootstrap5.min.css" rel="stylesheet">
 
-    <div class="container">
+    <div class="container bg-white rounded">
         {{-- <h1>Laravel 9 Yajra Datatables Tutorial - ItSolutionStuff.com</h1> --}}
         {{-- {{ $result }} --}}
         <table class="table table-bordered data-table"  id="example">

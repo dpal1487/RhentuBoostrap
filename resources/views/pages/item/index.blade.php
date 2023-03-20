@@ -44,11 +44,11 @@
             <!--begin::Navbar-->
 
 
-            <div class="card mb-5 mb-xxl-5">
+            <div class="card mb-5 mb-xxl-5 bg-transparent">
                 @foreach ($items as $item)
                     <x-item-card :item="$item" />
 
-                    <hr>
+                    {{-- <hr> --}}
                 @endforeach
                 @if ($items->links()->paginator->hasPages())
                     <div class="mt-4 p-4 box has-text-centered w-fit mx-auto">

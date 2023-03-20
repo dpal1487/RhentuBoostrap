@@ -14,6 +14,11 @@ class ItemImagesResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
-        return parent::toArray($request);
+        return [
+            'id' => $this->id,
+            'large_path' => $this->large_path,
+            'medium_path' => $this->medium_path,
+            'small_path' => $this->small_path,
+        ];
     }
 }

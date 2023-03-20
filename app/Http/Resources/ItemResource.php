@@ -27,9 +27,10 @@ class ItemResource extends JsonResource
             'to_date'=>$this->to_date,
             'category' => $this->category->name,
             'time' => $this->time->title,
-
+            'user'=>$this->user,
+            
             'images' => ItemImagesResource::collection($this->image->images),
-            'user' => new UserResource($this->user),
+            // 'user' => UserResource::collection($this->user),
 
 
             'currency_symbol' => $this->user->country->currency_symbol,

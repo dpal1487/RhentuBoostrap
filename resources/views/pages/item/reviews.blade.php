@@ -2,6 +2,8 @@
 @endsection
 <x-app-layout>
 
+
+
     <!--begin::Toolbar-->
     <div id="kt_app_toolbar" class="app-toolbar py-3 py-lg-6">
         <!--begin::Toolbar container-->
@@ -40,8 +42,8 @@
         <!--begin::Content container-->
         <div id="kt_app_content_container" class="app-container container-xxl">
 
-            <div class="row g-5 g-xl-10 mb-5 mb-xl-10">
-                <div class="col-sm-12 col-md-5">
+            <div class="row g-5 g-xl-10 mb-5 mb-xl-10 position: relative;">
+                <div class="col-sm-12 col-md-5" style="position: sticky; top: 0">
                     <div class="row col-md-12">
                         <div class="col-md-4">
                             <div class="">
@@ -57,52 +59,9 @@
                                 </span></span>
                             </div>
                             <div class="rating">
-                                <div class="rating-label checked">
-                                    <span class="svg-icon">
-                                        <svg stroke="currentColor" fill="currentColor" stroke-width="0"
-                                            viewBox="0 0 16 16" height="1em" width="1em"
-                                            xmlns="http://www.w3.org/2000/svg">
-                                            <path
-                                                d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z">
-                                            </path>
-                                        </svg>
-                                    </span>
-                                </div>
-                                <div class="rating-label checked">
-                                    <span class="svg-icon"><svg stroke="currentColor" fill="currentColor"
-                                            stroke-width="0" viewBox="0 0 16 16" height="1em" width="1em"
-                                            xmlns="http://www.w3.org/2000/svg">
-                                            <path
-                                                d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z">
-                                            </path>
-                                        </svg></span>
-                                </div>
-                                <div class="rating-label checked">
-                                    <span class="svg-icon"><svg stroke="currentColor" fill="currentColor"
-                                            stroke-width="0" viewBox="0 0 16 16" height="1em" width="1em"
-                                            xmlns="http://www.w3.org/2000/svg">
-                                            <path
-                                                d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z">
-                                            </path>
-                                        </svg></span>
-                                </div>
-                                <div class="rating-label checked">
-                                    <span class="svg-icon"><svg stroke="currentColor" fill="currentColor"
-                                            stroke-width="0" viewBox="0 0 16 16" height="1em" width="1em"
-                                            xmlns="http://www.w3.org/2000/svg">
-                                            <path
-                                                d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z">
-                                            </path>
-                                        </svg></span>
-                                </div>
-                                <div class="rating-label">
-                                    <span class="svg-icon"><svg stroke="currentColor" fill="currentColor"
-                                            stroke-width="0" viewBox="0 0 16 16" height="1em" width="1em"
-                                            xmlns="http://www.w3.org/2000/svg">
-                                            <path
-                                                d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z">
-                                            </path>
-                                        </svg></span>
+                                <div class="d-flex">
+                                    <x-rating />
+
                                 </div>
                                 <span class="mx-10 mt-2 fs-5 fw-bold">4 Out Of 5
                                 </span>
@@ -163,13 +122,99 @@
                     </div>
                 </div>
 
-                <div class="col-sm-12 col-md-7">
-                    <div class="card mb-3">
+                <div class="col-sm-12 col-md-7 overflow-auto" style="height: 100vh;">
+                    <div class="card mb-3 mt-4 rounded shadow-sm">
                         <div class="card-body p-4">
-                            <div class="d-flex align-items-center justify-content-between">
-                                <div class="">
+                            <div class="d-flex align-items-stretch justify-content-between">
+                                <div class="d-flex align-items-stretch">
+                                    <div class="me-4" style="height: 4rem;">
+                                        <img alt="user image" src="{{ asset('assets/media/avatars/300-1.jpg') }}"
+                                            style="width: 4rem;" class="rounded h-100" />
+                                    </div>
+                                    <div class="">
+                                        <h4>John Doe</h4>
+                                        <div class="rating">
+                                            <div class="d-flex">
+                                                <x-rating />
 
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
+                                <div class="w-fit">
+                                    28 Mar, 2022
+                                </div>
+                            </div>
+                            <div class="mt-2">
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                                Quasi, porro iste? Error ratione beatae, necessitatibus aspernatur iste a obcaecati
+                                recusandae,
+                                consectetur repellendus repellat officiis deserunt? Quisquam nesciunt quasi nisi
+                                tempore.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card mb-3 mt-4 rounded shadow-sm">
+                        <div class="card-body p-4">
+                            <div class="d-flex align-items-stretch justify-content-between">
+                                <div class="d-flex align-items-stretch">
+                                    <div class="me-4" style="height: 4rem;">
+                                        <img alt="user image" src="{{ asset('assets/media/avatars/300-1.jpg') }}"
+                                            style="width: 4rem;" class="rounded h-100" />
+                                    </div>
+                                    <div class="">
+                                        <h4>John Doe</h4>
+                                        <div class="rating">
+                                            <div class="d-flex">
+                                                <x-rating />
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="w-fit">
+                                    28 Mar, 2022
+                                </div>
+                            </div>
+                            <div class="mt-2">
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                                Quasi, porro iste? Error ratione beatae, necessitatibus aspernatur iste a obcaecati
+                                recusandae,
+                                consectetur repellendus repellat officiis deserunt? Quisquam nesciunt quasi nisi
+                                tempore.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card mb-3 mt-4 rounded shadow-sm">
+                        <div class="card-body p-4">
+                            <div class="d-flex align-items-stretch justify-content-between">
+                                <div class="d-flex align-items-stretch">
+                                    <div class="me-4" style="height: 4rem;">
+                                        <img alt="user image" src="{{ asset('assets/media/avatars/300-1.jpg') }}"
+                                            style="width: 4rem;" class="rounded h-100" />
+                                    </div>
+                                    <div class="">
+                                        <h4>John Doe</h4>
+                                        <div class="rating">
+                                            <div class="d-flex">
+                                                <x-rating />
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="w-fit">
+                                    2 Mar, 2022
+                                </div>
+                            </div>
+                            <div class="mt-2">
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                                Quasi, porro iste? Error ratione beatae, necessitatibus aspernatur iste a obcaecati
+                                recusandae,
+                                consectetur repellendus repellat officiis deserunt? Quisquam nesciunt quasi nisi
+                                tempore.
                             </div>
                         </div>
                     </div>

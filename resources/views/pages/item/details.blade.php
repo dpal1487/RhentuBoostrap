@@ -32,7 +32,13 @@
             </div>
             <!--end::Page title-->
         </div>
-        {{-- {{ dd($itemdetails) }} --}}
+        <pre>
+        @php
+
+        print_r($itemdetails);
+
+        exit();
+        @endphp
         <!--end::Toolbar container-->
     </div>
     <!--end::Toolbar-->

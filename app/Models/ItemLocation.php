@@ -13,13 +13,13 @@ class ItemLocation extends Model
     'item_id',
   ];
 
-//   public function location()
-//   {
-//     return $this->hasOne(Item::class , 'id' , 'item_id');
-//   }
-
   public function location()
   {
-    return $this->hasOne(Address::class , 'id' , 'address_id');
+    return $this->hasOne(Item::class , 'id' , 'item_id');
   }
+
+//   public function location()
+//   {
+//     return $this->hasOne(Address::class , 'id' , 'address_id');
+//   }
 }

@@ -54,12 +54,12 @@ class ItemController extends Controller
     public function details($id)
     {
         // $item = Item::where(['id' => $id])->first();
-        $item = Item::where(['id'=>$id])->get();
+        $item = Item::where(['id' => $id])->get();
 
            return response()->json([
             'data' =>ItemResource::collection($item)
            ]);
-        return view('pages.item.details' , ['itemdetails' =>new ItemResource($item)]);
+        return view('pages.item.details' , ['itemdetails' => ItemResource::collection($item)]);
 
     }
 

@@ -41,4 +41,9 @@ class Category extends Model
   public function priceCondition(){
     return $this->hasMany(TimePeriod::class,'category_id','id');
   }
+
+  public function meta()
+  {
+    return $this->hasOne(Meta::class , 'id' , 'meta_id');
+  }
 }

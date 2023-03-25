@@ -14,4 +14,9 @@ class Meta extends Model
         'description',
         'keywords'
     ];
+
+    public function meta()
+    {
+        return $this->hasOne(Category::class , 'meta_id' , 'id');
+    }
 }

@@ -17,7 +17,7 @@ class CategoryController extends Controller
 
     public function index ()
     {
-        
+
         $title = "Category";
         return view('pages.category.view' , ['title' => $title]);
     }
@@ -102,6 +102,45 @@ class CategoryController extends Controller
             'meta_id' =>$meta_id,
             'image_id' =>$request->image_id,
         ]);
+
+        $banner_image = $request->file('banner_image');
+        // dd($image);
+        if($banner_image) {
+                $extension = $request->file->extension();
+                $file_path = 'assets/image/category';
+                $name = time().'_'.$request->file->getClientOriginalName();
+
+            //   dd($name);
+                $result= Image::make($banner_image)->save($file_path.$name);
+
+                // dd($result);
+                $smallthumbnail = date('mdYHis'). '-' . uniqid() . '.' . '_small_'. '.' .$extension;
+                $mediumthumbnail = date('mdYHis'). '-' . uniqid() . '.' . '_medium_' . '.' .$extension;
+
+                $smallThumbnailFolder = 'assets/image/category/thumbnail/small/';
+                $mediumThumbnailFolder = 'assets/image/category/thumbnail/medium/';
+
+                $result = $result->save($file_path.$name);
+
+                $result->resize(200,200);
+                $result = $result->save($file_path.'/thumbnail/small/'.$smallthumbnail);
+
+                $result->resize(100,100);
+                $result = $result->save($file_path.'/thumbnail/medium/'.$mediumthumbnail);
+
+                $Imagefile = CategoryImage::create([
+                    'name' => $name,
+                    'small_path' => url($file_path.$name),
+                    'medium_path' => url($smallThumbnailFolder.$smallthumbnail),
+                    'large_path' => url($mediumThumbnailFolder.$mediumthumbnail),
+                ]);
+                if($Imagefile->save())
+                {
+                    User::where('id',$user->id)->update(['image_id'=>$Imagefile->id]);
+                }
+                    $user = User::where('id',$user->id)->with('image')->first();
+                    return response()->json(['success'=>true,'image_id'=>$Imagefile->id]);
+            }
 
             return redirect()->back();
     }

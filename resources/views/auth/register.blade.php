@@ -119,7 +119,7 @@
                                     <!--begin::DOB-->
 
                                     <input type="date" placeholder="Date Of Birth" name="date_of_birth" autocomplete="off"
-                                        class="form-control bg-transparent" />
+                                        class="form-control bg-transparent " />
                                     <!--end::Email-->
                                 </div>
                                 <div class="fv-row mb-8">

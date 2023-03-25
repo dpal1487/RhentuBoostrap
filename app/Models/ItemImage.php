@@ -25,4 +25,17 @@ class ItemImage extends Model
   {
     return $this->hasOne(File::class , 'id' , 'image_id');
   }
+
+  public function files()
+  {
+    return $this->hasMany(File::class , 'id' , 'image_id');
+  }
+  public function item()
+  {
+    return $this->hasOne(Item::class , 'id' , 'item_id');
+  }
+  public function items()
+  {
+    return $this->hasMany(Item::class , 'id' , 'item_id');
+  }
 }

@@ -1,39 +1,10 @@
 <x-app-layout>
-
-    <!--begin::Toolbar-->
-    <div id="kt_app_toolbar" class="app-toolbar py-3 py-lg-6">
-        <!--begin::Toolbar container-->
-        <div id="kt_app_toolbar_container" class="app-container container-fluid d-flex flex-stack">
-            <!--begin::Page title-->
-            <div class="page-title d-flex flex-column justify-content-center flex-wrap me-3">
-                <!--begin::Title-->
-                <h1 class="page-heading d-flex text-dark fw-bold fs-3 flex-column justify-content-center my-0">User
-                    Profile</h1>
-                <!--end::Title-->
-                <!--begin::Breadcrumb-->
-                <ul class="breadcrumb breadcrumb-separatorless fw-semibold fs-7 my-0 pt-1">
-                    <!--begin::Item-->
-                    <li class="breadcrumb-item text-muted">
-                        <a href="{{ route('dashboard') }}" class="text-muted text-hover-primary">Home</a>
-
-                    </li>
-                    <!--end::Item-->
-                    <!--begin::Item-->
-                    <li class="breadcrumb-item">
-                        <span class="bullet bg-gray-400 w-5px h-2px"></span>
-                    </li>
-                    <!--end::Item-->
-                    <!--begin::Item-->
-                    <li class="breadcrumb-item text-muted">Dashboards</li>
-                    <!--end::Item-->
-                </ul>
-                <!--end::Breadcrumb-->
-            </div>
-            <!--end::Page title-->
-        </div>
-        <!--end::Toolbar container-->
-    </div>
-    <!--end::Toolbar-->
+ <!--begin::Toolbar-->
+ <div id="kt_app_toolbar" class="app-toolbar py-3 py-lg-6">
+    <x-header :title="$title" />
+    <pre>
+</div>
+<!--end::Toolbar-->
     <div id="kt_app_content" class="app-content flex-column-fluid">
         <!--begin::Content container-->
         <div id="kt_app_content_container" class="app-container container-xxl">
@@ -45,7 +16,7 @@
                         <!--begin: Pic-->
                         <div class="me-7 mb-4">
                             <div class="symbol symbol-100px symbol-lg-160px symbol-fixed position-relative">
-                                @if ($address->file_name)
+                                @if ($address->file_name ?? 'File Empty')
                                     <img src="{{ asset('assets/media/avatars/300-2.jpg') }}" alt="image" />
                                 @else
                                     <img src="{{ asset('assets/media/avatars/300-1.jpg') }}" alt="image" />
@@ -120,7 +91,13 @@
                                             </span>
 
 
-                                            <!--end::Svg Icon-->SF, Bay Area
+                                            <!--end::Svg Icon-->
+                                            @if ($user->address == null)
+                                            N/A
+                                            @else
+                                            {{  $user->address->address->address ." , " . $user->address->address->city }}
+                                            @endif
+                                            {{-- {{  $user->address->address->address ?? 'Address Empty' ." , " . $user->address->address->city ?? 'City Empty' }} --}}
                                         </a>
                                         <a href="#"
                                             class="d-flex align-items-center text-gray-400 text-hover-primary mb-2">
@@ -307,6 +284,7 @@
                 </div>
                 <!--begin::Card header-->
                 <!--begin::Card body-->
+                @if ($user->address == null)
                 <div class="card-body p-9">
                     <!--begin::Row-->
                     <div class="row mb-7">
@@ -315,7 +293,90 @@
                         <!--end::Label-->
                         <!--begin::Col-->
                         <div class="col-lg-8">
-                            <span class="fw-bold fs-6 text-gray-800">{{ $address->address->address }}</span>
+                            <span class="fw-bold fs-6 text-gray-800">
+                                N/A</span>
+                        </div>
+                        <!--end::Col-->
+                    </div>
+                    <!--end::Row-->
+                    <!--begin::Input group-->
+                    <div class="row mb-7">
+                        <!--begin::Label-->
+                        <label class="col-lg-4 fw-semibold text-muted">Locality</label>
+                        <!--end::Label-->
+                        <!--begin::Col-->
+                        <div class="col-lg-8 fv-row">
+                            <span class="fw-semibold text-gray-800 fs-6">N/A</span>
+                        </div>
+                        <!--end::Col-->
+                    </div>
+                    <!--end::Input group-->
+                    <!--begin::Input group-->
+                    <div class="row mb-7">
+                        <!--begin::Label-->
+                        <label class="col-lg-4 fw-semibold text-muted">City</label>
+                        <!--end::Label-->
+                        <!--begin::Col-->
+                        <div class="col-lg-8 fv-row">
+                            <span class="fw-semibold text-gray-800 fs-6">N/A</span>
+                        </div>
+                        <!--end::Col-->
+                    </div>
+                    <!--end::Input group-->
+
+                    <!--begin::Input group-->
+                    <div class="row mb-7">
+                        <!--begin::Label-->
+                        <label class="col-lg-4 fw-semibold text-muted">State</label>
+
+                        <!--end::Label-->
+                        <!--begin::Col-->
+                        <div class="col-lg-8 fv-row">
+
+                            <span class="fw-bold fs-6 text-gray-800 me-2">N/A</span>
+                        </div>
+                        <!--end::Col-->
+                    </div>
+
+                    <div class="row mb-7">
+                        <!--begin::Label-->
+                        <label class="col-lg-4 fw-semibold text-muted">Country
+                            <i class="fas fa-exclamation-circle ms-1 fs-7" data-bs-toggle="tooltip"
+                                title="Country of origination"></i></label>
+                        <!--end::Label-->
+                        <!--begin::Col-->
+                        <div class="col-lg-8">
+                            <span class="fw-bold fs-6 text-gray-800">N/A</span>
+                        </div>
+                        <!--end::Col-->
+                    </div>
+                    <!--end::Input group-->
+                    <!--begin::Input group-->
+                    <div class="row mb-7">
+                        <!--begin::Label-->
+                        <label class="col-lg-4 fw-semibold text-muted">Pincode</label>
+                        <!--end::Label-->
+                        <!--begin::Col-->
+                        <div class="col-lg-8">
+                            <span class="fw-bold fs-6 text-gray-800">N/A</span>
+                        </div>
+                        <!--end::Col-->
+                    </div>
+                    <!--end::Input group-->
+
+                </div>
+                @else
+                {{-- {{  $user->address->address->address ." , " . $user->address->address->city }} --}}
+                <div class="card-body p-9">
+                    <!--begin::Row-->
+                    <div class="row mb-7">
+                        <!--begin::Label-->
+                        <label class="col-lg-4 fw-semibold text-muted">Address</label>
+                        <!--end::Label-->
+                        <!--begin::Col-->
+                        <div class="col-lg-8">
+                            <span class="fw-bold fs-6 text-gray-800">
+                                {{ $address->address->address }}</span>
                         </div>
                         <!--end::Col-->
                     </div>
@@ -386,6 +447,7 @@
                     <!--end::Input group-->
 
                 </div>
+                @endif
                 <!--end::Card body-->
             </div>
             <!--end::details View-->

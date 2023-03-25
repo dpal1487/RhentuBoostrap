@@ -121,7 +121,7 @@
     <!--end::Modals-->
     <!--begin::Javascript-->
     <script>
-        var hostUrl = "assets/index.html";
+        var hostUrl = "{{url('assets/index.html')}}";
     </script>
     <!--begin::Global Javascript Bundle(mandatory for all pages)-->
     <script src="{{ asset('assets/plugins/global/plugins.bundle.js') }}"></script>

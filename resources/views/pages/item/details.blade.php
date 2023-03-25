@@ -4,42 +4,8 @@
 
     <!--begin::Toolbar-->
     <div id="kt_app_toolbar" class="app-toolbar py-3 py-lg-6">
-        <!--begin::Toolbar container-->
-        <div id="kt_app_toolbar_container" class="app-container container-fluid d-flex flex-stack">
-            <!--begin::Page title-->
-            <div class="page-title d-flex flex-column justify-content-center flex-wrap me-3">
-                <!--begin::Title-->
-                <h1 class="page-heading d-flex text-dark fw-bold fs-3 flex-column justify-content-center my-0">Item
-                    Details</h1>
-                <!--end::Title-->
-                <!--begin::Breadcrumb-->
-                <ul class="breadcrumb breadcrumb-separatorless fw-semibold fs-7 my-0 pt-1">
-                    <!--begin::Item-->
-                    <li class="breadcrumb-item text-muted">
-                        <a href="{{ route('dashboard') }}" class="text-muted text-hover-primary">Home</a>
-                    </li>
-                    <!--end::Item-->
-                    <!--begin::Item-->
-                    <li class="breadcrumb-item">
-                        <span class="bullet bg-gray-400 w-5px h-2px"></span>
-                    </li>
-                    <!--end::Item-->
-                    <!--begin::Item-->
-                    <li class="breadcrumb-item text-muted">Dashboards</li>
-                    <!--end::Item-->
-                </ul>
-                <!--end::Breadcrumb-->
-            </div>
-            <!--end::Page title-->
-        </div>
+        <x-header :title="$title" />
         <pre>
-        @php
-
-        print_r($itemdetails);
-
-        exit();
-        @endphp
-        <!--end::Toolbar container-->
     </div>
     <!--end::Toolbar-->
     <div id="kt_app_content" class="app-content flex-column-fluid">
@@ -55,8 +21,9 @@
                     <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"
                         aria-label="Slide 3"></button>
                 </div>
-                @if ($itemdetails->image->images)
-                @foreach ($itemdetails->image->images as $item)
+                {{-- {{ dd($itemdetails->images['files']) }} --}}
+                @if ($itemdetails[0]['image']['files']  )
+                @foreach ($itemdetails[0]['image']['files'] as $item)
 
                 <div class="carousel-inner position-relative">
                     <div class="carousel-item active">
@@ -135,8 +102,8 @@
                         <div class="d-flex align-items-center justify-content-between">
                             <div class="">
 
-                                <h5 class="card-title fs-1 m-0">₹ {{ $itemdetails->rent_price }}</h5>
-                                <p class="card-text fs-4">{{  $itemdetails->category->name }}</p>
+                                <h5 class="card-title fs-1 m-0">₹ {{ $itemdetails[0]['rent_price'] }} </h5>
+                                <p class="card-text fs-4">{{  $itemdetails[0]['category']['name'] }}</p>
                             </div>
                             <div class="d-flex align-items-center justify-content-evenly gap-2">
                                 <svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true" height="1.5em" width="1.5em" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
@@ -160,10 +127,16 @@
                                         </svg>
                                     </span>
                                 </h5>
-                                <p class="card-text fs-4">{{ $itemdetails->location }}</p>
+                                <p class="card-text fs-4">{{ $itemdetails[0]['location']['address']['address'] ."
+                                                             ".  $itemdetails[0]['location']['address']['locality']  ."
+                                                             ".  $itemdetails[0]['location']['address']['city']  ."
+                                                             ".  $itemdetails[0]['location']['address']['state']  ."
+                                                             ".  $itemdetails[0]['location']['address']['pincode']  ."
+                                                             ".  $itemdetails[0]['location']['address']['country']}}
+                                                             </p>
                             </div>
                             <div class="">
-                                <h5 class="card-title fs-3">JAN {{ $itemdetails->crated_at }}</h5>
+                                <h5 class="card-title fs-3">JAN {{ $itemdetails[0]['crated_at'] }}</h5>
                                 <p class="card-text fs-4">1</p>
                             </div>
                         </div>
@@ -174,19 +147,19 @@
                         <h5 class="card-title fs-1 mb-4 p-0">Details</h5>
                             <div class="d-flex align-items-center gap-20 gap-y-0 mb-2">
                                 <span class="fs-4 w-25">Rent Type</span>
-                                <span class="fs-4">{{ $itemdetails->time->title }}</span>
+                                <span class="fs-4">{{ $itemdetails[0]['time']['title'] }}</span>
                             </div>
                             <div class="d-flex align-items-center gap-20 gap-y-0 mb-2">
                                 <span class="fs-4 w-25">Rent Price</span>
-                                <span class="fs-4">₹ {{ $itemdetails->rent_price }}</span>
+                                <span class="fs-4">₹ {{ $itemdetails[0]['rent_price'] }}</span>
                             </div>
                             <div class="d-flex align-items-center gap-20 gap-y-0 mb-2">
                                 <span class="fs-4 w-25">Security Price</span>
-                                <span class="fs-4">₹ {{ $itemdetails->security_price }}</span>
+                                <span class="fs-4">₹ {{ $itemdetails[0]['security_price'] }}</span>
                             </div>
                         <hr>
                         <h5 class="card-title fs-1 mb-4 p-0">Description</h5>
-                        <span class="fs-4 w-25">{{ $itemdetails->description }}</span>
+                        <span class="fs-4 w-25">{{ $itemdetails[0]['description'] }}</span>
                     </div>
                   </div>
                   <div class="card mb-5">
@@ -199,7 +172,7 @@
                   <div class="card mb-5">
                     <div class="card-body p-2 m-3">
                         <h5 class="card-title fs-1 mb-4 p-0">Found something unusual ?</h5>
-                        <span class="fs-4 w-25">Ad Id : {{ $itemdetails->id }}</span>
+                        <span class="fs-4 w-25">Ad Id : {{ $itemdetails[0]['id'] }}</span>
                     </div>
                   </div>
                 </div>
@@ -209,10 +182,10 @@
                       <div class="card-body p-4">
                           <div class="d-flex align-items-center justify-content-between">
                               <div class="">
-                                <a class="user_link d-flex align-items-center gap-4" href="{{ url('item/user/userProfile' , ['id' => $itemdetails->user->id]) }}">
+                                <a class="user_link d-flex align-items-center gap-4" href="{{ url('item/user/userProfile' , ['id' => $itemdetails[0]['user']['id']]) }}">
                                     <img alt="user image" src="{{ asset('assets/media/avatars/300-1.jpg') }}" width="50" height="50" >
                                     <div class="user_name fs-3 fw-bold text-theme-primary flex-root d-flex align-items-center justify-content-between">
-                                        <span>{{ $itemdetails->user->first_name }} {{ $itemdetails->user->last_name }}</span>
+                                        <span>{{ $itemdetails[0]['user']['first_name'] }} {{ $itemdetails[0]['user']['last_name'] }}</span>
                                         <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
                                             <path fill="none" d="M0 0h24v24H0z"></path>
                                             <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"></path>

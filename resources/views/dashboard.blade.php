@@ -1,5 +1,10 @@
 <x-app-layout>
-
+<!--begin::Toolbar-->
+<div id="kt_app_toolbar" class="app-toolbar py-3 py-lg-6">
+    <x-header :title="$title" />
+    <pre>
+</div>
+<!--end::Toolbar-->
     <!--begin::Content-->
     <div id="kt_app_content" class="app-content flex-column-fluid">
         <!--begin::Content container-->
@@ -7,7 +12,7 @@
         <div id="kt_app_content_container" class="app-container container-fluid">
             <!--begin::Row-->
             <div class="row g-5 g-xl-10 mb-5 mb-xl-10">
-                
+
                 <!--begin::Col-->
                 <div class="col-md-6 col-lg-6 col-xl-6 col-xxl-3 mb-md-5 mb-xl-10">
                     <!--begin::Card widget 20-->

@@ -22,8 +22,9 @@ class UserController extends Controller
      public $data;
     public function index()
     {
+        $title = "User Details";
         $data = User::latest()->get();
-        return view('pages.users.view' , ['result' =>$data]);
+        return view('pages.users.view' , ['title' => $title ,'result' =>$data]);
     }
 
     /**
@@ -32,34 +33,36 @@ class UserController extends Controller
 
      public function overview($id)
      {
+        $title = "User Overview";
         $data = User::find($id);
 
-        return view('pages.users.overview')->with('data', new UserResource($data));
+        return view('pages.users.overview')->with(['title' =>  $title , 'data' => new UserResource($data)]);
 
      }
 
      public function address($id)
      {
+        $title = "User Address";
         $data = User::find($id);
         $address = UserAddress::where('user_id',$id)->first();
-        return view('pages.users.address' )->with(['user' => $data , 'address' => new AddressResource($address)]);
+        return view('pages.users.address' )->with(['title' => $title ,'user' => $data , 'address' => new AddressResource($address)]);
      }
 
      public function items( $id)
      {
+        $title = "Item Details";
         $data = User::find($id);
 
         $itemStatus = ItemStatus::all();
 
         $item = Item::where(['user_id'=>$id])->simplePaginate(3);
 
-        return view('pages.users.items' , ['user' => $data , 'itemstatus' => $itemStatus , 'items' => ItemResource::collection($item)]);
+        return view('pages.users.items' , ['title' => $title ,'user' => $data , 'itemstatus' => $itemStatus , 'items' => ItemResource::collection($item)]);
 
      }
 
      public function updateStatus(Request $request)
      {
-     // dd($request);
          $item = Item::find($request->item_id);
          $item->status_id = $request->itemstatus_id;
          $item->update();
@@ -70,9 +73,10 @@ class UserController extends Controller
 
      public function packages($id)
      {
+        $title = "Item Package";
         $data = User::find($id);
         // dd($data);
-        return view('pages.users.packages' , ['user' => $data]);
+        return view('pages.users.packages' , ['title' => $title ,'user' => $data]);
      }
 
 
@@ -81,10 +85,11 @@ class UserController extends Controller
 
      public function reports($id)
      {
+        $title = "Item Report";
         $data = User::find($id);
 
         // dd($data);
-        return view('pages.users.reports' , ['user' => $data]);
+        return view('pages.users.reports' , ['title' => $title ,'user' => $data]);
 
      }
 

@@ -11,4 +11,9 @@ class Banner extends Model
   public function image(){
     return $this->hasOne(Image::class,'id','image_id');
   }
+
+  public function category_banner()
+  {
+    return $this->hasOne(CategoryBanner::class , 'id' , 'banner_id');
+  }
 }

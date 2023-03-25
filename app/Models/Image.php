@@ -19,4 +19,9 @@ class Image extends Model
     return $this->hasMany(ItemImage::class, 'image_id', 'id');
   }
 
+  public function banner()
+  {
+    return $this->hasOne(Banner::class , 'image_id' , 'id');
+  }
+
 }

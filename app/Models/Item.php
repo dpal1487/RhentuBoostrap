@@ -39,10 +39,6 @@ class Item extends Model
     return $this->hasOne(ItemLocation::class, 'item_id', 'id');
   }
 
-  public function address()
-  {
-    return $this->hasOne(ItemLocation::class , 'address_id' , 'id');
-  }
   public function reviews()
   {
     return $this->hasMany(ItemReview::class, 'item_id', 'id');

@@ -9,4 +9,10 @@ class Review extends Model
 {
     use HasFactory;
     protected $fillable=['content','rating','title'];
+
+    public function review()
+    {
+        return $this->hasOne(UserReview::class , 'review_id' , 'id');
+    }
+
 }

@@ -1,11 +1,14 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ItemController;
 
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ReviewController;
+use App\Http\Controllers\ReviewsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -47,18 +50,25 @@ Route::middleware('auth')->group(function () {
     Route::group(['prefix' => 'item'], function () {
         Route::get('/' , [ItemController::class , 'index'])->name('item');
         Route::get('/details/{id}' , [ItemController::class , 'details'])->name('item/details');
-        Route::get('/reviews/{id}' , [ItemController::class , 'reviews'])->name('item/reviews');
         Route::get('/customers' , [ItemController::class , 'details'])->name('item/customers');
         Route::post('/item/status' , [ItemController::class , 'updateStatus'])->name('/item/status');
+
+        Route::get('/reviews/{id}' , [ReviewController::class , 'reviews'])->name('item/reviews');
+
+        // Route::get('category' , [CategoryController::class , 'category'])->name('category');
      });
 
+     // category
 
+     Route::group(['prefix' =>'category'] , function()
+        {
+            Route::get('/' , [CategoryController::class , 'index'])->name('category');
+            Route::get('/add' , [CategoryController::class , 'create'])->name('category/add');
+            Route::post('/upload/images' , [CategoryController::class , 'uploadImages'])->name('upload/images');
+            Route::post('/store' , [CategoryController::class , 'store']);
+            Route::get('/update' , [CategoryController::class , 'edit'])->name('category/update');
 
-
-
-
-
-
+        });
 
     // admin profile page
 

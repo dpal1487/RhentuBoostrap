@@ -15,10 +15,13 @@ class ItemImagesResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            'id' => $this->id,
-            'large_path' => $this->large_path,
-            'medium_path' => $this->medium_path,
-            'small_path' => $this->small_path,
+            // 'id' => $this->id,
+            'file_name' => $this->image->file->file_name,
+            'file_path' => $this->image->file->file_path,
+            'file_size' => $this->image->file->file_size,
+            'file_mime' => $this->image->file->file_mime,
+            'file_extension' => $this->image->file->file_extension,
+            'status' => $this->image->file->status,
         ];
     }
 }

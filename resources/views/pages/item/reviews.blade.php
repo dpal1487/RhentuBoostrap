@@ -2,42 +2,12 @@
 @endsection
 <x-app-layout>
 
-
-
-    <!--begin::Toolbar-->
-    <div id="kt_app_toolbar" class="app-toolbar py-3 py-lg-6">
-        <!--begin::Toolbar container-->
-        <div id="kt_app_toolbar_container" class="app-container container-fluid d-flex flex-stack">
-            <!--begin::Page title-->
-            <div class="page-title d-flex flex-column justify-content-center flex-wrap me-3">
-                <!--begin::Title-->
-                <h1 class="page-heading d-flex text-dark fw-bold fs-3 flex-column justify-content-center my-0">Iten
-                    Reviews</h1>
-                <!--end::Title-->
-                <!--begin::Breadcrumb-->
-                <ul class="breadcrumb breadcrumb-separatorless fw-semibold fs-7 my-0 pt-1">
-                    <!--begin::Item-->
-                    <li class="breadcrumb-item text-muted">
-                        <a href="{{ route('dashboard') }}" class="text-muted text-hover-primary">Home</a>
-                    </li>
-                    <!--end::Item-->
-                    <!--begin::Item-->
-                    <li class="breadcrumb-item">
-                        <span class="bullet bg-gray-400 w-5px h-2px"></span>
-                    </li>
-                    <!--end::Item-->
-                    <!--begin::Item-->
-                    <li class="breadcrumb-item text-muted">Dashboards</li>
-                    <!--end::Item-->
-                </ul>
-                <!--end::Breadcrumb-->
-            </div>
-            <!--end::Page title-->
-        </div>
-        {{-- {{ dd($itemdetails) }} --}}
-        <!--end::Toolbar container-->
-    </div>
-    <!--end::Toolbar-->
+ <!--begin::Toolbar-->
+ <div id="kt_app_toolbar" class="app-toolbar py-3 py-lg-6">
+    <x-header :title="$title" />
+    <pre>
+</div>
+<!--end::Toolbar-->
     <div id="kt_app_content" class="app-content flex-column-fluid">
         <!--begin::Content container-->
         <div id="kt_app_content_container" class="app-container container-xxl">
@@ -45,25 +15,38 @@
             <div class="row g-5 g-xl-10 mb-5 mb-xl-10 position: relative;">
                 <div class="col-sm-12 col-md-5" style="position: sticky; top: 0">
                     <div class="row col-md-12">
-                        <div class="col-md-4">
+                        <div class="col-md-3">
                             <div class="">
                                 <img alt="user image" src="{{ asset('assets/media/avatars/300-1.jpg') }}"
                                     class="rounded h-100 w-100">
                             </div>
                         </div>
-                        <div class="col-md-8">
+                        <div class="col-md-9">
                             <div class="fs-3 fw-bold text-theme-primary">
-                                <span>{{ $itemdetails->category->name }} </span>
+                                <span>{{ $itemreview->category->name}} </span><br>
                                 <span>Cusmtomer Reviews</span>
-                                <span class="badge badge-light-warning fs-6 fw-bold">10 Reviews
+                                <span class="badge badge-light-info fs-6 fw-bold">
+                                    @if ($itemreview->review == null)
+                                    0 Reviews
+                                    @else
+
+                                    {{ $itemreview->review->rating}} Reviews
+                                    @endif
                                 </span></span>
                             </div>
                             <div class="rating">
                                 <div class="d-flex">
-                                    <x-rating />
+                                    <x-rating :itemreview="$itemreview->review"/>
 
                                 </div>
-                                <span class="mx-10 mt-2 fs-5 fw-bold">4 Out Of 5
+                                <span class="mx-10 mt-2 fs-5 fw-bold">
+                                    @if ($itemreview->review == null)
+                                    0  Out Of 5
+                                    @else
+
+                                    {{ $itemreview->review->rating}} Reviews
+                                    @endif
+
                                 </span>
                             </div>
                             <div class="">
@@ -123,6 +106,8 @@
                 </div>
 
                 <div class="col-sm-12 col-md-7 overflow-auto" style="height: 100vh;">
+
+
                     <div class="card mb-3 mt-4 rounded shadow-sm">
                         <div class="card-body p-4">
                             <div class="d-flex align-items-stretch justify-content-between">
@@ -132,7 +117,15 @@
                                             style="width: 4rem;" class="rounded h-100" />
                                     </div>
                                     <div class="">
-                                        <h4>John Doe</h4>
+                                        <h4>
+                                            @if ($itemreview->review == null)
+                                            John Doe
+                                            @else
+
+                                            {{ $itemreview->review->user->first_name}} {{ $itemreview->review->user->last_name}}
+                                            @endif
+
+                                        </h4>
                                         <div class="rating">
                                             <div class="d-flex">
                                                 <x-rating />
@@ -142,18 +135,33 @@
                                     </div>
                                 </div>
                                 <div class="w-fit">
-                                    28 Mar, 2022
+
+                                    @if ($itemreview->review == null)
+
+                                    @else
+
+
+                                    {{ $itemreview->review->user->created_at->format('d M Y')}}
+                                    @endif
+
                                 </div>
                             </div>
                             <div class="mt-2">
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                                Quasi, porro iste? Error ratione beatae, necessitatibus aspernatur iste a obcaecati
-                                recusandae,
-                                consectetur repellendus repellat officiis deserunt? Quisquam nesciunt quasi nisi
-                                tempore.
+                                @if ($itemreview->review == null)
+
+                                @else
+
+
+                                {{ $itemreview->review->content}}
+                                @endif
+
+
+
                             </div>
                         </div>
                     </div>
+
+
 
                     <div class="card mb-3 mt-4 rounded shadow-sm">
                         <div class="card-body p-4">

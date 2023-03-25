@@ -25,13 +25,23 @@ class ItemResource extends JsonResource
             'security_price'=>$this->security_price,
             'from_date'=>$this->from_date,
             'to_date'=>$this->to_date,
-            'category' => $this->category->name,
+            'category' => $this->category,
             'time' => $this->time->title,
             'user'=>$this->user,
-            
-            'images' => ItemImagesResource::collection($this->image->images),
-            // 'user' => UserResource::collection($this->user),
 
+            // 'images' => ItemImagesResource::collection(image->file->file_name),
+
+            'images' => [
+                'file_name' => $this->image->file->file_name,
+                'file_path' => $this->image->file->file_path,
+                'file_size' => $this->image->file->file_size,
+                'file_mime' => $this->image->file->file_mime,
+                'file_extension' => $this->image->file->file_extension,
+                'status' => $this->image->file->status,
+            ],
+
+            // 'user' => UserResource::collection($this->user),
+            // 'location' => new ItemLocationsResource($this->location),
 
             'currency_symbol' => $this->user->country->currency_symbol,
             'rating_reviews' => count($this->reviews) > 0 ? [
@@ -42,13 +52,14 @@ class ItemResource extends JsonResource
               'count' =>0
             ] ,
             'location' => [
-              'city' => $this->location->city,
-              'state' => $this->location->state,
+              'id' => $this->location->address->id,
+              'address_id' => $this->location->address->address_id,
+              'city' => $this->location->address->city,
+              'state' => $this->location->address->state,
               'locality' => $this->location->locality,
-              'pincode' => $this->location->pincode,
+              'pincode' => $this->location->address->pincode,
             ],
             'isFavourite' => $this->isFavourite ? true : false,
-
           ];
         }
 }

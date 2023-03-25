@@ -8,6 +8,8 @@ class HomeController extends Controller
 {
     public function index()
     {
-        return view('dashboard');
+        $title = "Dashbord";
+
+        return view('dashboard' , ['title' => $title]);
     }
 }

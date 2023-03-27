@@ -24,8 +24,6 @@ class ItemController extends Controller
         $item = Item::simplePaginate(3);
 
         return view('pages.item.index' , [ 'title' => $title ,'itemstatus' => $itemStatus , 'items' => ItemResource::collection($item)]);
-        // return view('pages.item.index' , ['result' =>$data]);
-        // return view('pages.item.index');
     }
 
      public function updateStatus(Request $request)

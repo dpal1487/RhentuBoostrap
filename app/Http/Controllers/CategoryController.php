@@ -3,86 +3,44 @@
 namespace App\Http\Controllers;
 
 use Auth;
-use App\Models\CategoryImage;
 use Image;
 use App\Models\Meta;
 use App\Models\User;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use App\Models\CategoryBanner;
 // use Intervention\Image\Image;
 use App\Http\Requests\CategoryRequest;
+use App\Models\Image as CategoryImage;
+use App\Http\Resources\CategoryResource;
 
 class CategoryController extends Controller
 {
 
-    public function index ()
+    public function index (Request $request)
     {
+        $categories = new Category();
+        if($request->q){
+            $categories = $categories->where('name','like',"%{$request->q}%");
+        }
+        $categories = $categories->paginate(10)->appends(request()->query());
+        $categories = CategoryResource::collection($categories);
 
-        $title = "Category";
-        return view('pages.category.view' , ['title' => $title]);
+        // return $categories;
+        return view('pages.category.index' ,compact('categories'));
     }
     public function create ()
     {
         $categoryParent = Category::where('parent_id' , '=' , NULL)->get();
-
-        // echo($image);
-        // exit();
-
-        $title = "Category";
-        return view('pages.category.add' , ['title' => $title , 'categoryParent' => $categoryParent ]);
-    }
-
-    public function uploadImages(Request $request)
-    {
-
-        $user = Auth::user();
-        // dd($user->id);
-        $image = $request->file('file');
-        // dd($image);
-        if($image) {
-                $extension = $request->file->extension();
-                $file_path = 'assets/image/category';
-                $name = time().'_'.$request->file->getClientOriginalName();
-
-            //   dd($name);
-                $result= Image::make($image)->save($file_path.$name);
-
-                // dd($result);
-                $smallthumbnail = date('mdYHis'). '-' . uniqid() . '.' . '_small_'. '.' .$extension;
-                $mediumthumbnail = date('mdYHis'). '-' . uniqid() . '.' . '_medium_' . '.' .$extension;
-
-                $smallThumbnailFolder = 'assets/image/category/thumbnail/small/';
-                $mediumThumbnailFolder = 'assets/image/category/thumbnail/medium/';
-
-                $result = $result->save($file_path.$name);
-
-                $result->resize(200,200);
-                $result = $result->save($file_path.'/thumbnail/small/'.$smallthumbnail);
-
-                $result->resize(100,100);
-                $result = $result->save($file_path.'/thumbnail/medium/'.$mediumthumbnail);
-
-                $Imagefile = CategoryImage::create([
-                    'name' => $name,
-                    'small_path' => url($file_path.$name),
-                    'medium_path' => url($smallThumbnailFolder.$smallthumbnail),
-                    'large_path' => url($mediumThumbnailFolder.$mediumthumbnail),
-                ]);
-                if($Imagefile->save())
-                {
-                    User::where('id',$user->id)->update(['image_id'=>$Imagefile->id]);
-                }
-                    $user = User::where('id',$user->id)->with('image')->first();
-                    return response()->json(['success'=>true,'image_id'=>$Imagefile->id]);
-            }
+        return view('pages.category.add' , [ 'categoryParent' => $categoryParent ]);
     }
 
     public function store(CategoryRequest $request )
     {
+
         // dd($request);
-
+        $user = Auth::user();
         $input = $request->all();
-
         $meta = Meta::create([
             'description'=>$request->meta_description,
             'tag' => $request->meta_tag ,
@@ -91,36 +49,31 @@ class CategoryController extends Controller
 
         $meta_id = $meta->id;
 
-        // dd($meta_id);
-
         $category = Category::create([
             'name' => $request->name,
             'slug' => $request->slug,
-            'description' => $request->description,
+            'description' => $request->category_description,
             'keywords' => $request->keywords,
             'parent_id' =>$request->parent_id,
             'meta_id' =>$meta_id,
-            'image_id' =>$request->image_id,
+            'image_id' =>$request->image,
         ]);
 
         $banner_image = $request->file('banner_image');
-        // dd($image);
+        // dd($banner_image);
         if($banner_image) {
-                $extension = $request->file->extension();
-                $file_path = 'assets/image/category';
-                $name = time().'_'.$request->file->getClientOriginalName();
-
-            //   dd($name);
+                $extension = $request->banner_image->extension();
+                $file_path = 'assets/image/banner';
+                $name = time().'_'.$request->banner_image->getClientOriginalName();
                 $result= Image::make($banner_image)->save($file_path.$name);
 
-                // dd($result);
                 $smallthumbnail = date('mdYHis'). '-' . uniqid() . '.' . '_small_'. '.' .$extension;
                 $mediumthumbnail = date('mdYHis'). '-' . uniqid() . '.' . '_medium_' . '.' .$extension;
 
-                $smallThumbnailFolder = 'assets/image/category/thumbnail/small/';
-                $mediumThumbnailFolder = 'assets/image/category/thumbnail/medium/';
+                $smallThumbnailFolder = 'assets/image/banner/thumbnail/small/';
+                $mediumThumbnailFolder = 'assets/image/banner/thumbnail/medium/';
 
-                $result = $result->save($file_path.$name);
+                $result = $result->save($file_path.'/original/'.$name);
 
                 $result->resize(200,200);
                 $result = $result->save($file_path.'/thumbnail/small/'.$smallthumbnail);
@@ -128,26 +81,49 @@ class CategoryController extends Controller
                 $result->resize(100,100);
                 $result = $result->save($file_path.'/thumbnail/medium/'.$mediumthumbnail);
 
-                $Imagefile = CategoryImage::create([
+                $BannerImage = CategoryImage::create([
                     'name' => $name,
                     'small_path' => url($file_path.$name),
                     'medium_path' => url($smallThumbnailFolder.$smallthumbnail),
                     'large_path' => url($mediumThumbnailFolder.$mediumthumbnail),
                 ]);
-                if($Imagefile->save())
-                {
-                    User::where('id',$user->id)->update(['image_id'=>$Imagefile->id]);
-                }
-                    $user = User::where('id',$user->id)->with('image')->first();
-                    return response()->json(['success'=>true,'image_id'=>$Imagefile->id]);
-            }
 
-            return redirect()->back();
+                if($BannerImage->save())
+                {
+                    $CategoryBanner = CategoryBanner::create(
+                        [
+                            'category_id' => $category->id ,
+                            'imager_id' => $BannerImage->id ,
+                            'order_by' => $user->id ,
+                        ]);
+                }
+            }
+                return response()->json(['success'=>true,'message'=>'Category created successfully']);
+
+
+            // return redirect('category')->with('success' , 'Category data added successfully');
     }
 
-    public function edit()
+    public function edit($id)
     {
-        $title = "Category";
-        return view('pages.category.edit' , ['title' => $title]);
+        $categoryParent = Category::where('parent_id' , '=' , NULL)->get();
+        $category = Category::find($id);
+
+
+        $category =new CategoryResource($category);
+
+        // $categoryparent_id = Category::where('parent_id' , '=' , $category->parent_id)->find($id);
+
+        // return $category;
+
+        // dd($categoryparent_id);
+        return view('pages.category.edit' , [ 'categoryParent' => $categoryParent,'category'=>$category ]);
+    }
+
+    public function show($id)
+    {
+        $categoryParent = Category::where('parent_id' , '=' , NULL)->get();
+        $category = Category::find($id);
+        return view('pages.category.edit' , [ 'categoryParent' => $categoryParent,'category'=>$category ]);
     }
 }

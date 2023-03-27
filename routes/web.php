@@ -3,6 +3,7 @@
 use App\Http\Controllers\CategoryController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ImageController;
 use App\Http\Controllers\ItemController;
 
 use App\Http\Controllers\UserController;
@@ -34,7 +35,6 @@ use App\Http\Controllers\ReviewsController;
 Route::middleware('auth')->group(function () {
 
     Route::get('/dashboard' , [HomeController::class, 'index'])->name('dashboard');
-    Route::get('/item/status', [UserController::class, 'updateStatus'])->name('/item/status');
 
       // user profile
 
@@ -51,7 +51,7 @@ Route::middleware('auth')->group(function () {
         Route::get('/' , [ItemController::class , 'index'])->name('item');
         Route::get('/details/{id}' , [ItemController::class , 'details'])->name('item/details');
         Route::get('/customers' , [ItemController::class , 'details'])->name('item/customers');
-        Route::post('/item/status' , [ItemController::class , 'updateStatus'])->name('/item/status');
+        Route::post('/status' , [ItemController::class , 'updateStatus'])->name('/item/status');
 
         Route::get('/reviews/{id}' , [ReviewController::class , 'reviews'])->name('item/reviews');
 
@@ -60,15 +60,22 @@ Route::middleware('auth')->group(function () {
 
      // category
 
-     Route::group(['prefix' =>'category'] , function()
+     Route::controller(CategoryController::class)->group(function(){
+        Route::group(['prefix' =>'category'] , function()
         {
-            Route::get('/' , [CategoryController::class , 'index'])->name('category');
-            Route::get('/add' , [CategoryController::class , 'create'])->name('category/add');
-            Route::post('/upload/images' , [CategoryController::class , 'uploadImages'])->name('upload/images');
-            Route::post('/store' , [CategoryController::class , 'store']);
-            Route::get('/update' , [CategoryController::class , 'edit'])->name('category/update');
-
+            Route::get('/' , 'index')->name('category.index');
+            Route::get('/add' , 'create')->name('category.add');
+            Route::post('/store' ,'store')->name('category.store');
+            Route::get('{id}/view' ,'show')->name('category.view');
+            Route::get('{id}/edit' ,'edit')->name('category.edit');
+            Route::post('{id}/update' ,'update')->name('category.update');
         });
+     });
+
+     Route::controller(ImageController::class)->group(function(){
+            Route::post('/upload/image' , 'uploadImage')->name('upload.image');
+     });
+
 
     // admin profile page
 

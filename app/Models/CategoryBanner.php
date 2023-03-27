@@ -9,6 +9,12 @@ class CategoryBanner extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'category_id',
+        'imager_id',
+        'order_by'
+    ];
+
     public function category()
     {
         return $this->hasOne(Category::class , 'id' , 'category_id');

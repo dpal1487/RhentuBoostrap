@@ -22,7 +22,7 @@
                 <!--begin::Card header-->
                 <div class="card-header align-items-center">
                     <div class="card-title">
-                        <h2>Atttributes</h2>
+                        <h2>Atttribute</h2>
                     </div>
 
                     {{-- {{dd( $attribute) }} --}}

@@ -11,7 +11,7 @@ class CategoryBanner extends Model
 
     protected $fillable = [
         'category_id',
-        'imager_id',
+        'image_id',
         'order_by'
     ];
 
@@ -20,7 +20,7 @@ class CategoryBanner extends Model
         return $this->hasOne(Category::class , 'id' , 'category_id');
     }
 
-    public function image()
+    public function banner()
     {
         return $this->hasOne(Image::class , 'id' , 'image_id');
     }

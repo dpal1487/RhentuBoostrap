@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\AttributeController;
+use App\Http\Controllers\BannerController;
 use App\Http\Controllers\CategoryController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
@@ -38,13 +40,13 @@ Route::middleware('auth')->group(function () {
 
       // user profile
 
-    Route::group(['prefix' => 'users'], function () {
-        Route::get('/index', [UserController::class, 'index'])->name('users/index');
-        Route::get('/{id}/items', [UserController::class, 'items'])->name('users/items');
-        Route::get('/{id}/overview', [UserController::class, 'overview'])->name('users/overview');
-        Route::get('/{id}/address', [UserController::class, 'address'])->name('users/address');
-        Route::get('/{id}/packages', [UserController::class, 'packages'])->name('users/packages');
-        Route::get('/{id}/reports', [UserController::class, 'reports'])->name('users/reports');
+    Route::group(['prefix' => 'user'], function () {
+        Route::get('/', [UserController::class, 'index'])->name('user');
+        Route::get('/{id}/items', [UserController::class, 'items'])->name('user.items');
+        Route::get('/{id}/overview', [UserController::class, 'overview'])->name('user.overview');
+        Route::get('/{id}/address', [UserController::class, 'address'])->name('user.address');
+        Route::get('/{id}/packages', [UserController::class, 'packages'])->name('user.packages');
+        Route::get('/{id}/reports', [UserController::class, 'reports'])->name('user.reports');
     });
     // item page
     Route::group(['prefix' => 'item'], function () {
@@ -69,11 +71,40 @@ Route::middleware('auth')->group(function () {
             Route::get('{id}/view' ,'show')->name('category.view');
             Route::get('{id}/edit' ,'edit')->name('category.edit');
             Route::post('{id}/update' ,'update')->name('category.update');
+            Route::delete('{id}/delete' ,'destroy')->name('category.delete');
+        });
+     });
+
+     Route::controller(BannerController::class)->group(function(){
+        Route::group(['prefix' =>'banner'] , function()
+        {
+            Route::get('/' , 'index')->name('banner.index');
+            Route::get('/add' , 'create')->name('banner.add');
+            Route::post('/store' ,'store')->name('banner.store');
+            Route::get('{id}/view' ,'show')->name('banner.view');
+            Route::get('{id}/edit' ,'edit')->name('banner.edit');
+            Route::post('{id}/update' ,'update')->name('banner.update');
+            Route::delete('{id}/delete' ,'destroy')->name('banner.delete');
+        });
+     });
+
+     Route::controller(AttributeController::class)->group(function(){
+        Route::group(['prefix' =>'attribute'] , function()
+        {
+            Route::get('/' , 'index')->name('attribute.index');
+            Route::get('/add' , 'create')->name('attribute.add');
+            Route::post('/store' ,'store')->name('attribute.store');
+            Route::post('/valuestore' ,'valuestore')->name('attribute.valuestore');
+            Route::get('{id}' ,'show')->name('attribute.view');
+            Route::get('{id}/edit' ,'edit')->name('attribute.edit');
+            Route::post('{id}/update' ,'update')->name('attribute.update');
+            Route::delete('{id}/delete' ,'destroy')->name('attribute.delete');
         });
      });
 
      Route::controller(ImageController::class)->group(function(){
-            Route::post('/upload/image' , 'uploadImage')->name('upload.image');
+            Route::post('/upload/image' , 'uploadImage');
+            Route::post('/upload/banner' , 'uploadBanner');
      });
 
 

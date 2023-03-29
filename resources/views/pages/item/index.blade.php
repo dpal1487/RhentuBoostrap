@@ -40,20 +40,6 @@
         <script>
             const button = document.getElementById('kt_docs_sweetalert_basic');
 
-            button.addEventListener('click', e => {
-                e.preventDefault();
-
-                Swal.fire({
-                    text: "Here's a basic example of SweetAlert!",
-                    icon: "success",
-                    buttonsStyling: false,
-                    confirmButtonText: "Ok, got it!",
-                    customClass: {
-                        confirmButton: "btn btn-primary"
-                    }
-                });
-            });
-
             // import * as axios from 'axios';
             $(document).ready(function() {
                 // alert( "this.value" );
@@ -68,6 +54,9 @@
                     console.log("id", ItemId, "value", itemStatusId);
                     // console.log("Item Status Id", axios.get )
 
+                        blockUI.block();
+
+
                     const res = await axios.post('{{ route('/item/status') }}', {
                             'item_id': ItemId,
                             'itemstatus_id': itemStatusId
@@ -77,6 +66,7 @@
                             //  posts.value = res.data.data;
                             if (res.status === 200) {
                                 let resp = JSON.parse(res.request.response);
+
                                 Swal.fire({
                                     text: resp.success,
                                     icon: "success",
@@ -104,6 +94,7 @@
                             console.log(error.res.data);
                         }).finally(() => {
                             window.location.reload()
+                            blockUI.release()
                         })
                 });
             });

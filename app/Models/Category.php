@@ -25,11 +25,28 @@ class Category extends Model
         static::creating(function ($category) {
             $category->slug = Str::slug($category->name);
         });
+
+        static::deleting(function($category) { // before delete() method call this
+            $category->image()->delete();
+            $category->meta()->delete();
+            // do the rest of the cleanup...
+       });
+
+
     }
 
   public function image()
   {
     return $this->hasOne(Image::class, 'id', 'image_id');
+  }
+
+  public function children()
+  {
+    return $this->hasOne(Category::class, 'parent_id', 'id');
+  }
+  public function parent()
+  {
+    return $this->belongsTo(Category::class, 'parent_id', 'id');
   }
   public function childrens()
   {
@@ -46,4 +63,6 @@ class Category extends Model
   {
     return $this->hasOne(Meta::class , 'id' , 'meta_id');
   }
+
+
 }

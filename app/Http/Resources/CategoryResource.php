@@ -18,12 +18,10 @@ class CategoryResource extends JsonResource
             'name' =>$this->name,
             'description' =>$this->description,
             'status' =>$this->status,
-            'image' => $this->image->name,
-            'meta_id' =>$this->meta->id,
-            'meta_description' =>$this->meta->description,
-            'meta_tag' =>$this->meta->tag,
-            'meta_keywords' =>$this->meta->keywords,
-            'banner' =>$this->banner,
+            'image' => $this->image,
+            'meta'=>new MetaResource($this->meta),
+            // 'banner' =>$this->banner->banner,
+            'parent'=>$this->parent,
         ];
     }
 }

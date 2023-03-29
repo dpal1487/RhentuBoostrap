@@ -26,21 +26,20 @@
                                 <span>{{ $itemreview->category->name}} </span><br>
                                 <span>Cusmtomer Reviews</span>
                                 <span class="badge badge-light-info fs-6 fw-bold">
-                                    @if ($itemreview->review == null)
+                                    @if ($itemreview->review->rating == null)
                                     0 Reviews
                                     @else
 
-                                    {{ $itemreview->review->rating}} Reviews
+                                    {{ $itemreview->review->rating}}  Reviews
                                     @endif
                                 </span></span>
                             </div>
                             <div class="rating">
                                 <div class="d-flex">
-                                    <x-rating :itemreview="$itemreview->review"/>
-
+                                    <x-rating :itemreview="$itemreview->review->rating"/>
                                 </div>
                                 <span class="mx-10 mt-2 fs-5 fw-bold">
-                                    @if ($itemreview->review == null)
+                                    @if ($itemreview == null)
                                     0  Out Of 5
                                     @else
 

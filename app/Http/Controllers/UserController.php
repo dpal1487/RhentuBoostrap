@@ -13,6 +13,8 @@ use App\Models\UserAddress;
 use Illuminate\Http\Request;
 use DataTables;
 use DB;
+use Illuminate\Contracts\Pagination\Paginator;
+
 class UserController extends Controller
 {
     /**
@@ -20,11 +22,16 @@ class UserController extends Controller
      */
 
      public $data;
-    public function index()
+    public function index(Request $request)
     {
-        $title = "User Details";
-        $data = User::latest()->get();
-        return view('pages.users.view' , ['title' => $title ,'result' =>$data]);
+
+        $users = new User();
+        if($request->q){
+            $users = $users->where('name','like',"%{$request->q}%");
+        }
+        $users = $users->paginate(10)->appends(request()->query());
+        // $data = User::latest()->paginate(10);
+        return view('pages.user.index' , ['result' =>$users]);
     }
 
     /**
@@ -36,7 +43,7 @@ class UserController extends Controller
         $title = "User Overview";
         $data = User::find($id);
 
-        return view('pages.users.overview')->with(['title' =>  $title , 'data' => new UserResource($data)]);
+        return view('pages.user.overview')->with(['title' =>  $title , 'data' => new UserResource($data)]);
 
      }
 
@@ -45,7 +52,7 @@ class UserController extends Controller
         $title = "User Address";
         $data = User::find($id);
         $address = UserAddress::where('user_id',$id)->first();
-        return view('pages.users.address' )->with(['title' => $title ,'user' => $data , 'address' => new AddressResource($address)]);
+        return view('pages.user.address' )->with(['title' => $title ,'user' => $data , 'address' => new AddressResource($address)]);
      }
 
      public function items( $id)
@@ -57,7 +64,7 @@ class UserController extends Controller
 
         $item = Item::where(['user_id'=>$id])->simplePaginate(3);
 
-        return view('pages.users.items' , ['title' => $title ,'user' => $data , 'itemstatus' => $itemStatus , 'items' => ItemResource::collection($item)]);
+        return view('pages.user.items' , ['title' => $title ,'user' => $data , 'itemstatus' => $itemStatus , 'items' => ItemResource::collection($item)]);
 
      }
 
@@ -76,7 +83,7 @@ class UserController extends Controller
         $title = "Item Package";
         $data = User::find($id);
         // dd($data);
-        return view('pages.users.packages' , ['title' => $title ,'user' => $data]);
+        return view('pages.user.packages' , ['title' => $title ,'user' => $data]);
      }
 
 
@@ -89,7 +96,7 @@ class UserController extends Controller
         $data = User::find($id);
 
         // dd($data);
-        return view('pages.users.reports' , ['title' => $title ,'user' => $data]);
+        return view('pages.user.reports' , ['title' => $title ,'user' => $data]);
 
      }
 

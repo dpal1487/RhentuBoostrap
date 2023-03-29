@@ -11,7 +11,7 @@ var KTAppEcommerceCategories = function () {
     // Delete cateogry
     var handleDeleteRows = () => {
         // Select all delete buttons
-        const deleteButtons = table.querySelectorAll('[category-table="delete_row"]');
+        const deleteButtons = table.querySelectorAll('[attribute-table="delete_row"]');
 
         deleteButtons.forEach(d => {
             // Delete button on click
@@ -22,11 +22,11 @@ var KTAppEcommerceCategories = function () {
                 const parent = e.target.closest('tr');
                 var id = $(this).data('id');
                 // Get category name
-                const categoryName = parent.querySelector('[category-filter="category_name"]').innerText;
+                const attributeName = parent.querySelector('[attribute-filter = "attribute_name"]').innerText;
 
                 // SweetAlert2 pop up --- official docs reference: https://sweetalert2.github.io/
                 Swal.fire({
-                    text: "Are you sure you want to delete " + categoryName + "?",
+                    text: "Are you sure you want to delete " + attributeName + "?",
                     icon: "warning",
                     showCancelButton: true,
                     buttonsStyling: true,
@@ -40,7 +40,7 @@ var KTAppEcommerceCategories = function () {
                     blockUI.block();
                     if (result.value) {
                         axios
-                        .delete("/category/" + id +"/delete")
+                        .delete("/attribute/" + id +"/delete")
                         .then((response) => {
                           toastr.success(response.data.message);
                           $(parent).remove().draw();
@@ -52,7 +52,7 @@ var KTAppEcommerceCategories = function () {
                         }).finally(()=>blockUI.release());
                     } else if (result.dismiss === 'cancel') {
                         Swal.fire({
-                            text: categoryName + " was not deleted.",
+                            text: attributeName + " was not deleted.",
                             icon: "error",
                             buttonsStyling: false,
                             confirmButtonText: "Ok, got it!",
@@ -70,7 +70,7 @@ var KTAppEcommerceCategories = function () {
     // Public methods
     return {
         init: function () {
-            table = document.querySelector('#category_table');
+            table = document.querySelector('#attribute_table');
             if (!table) {
                 return;
             }
@@ -83,4 +83,49 @@ var KTAppEcommerceCategories = function () {
 KTUtil.onDOMContentLoaded(function () {
     KTAppEcommerceCategories.init();
 });
+
+// Make the DIV element draggable:
+var element = document.querySelector('#attributeModel');
+dragElement(element);
+
+function dragElement(elmnt) {
+    var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+    if (elmnt.querySelector('.modal-content')) {
+        // if present, the header is where you move the DIV from:
+        elmnt.querySelector('.modal-content').onmousedown = dragMouseDown;
+    } else {
+        // otherwise, move the DIV from anywhere inside the DIV:
+        elmnt.onmousedown = dragMouseDown;
+    }
+
+    function dragMouseDown(e) {
+        e = e || window.event;
+        e.preventDefault();
+        // get the mouse cursor position at startup:
+        pos3 = e.clientX;
+        pos4 = e.clientY;
+        document.onmouseup = closeDragElement;
+        // call a function whenever the cursor moves:
+        document.onmousemove = elementDrag;
+    }
+
+    function elementDrag(e) {
+        e = e || window.event;
+        e.preventDefault();
+        // calculate the new cursor position:
+        pos1 = pos3 - e.clientX;
+        pos2 = pos4 - e.clientY;
+        pos3 = e.clientX;
+        pos4 = e.clientY;
+        // set the element's new position:
+        elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+        elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+    }
+
+    function closeDragElement() {
+        // stop moving when mouse button is released:
+        document.onmouseup = null;
+        document.onmousemove = null;
+    }
+}
 

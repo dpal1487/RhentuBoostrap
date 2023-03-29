@@ -11,11 +11,11 @@
 
         <!--begin::Content container-->
         <div id="kt_app_content_container" class="app-container container-xxl">
-            <form class="form d-flex flex-column flex-lg-row" id="category_form" action="{{ url('category/store') }}"
+            <form class="form d-flex flex-column flex-lg-row" action="{{ route('attribute.update',['id'=>$attribute->id]) }}" id="attribute_form"
                 method="POST">
                 @csrf
                 <!--begin::Aside column-->
-                @include('pages.category._fields')
+                @include('pages.attribute._fields')
                 <!--end::Main column-->
             </form>
         </div>
@@ -26,6 +26,6 @@
     <!--begin::Custom Javascript(used for this page only)-->
     <script src="{{ asset('assets/js/widgets.bundle.js') }}"></script>
     <script src="{{ asset('assets/js/custom/widgets.js') }}"></script>
-    <script src="{{ asset('assets/js/custom/pages/category/form.js') }}"></script>
+    <script src="{{ asset('assets/js/custom/pages/attributes/form.js') }}"></script>
     @endsection
 </x-app-layout>

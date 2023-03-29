@@ -11,7 +11,7 @@ var KTAppEcommerceCategories = function () {
     // Delete cateogry
     var handleDeleteRows = () => {
         // Select all delete buttons
-        const deleteButtons = table.querySelectorAll('[category-table="delete_row"]');
+        const deleteButtons = table.querySelectorAll('[banner-table="delete_row"]');
 
         deleteButtons.forEach(d => {
             // Delete button on click
@@ -22,11 +22,11 @@ var KTAppEcommerceCategories = function () {
                 const parent = e.target.closest('tr');
                 var id = $(this).data('id');
                 // Get category name
-                const categoryName = parent.querySelector('[category-filter="category_name"]').innerText;
+                const bannerName = parent.querySelector('[banners-filter="banner_title"]').innerText;
 
                 // SweetAlert2 pop up --- official docs reference: https://sweetalert2.github.io/
                 Swal.fire({
-                    text: "Are you sure you want to delete " + categoryName + "?",
+                    text: "Are you sure you want to delete " + bannerName + "?",
                     icon: "warning",
                     showCancelButton: true,
                     buttonsStyling: true,
@@ -40,7 +40,7 @@ var KTAppEcommerceCategories = function () {
                     blockUI.block();
                     if (result.value) {
                         axios
-                        .delete("/category/" + id +"/delete")
+                        .delete("/banner/" + id +"/delete")
                         .then((response) => {
                           toastr.success(response.data.message);
                           $(parent).remove().draw();
@@ -52,7 +52,7 @@ var KTAppEcommerceCategories = function () {
                         }).finally(()=>blockUI.release());
                     } else if (result.dismiss === 'cancel') {
                         Swal.fire({
-                            text: categoryName + " was not deleted.",
+                            text: bannerName + " was not deleted.",
                             icon: "error",
                             buttonsStyling: false,
                             confirmButtonText: "Ok, got it!",
@@ -70,7 +70,7 @@ var KTAppEcommerceCategories = function () {
     // Public methods
     return {
         init: function () {
-            table = document.querySelector('#category_table');
+            table = document.querySelector('#banner_table');
             if (!table) {
                 return;
             }

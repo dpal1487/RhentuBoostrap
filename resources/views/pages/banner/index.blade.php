@@ -25,7 +25,7 @@
             </div>
         @endif
         <!--end::Toast-->
-        <x-header title="Categories" />
+        <x-header title="Banner" />
         <pre>
     </div>
     <!--end::Toolbar-->
@@ -40,7 +40,7 @@
                 <!--begin::Card title-->
                 <div class="card-title">
                     <!--begin::Search-->
-                    <form action="{{ route('category.index') }}">
+                    <form action="{{ route('banner.index') }}">
                         <div class="d-flex align-items-center position-relative my-1">
                             <!--begin::Svg Icon | path: icons/duotune/general/gen021.svg-->
                             <span class="svg-icon svg-icon-1 position-absolute ms-4">
@@ -50,7 +50,7 @@
                                 </svg>
                             </span>
                             <!--end::Svg Icon-->
-                            <input type="search" name="q" class="form-control form-control-solid w-250px ps-14" placeholder="Search Category" />
+                            <input type="search" name="q" class="form-control form-control-solid w-250px ps-14" placeholder="Search Banner" />
                         </div>
                     </form>
                     <!--end::Search-->
@@ -59,7 +59,8 @@
                 <!--begin::Card toolbar-->
                 <div class="card-toolbar">
                     <!--begin::Add customer-->
-                    <a href="{{ route('category.add') }}" class="btn btn-primary">Add Category</a>
+                    <a href="{{ route('banner.add') }}" class="btn btn-primary">Add Banner</a>
+                    {{-- <a href="{{ route('category.add') }}" class="btn btn-primary g-5">Add Category</a> --}}
                     <!--end::Add customer-->
                 </div>
                 <!--end::Card toolbar-->
@@ -68,19 +69,21 @@
             <!--begin::Card body-->
             <div class="card-body pt-0">
                 <!--begin::Table-->
-                <table class="table align-middle table-row-dashed fs-6 gy-5" id="category_table">
+                <table class="table align-middle text-center table-row-dashed fs-6 gy-5" id="banner_table">
                     <!--begin::Table head-->
-                    <thead>
+                    <thead class="text-center">
                         <!--begin::Table row-->
                         <tr class="text-start text-gray-400 fw-bold fs-7 text-uppercase gs-0">
-                            <th class="w-1px pe-2"> No </th>
+                            <th class="w-1px pe-2">
+                                  <div class="form-check form-check-sm form-check-custom form-check-solid">
+                                    <input class="form-check-input" type="checkbox" value="1" />
+                                </div>
+                            </th>
+                            <th class="min-w-250px">Title</th>
 
-                            <th class="min-w-250px">Category</th>
-                            <th class="min-w-100px">Meta Tag</th>
-                            <th class="min-w-250px">Meta Description</th>
-                            <th class="min-w-100px">Meta Keyword</th>
-                            <th class="min-w-100px">Category Parent</th>
-                            <th class="min-w-50px">Category Status</th>
+                            <th class="min-w-250px"> Description</th>
+                            <th class="min-w-250px"> Status</th>
+
                             <th class="text-end min-w-70px">Actions</th>
                         </tr>
                         <!--end::Table row-->
@@ -89,89 +92,52 @@
                     <!--begin::Table body-->
                     <tbody class="fw-semibold text-gray-600">
                         <!--begin::Table row-->
-
-                            @foreach ($categories as $category)
-<tr>
+                            @foreach ($banners as $banner)
+                            <tr>
                                 <!--begin::Checkbox-->
                                 <td>
                                     <div class="form-check form-check-sm form-check-custom form-check-solid">
                                         <input class="form-check-input" type="checkbox" value="1" />
                                     </div>
                                 </td>
-
                                 <!--end::Checkbox-->
                                 <!--begin::Category=-->
                                 <td>
                                     <div class="d-flex">
                                         <!--begin::Thumbnail-->
                                         <a href="" class="symbol symbol-50px">
-                                            <span class="symbol-label" style="background-image:url({{ asset('assets/image/category/original/') }}/{{ @$category->image->name }} "></span>
+                                            <span class="symbol-label" style="background-image:url({{ asset('assets/image/banner/original/') }}/{{ $banner->image->name }} "></span>
                                         </a>
                                         <!--end::Thumbnail-->
                                         <div class="ms-5">
                                             <!--begin::Title-->
-                                            <a href="" class="text-gray-800 text-hover-primary fs-5 fw-bold mb-1" category-filter="category_name">{{ $category->name }}</a>
+                                            <a href="" class="text-gray-800 text-hover-primary fs-5 fw-bold mb-1" banners-filter="banner_title">{{ $banner->title }}</a>
                                             <!--end::Title-->
                                             <!--begin::Description-->
-                                            <div class="text-muted fs-7 fw-bold">{{ strip_tags($category->description) }}.</div>
+
                                             <!--end::Description-->
                                         </div>
                                     </div>
                                 </td>
                                 <!--end::Category=-->
 
-                                 <!--begin::Meta Tag-->
-                                 <td>
-                                    <div class="d-flex">
-                                        <div class="ms-5">
-                                            <!--begin::Description-->
-                                            <div class="text-muted fs-7 fw-bold">{{ $category->meta ? $category->meta->tag: '' }} </div>
-                                            <!--end::Description-->
-                                        </div>
-                                    </div>
-                                </td>
-                                <!--end::Meta Tag-->
-
-                                 <!--begin::Meta Description-->
-                                 <td>
-                                    <div class="d-flex">
-                                        <div class="ms-5">
-                                            <!--begin::Description-->
-                                            <div class="text-muted fs-7 fw-bold">{{ $category->meta ? $category->meta->description: '' }} </div>
-                                            <!--end::Description-->
-                                        </div>
-                                    </div>
-                                </td>
-                                <!--end::Meta Description-->
-
-                                 <!--begin::Meta Keywords-->
-                                 <td>
-                                    <div class="d-flex">
-                                        <div class="ms-5">
-                                            <!--begin::Description-->
-                                            <div class="text-muted fs-7 fw-bold">{{ $category->meta ? $category->meta->keywords: '' }} </div>
-                                            <!--end::Description-->
-                                        </div>
-                                    </div>
-                                </td>
-                                <!--end::Meta Keywords-->
-
-                                <!--begin::Type=-->
-                                <td>
-                                    <!--begin::Badges-->
+                                    <!--begin::Type=-->
+                                    <td>
+                                        <!--begin::Badges-->
 
 
-                                    <div class="badge badge-secondary">
-                                        {{ $category->parent ? $category->parent->name : 'Parent' }}
-                                    </div>
 
-                                    <!--end::Badges-->
-                                </td>
-                                <!--end::Type=-->
+                                            {{ $banner->description }}
+
+                                        <!--end::Badges-->
+                                    </td>
+
+
+
                                  <!--begin::Type=-->
                                  <td>
                                     <!--begin::Badges-->
-                                    @if ($category->status == 1)
+                                    @if ($banner->status == 1)
 <div class="badge badge-light-success">Active</div>
 @else
 <div class="badge badge-light-info">In Active</div>
@@ -193,17 +159,17 @@
                                     <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-semibold fs-7 w-125px py-4" data-kt-menu="true">
                                         <!--begin::Menu item-->
                                         <div class="menu-item px-3">
-                                            <a href="{{ route('category.view', ['id' => $category->id]) }}" class="menu-link px-3">View</a>
+                                            {{-- <a href="{{ route('banners.view', ['id' => $banners->id]) }}" class="menu-link px-3">View</a> --}}
                                         </div>
                                         <div class="menu-item px-3">
-                                            <a href="{{ route('category.edit', ['id' => $category->id]) }}" class="menu-link px-3">Edit</a>
+                                            <a href="{{ route('banner.edit', ['id' => $banner->id]) }}" class="menu-link px-3">Edit</a>
                                         </div>
                                         <!--end::Menu item-->
                                         <!--begin::Menu item-->
 
                                         <div class="menu-item px-3">
 
-                                            <a href="#" class="menu-link px-3" data-id="{{ $category->id }}" category-table="delete_row">Delete</a>
+                                            <a href="#" class="menu-link px-3" data-id="{{ $banner->id }}" banner-table="delete_row">Delete</a>
 
 
                                         </div>
@@ -225,7 +191,7 @@
                 <div class="col-sm-12 d-flex align-items-center justify-content-center justify-content-md-end">
                     <div class="dataTables_paginate paging_simple_numbers"
                         id="kt_ecommerce_category_table_paginate">
-                        {{ $categories->links() }}
+                        {{ $banners->links() }}
                     </div>
                 </div>
             </div>
@@ -240,6 +206,6 @@
     @section('javascript')
     <script src="{{ asset('assets/js/widgets.bundle.js') }}"></script>
       <script src="{{ asset('assets/js/custom/widgets.js') }}"></script>
-            <script src="{{ asset('assets/js/custom/pages/category/index.js') }}"></script>
+            <script src="{{ asset('assets/js/custom/pages/banner/index.js') }}"></script>
 @endsection
 </x-app-layout>

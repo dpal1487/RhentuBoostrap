@@ -3,12 +3,12 @@
 // Class definition
 var KTSigninGeneral = function() {
     // Elements
-    var form = document.getElementById('category_form');
+    var form = document.getElementById('attribute_valuestore');
     var submitButton =document.getElementById('submit');
 
     var validator;
 
-    // $('#submit').on('click', function)
+
 
 
     // const form = document.getElementById('kt_ecommerce_add_category_form');
@@ -22,21 +22,14 @@ var KTSigninGeneral = function() {
 			form,
 			{
 				fields: {
-                    name: {
+                    attribute_value: {
                         validators: {
                             notEmpty: {
                                 message: 'The field is required'
                             }
                         }
                     },
-                    parent: {
-                        validators: {
-                            notEmpty: {
-                                message: 'The field is required'
-                            }
-                        }
-                    },
-                    category_description: {
+                    status: {
                         validators: {
                             notEmpty: {
                                 message: 'The field is required'
@@ -58,6 +51,8 @@ var KTSigninGeneral = function() {
         // Handle form submit
         submitButton.addEventListener('click', function (e) {
             // Prevent button default action
+
+
 
             e.preventDefault();
 
@@ -81,7 +76,7 @@ var KTSigninGeneral = function() {
                             }
                         }).then(function (result) {
                             if(result.value){
-                                window.location.assign('/category');
+                                window.location.reload();
                             }
                         })
                     }).catch((error)=>{
@@ -114,7 +109,7 @@ var KTSigninGeneral = function() {
     return {
         // Initialization
         init: function() {
-            form = document.querySelector('#category_form');
+            form = document.querySelector('#attribute_valuestore');
             submitButton = document.querySelector('#submit');
 
             handleForm();
@@ -126,56 +121,4 @@ var KTSigninGeneral = function() {
 KTUtil.onDOMContentLoaded(function() {
     KTSigninGeneral.init();
 
-    $('#imageInput').change(async function () {
-        const file = this.files[0];
-        // console.log("see event", file);
-        const data = new FormData();
-
-        data.append('image', file);
-        blockUI.block();
-        try {
-            let response = await axios.post('/upload/image',
-                data, {
-                    headers: {
-                        'Content-Type': 'multipart/form-data'
-                    }
-                }).then((response) => {
-                $("#image_id").val(response.data.data.id)
-            }).finally(()=>{
-                blockUI.release()
-            });
-
-            // window.location.reload();
-        } catch (error) {
-            console.log(error);
-        }
-        console.log("see response", response.data);
-    })
-
-    $('#bannerimageInput').change(async function () {
-        const file = this.files[0];
-        // console.log("see event", file);
-        const data = new FormData();
-
-        data.append('image', file);
-        blockUI.block();
-        try {
-            let response = await axios.post('/upload/image',
-                data, {
-                    headers: {
-                        'Content-Type': 'multipart/form-data'
-                    }
-                }).then((response) => {
-                $("#banner_image_id").val(response.data.data.id)
-            }).finally(()=>{
-                blockUI.release()
-            });
-
-            // window.location.reload();
-        } catch (error) {
-            console.log(error);
-        }
-
-        console.log("see response", response.data);
-    });
 });

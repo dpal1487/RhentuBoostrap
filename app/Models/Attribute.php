@@ -34,4 +34,14 @@ class Attribute extends Model
   {
     return $this->hasOne(Category::class, 'id', 'category_id');
   }
+
+  public static function boot() {
+    parent::boot();
+
+    static::deleting(function($attribute) { // before delete() method call this
+         $attribute->values()->delete();
+         // do the rest of the cleanup...
+    });
+}
+
 }

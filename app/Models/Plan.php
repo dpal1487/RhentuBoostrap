@@ -12,6 +12,27 @@ class Plan extends Model
     protected $primaryKey = 'id';
     protected $keyType = 'string';
     public $incrementing = false;
+
+    protected $fillable =[
+        'name',
+        'category_id',
+        'no_of_ads',
+        'description',
+        'amount',
+        'currency',
+        'expires_in_days',
+        'discount',
+        'status',
+
+];
+
+
+    public function category()  
+        {
+            return $this->hasOne(Category::class, 'id', 'category_id');
+        }
+
+
     protected static function boot()
     {
         parent::boot();

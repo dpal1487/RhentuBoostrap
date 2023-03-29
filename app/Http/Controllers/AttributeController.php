@@ -108,6 +108,14 @@ class AttributeController extends Controller
         $attribute = new AttributeResource($attribute);
         return view('pages.attribute.edit' , [ 'attribute'=>$attribute , 'category' =>$category ]);
     }
+    public function attributevalue($id)
+    {
+
+        // dd($id);
+        $attributeValue = AttributeValue::find($id);
+
+        return response()->json($attributeValue);
+    }
     public function update(Request $request, $id)
     {
         $validator = Validator::make($request->all(), [
@@ -146,6 +154,16 @@ class AttributeController extends Controller
         $attribute = Attribute::find($id);
         if($attribute->delete()){
             return response()->json(['success'=>true,'message'=>'Attribute has been deleted successfully.']);
+        }
+        return response()->json(['success'=>false,'message'=>'Opps something went wrong!'],400);
+    }
+
+    public function destroyattribute($id)
+    {
+        $attributeValue = AttributeValue::find($id);
+
+        if($attributeValue->delete()){
+            return response()->json(['success'=>true,'message'=>'Attribute Value has been deleted successfully.']);
         }
         return response()->json(['success'=>false,'message'=>'Opps something went wrong!'],400);
     }

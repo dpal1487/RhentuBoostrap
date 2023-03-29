@@ -12,6 +12,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\ReviewsController;
+use App\Http\Controllers\PlanController;
 
 /*
 |--------------------------------------------------------------------------
@@ -97,10 +98,26 @@ Route::middleware('auth')->group(function () {
             Route::post('/valuestore' ,'valuestore')->name('attribute.valuestore');
             Route::get('{id}' ,'show')->name('attribute.view');
             Route::get('{id}/edit' ,'edit')->name('attribute.edit');
+            Route::get('/value/{id}/edit', 'attributevalue')->name('attribute.value.edit');
             Route::post('{id}/update' ,'update')->name('attribute.update');
             Route::delete('{id}/delete' ,'destroy')->name('attribute.delete');
+            Route::delete('value/{id}/delete' ,'destroyattribute')->name('attribute.value.delete');
         });
      });
+
+     Route::controller(PlanController::class)->group(function(){
+        Route::group(['prefix' =>'plan'] , function()
+        {
+            Route::get('/' , 'index')->name('plan.index');
+            Route::get('/add' , 'create')->name('plan.add');
+            Route::post('/store' ,'store')->name('plan.store');
+            Route::get('{id}/view' ,'show')->name('plan.view');
+            Route::get('{id}/edit' ,'edit')->name('plan.edit');
+            Route::post('{id}/update' ,'update')->name('plan.update');
+            Route::delete('{id}/delete' ,'destroy')->name('plan.delete');
+        });
+     });
+
 
      Route::controller(ImageController::class)->group(function(){
             Route::post('/upload/image' , 'uploadImage');

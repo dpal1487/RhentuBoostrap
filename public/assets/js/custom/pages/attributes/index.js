@@ -66,31 +66,6 @@ var KTAppEcommerceCategories = function () {
         });
     }
 
-    var handleEditRows = () => {
-        // Select all delete buttons
-        const deleteButtons = table.querySelectorAll('[attribute-value-edit="edit_row"]');
-
-        deleteButtons.forEach(d => {
-            // Delete button on click
-            d.addEventListener('click', function (e) {
-                e.preventDefault();
-                // Select parent row
-                var id = $(this).data('id');
-
-                axios.get("/attribute/value/" + id +"/edit")
-                        .then((response) => {
-                            console.log(response.data.id)
-                            console.log(response.data.attribute_value)
-                            console.log(response.data.status)
-                            $("#attribut_value_id").val(response.data.id)
-                            $("#attribute_value").val(response.data.attribute_value)
-                            $("#status").val(response.data.status)
-                        })
-                });
-            })
-
-    }
-
     var handleDeleteAttributeValueRows = () => {
         // Select all delete buttons
         const deleteButtons = table.querySelectorAll('[attribute-value-table="delete_row"]');
@@ -122,13 +97,13 @@ var KTAppEcommerceCategories = function () {
                     blockUI.block();
                     if (result.value) {
                         axios
-                        .delete("/attribute/value/" + id +"/delete")
+                        .delete("/attribute-value/" + id +"/delete")
                         .then((response) => {
                           toastr.success(response.data.message);
                           $(parent).remove().draw();
                         })
                         .catch((error) => {
-                          if (error.response.status == 400) {
+                          if (error.response == 400) {
                             toastr.error(error.response.data.message);
                           }
                         }).finally(()=>blockUI.release());
@@ -148,8 +123,6 @@ var KTAppEcommerceCategories = function () {
         });
     }
 
-
-    // Public methods
     return {
         init: function () {
             table = document.querySelector('#attribute_table');
@@ -157,7 +130,6 @@ var KTAppEcommerceCategories = function () {
                 return;
             }
             handleDeleteRows();
-            handleEditRows();
             handleDeleteAttributeValueRows();
         }
     };
@@ -170,8 +142,6 @@ KTUtil.onDOMContentLoaded(function () {
 
 // Make the DIV element draggable:
 var element = document.querySelector('#attributeModel');
-dragElement(element);
 
 var element = document.querySelector('#attributevalueEditmodel');
-dragElement(element);
 

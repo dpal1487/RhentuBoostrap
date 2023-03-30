@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Http\Resources\AttributeResource;
 use App\Models\AttributeValue;
 use App\Models\Category;
+use App\Models\Rule;
+use App\Models\AttributeRule;
 use Illuminate\Support\Facades\Validator;
 
 class AttributeController extends Controller
@@ -22,27 +24,28 @@ class AttributeController extends Controller
         $attributes = $attributes->paginate(100)->appends(request()->query());
         $attributes = AttributeResource::collection($attributes);
 
-        return view('pages.attribute.index' , compact('attributes'));
+        return view('pages.attribute.index' , compact('attributes' ));
     }
 
     public function create()
     {
         $category = Category::get();
 
-        return view('pages.attribute.add', compact('category'));
+        $rules = Rule::get();
+        return view('pages.attribute.add', ['category' =>$category , 'rules' => $rules]);
     }
-
 
     public function store(Request $request)
     {
+
         $validator = Validator::make($request->all(), [
             'name' => ['required','unique:'.Attribute::class],
             'category' => 'required',
             'field' => 'required',
             'type' => 'required',
             'display_order' => 'required|integer',
-            'status' => 'required|integer'
-
+            'status' => 'required|integer',
+            'add_rule_conditions.*.rule' => 'required'
         ]);
 
         if ($validator->fails()) {
@@ -52,7 +55,7 @@ class AttributeController extends Controller
                     ],400);
         }
 
-        $attrebute = Attribute::create([
+        $attribute = Attribute::create([
             'name' => $request->name,
             'field' =>$request->field,
             'category_id' =>$request->category,
@@ -62,43 +65,28 @@ class AttributeController extends Controller
             'display_order' =>$request->display_order,
             'status' => $request->status,
         ]);
+        print_r($request->add_rule_conditions);
+
+// exit;    
+
+        foreach ($request->add_rule_conditions as $key => $value) {
+
+
+
+            AttributeRule::create([
+                'attribute_id' =>$attribute->id,
+                'rule_id' => $value['rule'],
+            ]);
+        }
 
         return response()->json(['success'=>true,'message'=>'Attribute created successfully']);
     }
 
     public function show($id)
     {
-        $attributeValues = AttributeValue::get();
-
-        // $category = Category::get();
         $attribute = Attribute::find($id);
         $attribute = new AttributeResource($attribute);
-        // return $attribute ;
-        return view('pages.attribute.view' , [ 'attributeValues'=>$attributeValues ,'attribute' => $attribute ] );
-    }
-
-    public function valuestore (Request $request)
-    {
-        $validator = Validator::make($request->all(), [
-            'attribute_value' => 'required',
-            'status' => 'required|integer'
-
-        ]);
-
-        if ($validator->fails()) {
-            return response()->json([
-                'success'=>false,
-                'message' => $validator->errors()->first()
-                    ],400);
-        }
-
-        $attrebutevalue = AttributeValue::create([
-            'attribute_value' => $request->attribute_value,
-            'attribute_id' =>$request->attribute_id,
-            'status' => $request->status,
-        ]);
-
-        return response()->json(['success'=>true,'message'=>'Attribute created successfully']);
+        return view('pages.attribute.view' , [ 'attribute' => $attribute ] );
     }
 
     public function edit($id)
@@ -110,8 +98,6 @@ class AttributeController extends Controller
     }
     public function attributevalue($id)
     {
-
-        // dd($id);
         $attributeValue = AttributeValue::find($id);
 
         return response()->json($attributeValue);
@@ -158,13 +144,4 @@ class AttributeController extends Controller
         return response()->json(['success'=>false,'message'=>'Opps something went wrong!'],400);
     }
 
-    public function destroyattribute($id)
-    {
-        $attributeValue = AttributeValue::find($id);
-
-        if($attributeValue->delete()){
-            return response()->json(['success'=>true,'message'=>'Attribute Value has been deleted successfully.']);
-        }
-        return response()->json(['success'=>false,'message'=>'Opps something went wrong!'],400);
-    }
 }

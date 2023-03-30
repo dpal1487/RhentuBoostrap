@@ -54,8 +54,7 @@
                       data-kt-image-input-action="cancel" data-bs-toggle="tooltip" title="Cancel avatar">
                       <i class="bi bi-x fs-2"></i>
                   </span>
-                  <input type="hidden" name="banner_id" value="{{ @$banner->banner->banner->id }}"
-                      id="image_id">
+                  <input type="hidden" name="banner_id" value="{{ @$banner->banner->banner->id }}" id="image_id">
 
                   <!--end::Cancel-->
                   <!--begin::Remove-->
@@ -119,34 +118,33 @@
 
               <!--begin::Input group-->
 
-               <!--begin::Input group-->
-               <div class="row g-3">
-                <div class="mb-10 fv-row col-6">
-                    <!--begin::Label-->
-                    <label class="required form-label">Banner URL</label>
-                    <!--end::Label-->
-                    <div class="">
-                        <!--begin::Input-->
-                        <input type="text" name="url" class="form-control mb-2" placeholder="Banner url"
-                            value="{{ @$banner->url }}" />
-                        <!--end::Input-->
-                        <!--begin::Description-->
-                        <div class="text-muted fs-7">A category name is required and recommended to be unique.</div>
-                        <!--end::Description-->
+              <!--begin::Input group-->
+              <div class="row g-3">
+                  <div class="mb-10 fv-row col-6">
+                      <!--begin::Label-->
+                      <label class="required form-label">Banner URL</label>
+                      <!--end::Label-->
+                      <div class="">
+                          <!--begin::Input-->
+                          <input type="text" name="url" class="form-control mb-2" placeholder="Banner url"
+                              value="{{ @$banner->url }}" />
+                          <!--end::Input-->
+                          <!--begin::Description-->
+                          <div class="text-muted fs-7">A category name is required and recommended to be unique.</div>
+                          <!--end::Description-->
 
-                    </div>
-                </div>
+                      </div>
+                  </div>
 
-            </div>
+              </div>
 
-            <!--begin::Input group-->
+              <!--begin::Input group-->
               <div class="fv-row">
                   <!--begin::Label-->
                   <label class="form-label">Description</label>
                   <!--end::Label-->
                   <!--begin::Editor-->
-                  <textarea name="description" class="form-control">   {{ strip_tags(@$banner->description) }}                         </textarea>
-
+                  <textarea name="description" class="form-control">{{ @$banner->description }}</textarea>
                   <!--end::Editor-->
                   <!--begin::Description-->
                   <div class="text-muted fs-7">Set a description to the category for better visibility.</div>

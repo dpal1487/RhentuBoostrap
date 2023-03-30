@@ -5,11 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class AttributeRule extends Model
+class Rule extends Model
 {
     use HasFactory;
-
-    protected  $fillable = [
-        'attribute_id','rule_id'
-];
 }

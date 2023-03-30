@@ -73,7 +73,7 @@
                     <!--begin::Table head-->
                     <thead class="text-center">
                         <!--begin::Table row-->
-                        <tr class="text-start text-gray-400 fw-bold fs-7 text-uppercase gs-0">
+                        <tr class="text-center text-gray-400 fw-bold fs-7 text-uppercase gs-0">
                             <th class="w-1px pe-2">
                                   <div class="form-check form-check-sm form-check-custom form-check-solid">
                                     <input class="form-check-input" type="checkbox" value="1" />
@@ -146,7 +146,7 @@
                                 </td>
                                 <!--end::Type=-->
                                 <!--begin::Action=-->
-                                <td class="text-end">
+                                <td>
                                     <a href="#" class="btn btn-sm btn-light btn-active-light-primary" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">Actions
                                     <!--begin::Svg Icon | path: icons/duotune/arrows/arr072.svg-->
                                     <span class="svg-icon svg-icon-5 m-0">

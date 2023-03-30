@@ -11,7 +11,7 @@ var KTAppEcommerceCategories = function () {
     // Delete cateogry
     var handleDeleteRows = () => {
         // Select all delete buttons
-        const deleteButtons = table.querySelectorAll('[attribute-table="delete_row"]');
+        const deleteButtons = table.querySelectorAll('[plan-table="delete_row"]');
 
         deleteButtons.forEach(d => {
             // Delete button on click
@@ -22,11 +22,11 @@ var KTAppEcommerceCategories = function () {
                 const parent = e.target.closest('tr');
                 var id = $(this).data('id');
                 // Get category name
-                const attributeName = parent.querySelector('[attribute-filter = "attribute_name"]').innerText;
+                const planName = parent.querySelector('[plan-filter = "plan_name"]').innerText;
 
                 // SweetAlert2 pop up --- official docs reference: https://sweetalert2.github.io/
                 Swal.fire({
-                    text: "Are you sure you want to delete " + attributeName + "?",
+                    text: "Are you sure you want to delete " + planName + "?",
                     icon: "warning",
                     showCancelButton: true,
                     buttonsStyling: true,
@@ -40,7 +40,7 @@ var KTAppEcommerceCategories = function () {
                     blockUI.block();
                     if (result.value) {
                         axios
-                        .delete("/attribute/" + id +"/delete")
+                        .delete("/plan/" + id +"/delete")
                         .then((response) => {
                           toastr.success(response.data.message);
                           $(parent).remove().draw();
@@ -52,7 +52,7 @@ var KTAppEcommerceCategories = function () {
                         }).finally(()=>blockUI.release());
                     } else if (result.dismiss === 'cancel') {
                         Swal.fire({
-                            text: attributeName + " was not deleted.",
+                            text: planName + " was not deleted.",
                             icon: "error",
                             buttonsStyling: false,
                             confirmButtonText: "Ok, got it!",
@@ -77,7 +77,7 @@ var KTAppEcommerceCategories = function () {
                 // Select parent row
                 var id = $(this).data('id');
 
-                axios.get("/attribute/value/" + id +"/edit")
+                axios.get("/plan/value/" + id +"/edit")
                         .then((response) => {
                             console.log(response.data.id)
                             console.log(response.data.attribute_value)
@@ -93,7 +93,7 @@ var KTAppEcommerceCategories = function () {
 
     var handleDeleteAttributeValueRows = () => {
         // Select all delete buttons
-        const deleteButtons = table.querySelectorAll('[attribute-value-table="delete_row"]');
+        const deleteButtons = table.querySelectorAll('[plan-table="delete_row"]');
 
         deleteButtons.forEach(d => {
             // Delete button on click
@@ -152,7 +152,7 @@ var KTAppEcommerceCategories = function () {
     // Public methods
     return {
         init: function () {
-            table = document.querySelector('#attribute_table');
+            table = document.querySelector('#plan_table');
             if (!table) {
                 return;
             }

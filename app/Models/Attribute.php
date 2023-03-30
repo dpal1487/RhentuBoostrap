@@ -26,9 +26,13 @@ class Attribute extends Model
   {
     return $this->hasMany(AttributeValue::class,'attribute_id', 'id');
   }
+  public function attributeRule()
+  {
+    return $this->hasOne(AttributeRule::class, 'attribute_id' , 'id');
+  }
   public function attributeRules()
   {
-    return $this->hasMany(AttributeRules::class, 'attribute_id');
+    return $this->hasMany(AttributeRule::class, 'attribute_id' , 'id');
   }
   public function category()
   {
@@ -40,6 +44,7 @@ class Attribute extends Model
 
     static::deleting(function($attribute) { // before delete() method call this
          $attribute->values()->delete();
+         $attribute->attributeRule()->delete();
          // do the rest of the cleanup...
     });
 }

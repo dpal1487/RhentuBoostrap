@@ -9,6 +9,17 @@ class ImageController extends Controller
 {
     public function uploadImage(Request $request)
     {
+
+        $validator = Validator::make($request->all(), [
+            'image' => 'required|mimes:jpeg,png,jpg'
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'success'=>false,
+                'message' => $validator->errors()->first()
+                    ],400);
+        }
         $image = $request->file('image');
         // dd($image);
         if($image) {

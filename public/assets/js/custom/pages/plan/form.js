@@ -1,9 +1,9 @@
 "use strict";
 
 // Class definition
-var KTSigninGeneral = function() {
+var PlanForm = function() {
     // Elements
-    var form = document.getElementById('attribute_form');
+    var form = document.getElementById('plan_form');
     var submitButton =document.getElementById('submit');
 
     var validator;
@@ -18,7 +18,7 @@ var KTSigninGeneral = function() {
                     name: {
                         validators: {
                             notEmpty: {
-                                message: 'The field is required'
+                                message: 'The Plan Name field is required'
                             }
                         }
                     },
@@ -26,37 +26,50 @@ var KTSigninGeneral = function() {
                     category: {
                         validators: {
                             notEmpty: {
-                                message: 'The field is required'
+                                message: 'The Category field is required'
                             }
                         }
                     },
-                    field: {
+                    amount: {
                         validators: {
                             notEmpty: {
-                                message: 'The field is required'
+                                message: 'The amount is required'
                             }
                         }
                     },
-                    type: {
+                    currancy: {
                         validators: {
                             notEmpty: {
-                                message: 'The field is required'
+                                message: 'The currancy field is required'
                             }
                         }
                     }
                     ,
-                    display_order: {
+                    no_of_ads: {
                         validators: {
                             notEmpty: {
-                                message: 'The field is required'
+                                message: 'The no of ads field is required'
                             }
                         }
-                    }
-                    ,
+                    },
+                    discount : {
+                        validators:{
+                            notEmpty:{
+                                message:'The discount field is required'
+                            }
+                        }
+                    },
                     status: {
                         validators: {
                             notEmpty: {
-                                message: 'The field is required'
+                                message: 'The status field is required'
+                            }
+                        }
+                    },
+                    description: {
+                        validators: {
+                            notEmpty: {
+                                message: 'The description field is required'
                             }
                         }
                     }
@@ -75,7 +88,7 @@ var KTSigninGeneral = function() {
         // Handle form submit
         submitButton.addEventListener('click', function (e) {
             // Prevent button default action
-            
+
             e.preventDefault();
 
             validator.validate().then(function (status) {
@@ -83,7 +96,7 @@ var KTSigninGeneral = function() {
                     blockUI.block();
 
                     // Show loading indication
-                    submitButton.setAttribute('data-kt-indicator', 'on');
+                    submitButton.setAttribute('data-plan-indicator', 'on');
 
                     // Disable button to avoid multiple click
                     submitButton.disabled = true;
@@ -98,7 +111,7 @@ var KTSigninGeneral = function() {
                             }
                         }).then(function (result) {
                             if(result.value){
-                                window.location.assign('/attribute');
+                                window.location.assign('/plan');
                             }
                         })
                     }).catch((error)=>{
@@ -107,7 +120,7 @@ var KTSigninGeneral = function() {
                           }
                     }).finally(()=>{
                         submitButton.disabled = false
-                        submitButton.setAttribute('data-kt-indicator', 'off');
+                        submitButton.setAttribute('data-plan-indicator', 'off');
                     blockUI.release();
 
                     })
@@ -131,7 +144,7 @@ var KTSigninGeneral = function() {
     return {
         // Initialization
         init: function() {
-            form = document.querySelector('#attribute_form');
+            form = document.querySelector('#plan_form');
             submitButton = document.querySelector('#submit');
 
             handleForm();
@@ -141,6 +154,6 @@ var KTSigninGeneral = function() {
 
 // On document ready
 KTUtil.onDOMContentLoaded(function() {
-    KTSigninGeneral.init();
+    PlanForm.init();
 
 });

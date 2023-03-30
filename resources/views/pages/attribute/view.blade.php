@@ -1,7 +1,7 @@
 @section('stylesheet')
-    <!--begin::Vendor Stylesheets(used for this page only)-->
+<!--begin::Vendor Stylesheets(used for this page only)-->
 
-    <!--end::Vendor Stylesheets-->
+<!--end::Vendor Stylesheets-->
 @endsection
 <x-app-layout>
 
@@ -70,14 +70,16 @@
                         <div class="col-6">
                             <div class="h-100 d-flex justify-content-center align-items-center">
                                 <div class="text-center">
-                                    @if ($attribute->status == 1)
+@if($attribute->status == 1)
 <div class="badge bg-success">Active</div>
 @else
 <div class="badge bg-danger">In Active</div>
 @endif
+
+
                                     <div class="d-flex justify-content-center align-items-center">
-                                        <h1>0&nbsp;</h1><span>Out Of</span>
-                                        <h1>&nbsp;100</h1>
+                                        <h1>{{ $attribute->values->where('status', 1)->count() }} &nbsp;</h1><span>Out Of</span>
+                                        <h1>&nbsp;{{ count($attribute->values) }}</h1>
                                     </div>
                                 </div>
                                                                                                                                                                                                                                                                                                                                                                                                                             </div>
@@ -92,7 +94,7 @@
                 <div class="card-header border-0 cursor-pointer" role="button" data-bs-toggle="collapse">
                     <div class="card-title d-flex align-items-center justify-content-between w-100">
                         <h3 class="fw-bold m-0">Attribute Value</h3>
-                        <button type="button" class="btn btn-primary" data-id="{{ $attribute->id }}" data-bs-toggle="modal" data-bs-target="#attributeModel">
+                        <button type="button" id="add_attribute" data-id="{{$attribute->id}}" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#attributeModel">
                             Add
                         </button>
                     </div>
@@ -103,10 +105,9 @@
                     <div class="modal-dialog">
                         <div class="modal-content position-absolute">
                             <div class="modal-header">
-                                <h5 class="modal-title">Attribute Value</h5>
+                                <h5 class="modal-title">Add Attribute Value</h5>
                             </div>
-
-                            <form class="form d-flex flex-column flex-lg-row" id="attribute_valuestore" action="{{ url('attribute/valuestore') }}"
+                            <form class="form d-flex flex-column flex-lg-row" id="value_form" action=""
                                 method="POST">
                                 @csrf
                                 <!--begin::Aside column-->
@@ -143,7 +144,8 @@
                     <!--begin::Table body-->
                     <tbody class="fw-semibold text-gray-600">
                         <!--begin::Table row-->
-                            @foreach ($attribute->values as $value)
+
+@foreach($attribute->values as $value)
 <tr>
                                 <td>
                                     <div class="form-check form-check-sm form-check-custom form-check-solid">
@@ -157,15 +159,16 @@
                                             <a href="" class="text-gray-800 text-hover-primary fs-5 fw-bold mb-1" attribute-filter="attribute_value">{{ $value->attribute_value }}</a>
                                             <!--end::Title-->
 
+
                                         </div>
                                     </div>
                                 </td>
                                  <td>
-                                    @if ($value->status == 1)
-                                        <div class="badge badge-light-success">Active</div>
-                                        @else
-                                        <div class="badge badge-light-info">In Active</div>
-                                        @endif
+@if($value->status == 1)
+<div class="badge badge-light-success">Active</div>
+@else
+<div class="badge badge-light-info">In Active</div>
+@endif
                                 </td>
                                 <td class="text-end">
                                     <a href="#" class="btn btn-sm btn-light btn-active-light-primary" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">Actions
@@ -200,28 +203,6 @@
                     <!--end::Table body-->
                 </table>
                 <!--end::Table-->
-
-                 <!-- start form model -->
-                 <div class="modal fade" tabindex="-1" id="attributevalueEditmodel">
-                    <div class="modal-dialog">
-                        <div class="modal-content position-absolute">
-                            <div class="modal-header">
-                                <h5 class="modal-title">Attribute Value For Edit</h5>
-                            </div>
-
-                            <form class="form d-flex flex-column flex-lg-row" id="attribute_valuestore" action="{{ url('attribute/valuestore') }}"
-                                method="POST">
-                                @csrf
-                                <p id="status" >dfdsf </p>
-                                <!--begin::Aside column-->
-                                @include('pages.attribute.model_fields')
-                                <!--end::Main column-->
-                            </form>
-                        </div>
-                    </div>
-                </div>
-                <!-- end form model -->
-
                     </div>
                     <!--end::Card body-->
                 </div>
@@ -232,10 +213,10 @@
 
             </div>
     <!--end::Content-->
-    @section('javascript')
+@section('javascript')
     <script src="{{ asset('assets/js/widgets.bundle.js') }}"></script>
-        <script src="{{ asset('assets/js/custom/widgets.js') }}"></script>
-        <script src="{{ asset('assets/js/custom/pages/attributes/index.js') }}"></script>
-        <script src="{{ asset('assets/js/custom/pages/attributes/valueform.js') }}"></script>
+                                            <script src="{{ asset('assets/js/custom/widgets.js') }}"></script>
+                                            <script src="{{ asset('assets/js/custom/pages/attributes/index.js') }}"></script>
+                                            <script src="{{ asset('assets/js/custom/pages/attributes/valueform.js') }}"></script>
 @endsection
 </x-app-layout>

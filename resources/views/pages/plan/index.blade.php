@@ -44,7 +44,7 @@
                 <!--begin::Card toolbar-->
                 <div class="card-toolbar">
                     <!--begin::Add customer-->
-                    <a href="{{ route('plan.add') }}" class="btn btn-primary">Add Attribute</a>
+                    <a href="{{ route('plan.add') }}" class="btn btn-primary">Add <i class="fas fa-plane-alt    "></i></a>
                     {{-- <a href="{{ route('category.add') }}" class="btn btn-primary g-5">Add Category</a> --}}
                     <!--end::Add customer-->
                 </div>
@@ -54,7 +54,7 @@
             <!--begin::Card body-->
             <div class="card-body pt-0">
                 <!--begin::Table-->
-                <table class="table align-middle table-row-dashed fs-6 gy-5" id="attribute_table">
+                <table class="table align-middle table-row-dashed fs-6 gy-5" id="plan_table">
                     <!--begin::Table head-->
                     <thead>
                         <!--begin::Table row-->
@@ -90,7 +90,7 @@
                                     <div class="d-flex">
                                         <div class="ms-5">
                                             <!--begin::Title-->
-                                            <a href="" class="text-gray-800 text-hover-primary fs-5 fw-bold mb-1" attribute-filter="attribute_name">{{ $plan->name }}</a>
+                                            <a href="" class="text-gray-800 text-hover-primary fs-5 fw-bold mb-1" plan-filter="plan_name">{{ $plan->name }}</a>
                                             <!--end::Title-->
 
                                         </div>

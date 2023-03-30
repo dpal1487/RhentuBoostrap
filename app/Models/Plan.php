@@ -23,16 +23,11 @@ class Plan extends Model
         'expires_in_days',
         'discount',
         'status',
-
 ];
-
-
-    public function category()  
+    public function category()
         {
             return $this->hasOne(Category::class, 'id', 'category_id');
         }
-
-
     protected static function boot()
     {
         parent::boot();

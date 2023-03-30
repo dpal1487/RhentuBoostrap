@@ -50,7 +50,7 @@
 
                <!--begin::Input group-->
                <div class="row g-3">
-                <div class="mb-10 fv-row col-4">
+                <div class="mb-10 fv-row col-6">
                     <!--begin::Label-->
                     <label class="required form-label">Category </label>
                     <!--end::Label-->
@@ -70,10 +70,10 @@
 
                 </div>
 
-                <div class="mb-10 fv-row col-4">
+                <div class="mb-10 fv-row col-6">
                     <label class="required form-label">Input Type </label>
                     <!--end::Label-->
-                    <select class="form-select mb-2" name="type" data-control="select2">
+                    <select class="form-select mb-2" name="type" data-control="select2" data-placeholder="Select an option">
                         <option value="">Select an option</option>
 
                         <option value="input" @selected(@$attribute->type == 'input')>Input</option>
@@ -83,14 +83,29 @@
                     </select>
 
                 </div>
-                <div class="mb-10 fv-row col-4">
+               </div>
+               <div class="row g-3">
+
+                <div class="mb-10 fv-row col-6">
                     <label class="form-label">Data Type </label>
                     <!--end::Label-->
-                    <select class="form-select mb-2" name="data_type" data-control="select2">
-                        <option>Select an option</option>
+                    <select class="form-select mb-2" name="data_type" data-control="select2" data-placeholder="Select an option">
+                        <option value="">Select an option</option>
                         <option value="text" @selected(@$attribute->data_type == 'text')>Text</option>
                         <option value="number" @selected(@$attribute->data_type == 'number')>Number</option>
 
+                    </select>
+
+                </div>
+                <div class="mb-10 fv-row col-6">
+                    <!--begin::Label-->
+                    <label class="form-label required">Display Order </label>
+                    <!--end::Label-->
+                    <select class="form-select mb-2" name="display_order"
+                    data-control="select2" data-placeholder="Select an option">
+                        <option value="">Select an option</option>
+                        <option value="1" @selected(@$attribute->display_order == '1')>Yes</option>
+                        <option value="0" @selected(@$attribute->display_order == '0')>No</option>
                     </select>
 
                 </div>
@@ -112,19 +127,8 @@
               <!--end::Input group-->
 
               <div class="row g-10">
-                <div class="mb-10 fv-row col-4">
-                    <!--begin::Label-->
-                    <label class="form-label required">Display Order </label>
-                    <!--end::Label-->
-                    <select class="form-select mb-2" name="display_order"
-                    data-control="select2" data-placeholder="Select an option">
-                        <option value="">Select an option</option>
-                        <option value="1" @selected(@$attribute->display_order == '1')>Yes</option>
-                        <option value="0" @selected(@$attribute->display_order == '0')>No</option>
-                    </select>
 
-                </div>
-                <div class="mb-10 fv-row col-4">
+                <div class="mb-10 fv-row col-6">
                     <!--begin::Label-->
                     <label class="form-label required">Status </label>
                     <!--end::Label-->
@@ -138,24 +142,26 @@
                 </div>
               </div>
 
-          </div>
           <!--end::Card header-->
+          <div class="d-flex justify-content-end">
+            <!--begin::Button-->
+            <a href="{{ route('attribute.index') }}" class="btn btn-light me-5">Cancel</a>
+            <!--end::Button-->
+            <button type="submit" class="btn btn-primary" id="submit">
+                <!--begin::Indicator label-->
+                <span class="indicator-label">Save</span>
+                <!--end::Indicator label-->
+                <!--begin::Indicator progress-->
+                <span class="indicator-progress">Please wait...
+                    <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+                <!--end::Indicator progress-->
+            </button>
+            <!--end::Button-->
+        </div>
       </div>
+    </div>
+
       <!--end::General options-->
 
-      <div class="d-flex justify-content-end">
-          <!--begin::Button-->
-          <a href="{{ route('attribute.index') }}" class="btn btn-light me-5">Cancel</a>
-          <!--end::Button-->
-          <button type="submit" class="btn btn-primary" id="submit">
-              <!--begin::Indicator label-->
-              <span class="indicator-label">Save</span>
-              <!--end::Indicator label-->
-              <!--begin::Indicator progress-->
-              <span class="indicator-progress">Please wait...
-                  <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
-              <!--end::Indicator progress-->
-          </button>
-          <!--end::Button-->
-      </div>
+
   </div>

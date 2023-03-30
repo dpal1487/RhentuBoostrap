@@ -156,7 +156,7 @@
                       @enderror
                   </div>
               </div>
-              <div class="text-muted fs-7">Set the category thumbnail image. Only *.png, *.jpg and *.jpeg image files
+              <div class="text-muted fs-7">Set the Banner thumbnail image. Only *.png, *.jpg and *.jpeg image files
                   are accepted</div>
               <!--end::Description-->
           </div>
@@ -173,7 +173,7 @@
           <!--begin::Card header-->
           <div class="card-header">
               <div class="card-title">
-                  <h2>General</h2>
+                  <h2>Category</h2>
               </div>
           </div>
           <!--end::Card header-->
@@ -183,7 +183,7 @@
               <div class="row g-3">
                   <div class="mb-10 fv-row col-6">
                       <!--begin::Label-->
-                      <label class="required form-label">Category Name</label>
+                      <label class="required form-label">Name</label>
                       <!--end::Label-->
                       <div class="">
                           <!--begin::Input-->
@@ -199,8 +199,7 @@
                   <!--end::Input group-->
                   <div class="mb-1 fv-row col-6">
 
-                      <label for="parent_category" class="required form-label">Select Category Parent
-                          Value</label>
+                      <label for="parent_category" class="required form-label">Parent Value</label>
                       <select class="form-select mb-2" name="parent" data-control="select2" data-hide-search="true"
                           data-placeholder="Select an option" id="parent_category">
                           <option value=" " selected>Parent</option>
@@ -208,8 +207,7 @@
                               <option value="{{ $val->id }}"> {{ $val->name }}</option>
                           @endforeach
                       </select>
-                      <div class="text-muted fs-7">Assign a template from your current theme to define how the category
-                          products are displayed.</div>
+                      <div class="text-muted fs-7">Category Parent Value Is Required.</div>
                   </div>
               </div>
               <div class="fv-row">
@@ -217,7 +215,7 @@
                   <label class="form-label">Description</label>
                   <!--end::Label-->
                   <!--begin::Editor-->
-                  <textarea name="category_description" class="form-control">   {{ strip_tags(@$category->description) }}                         </textarea>
+                  <textarea name="category_description" class="form-control" placeholder="Categry Description">{{ strip_tags(@$category->description) }}</textarea>
 
                   <!--end::Editor-->
                   <!--begin::Description-->
@@ -232,7 +230,7 @@
                   <!--end::Label-->
                   <!--begin::Editor-->
                   <input id="keywords" name="keywords" class="form-control mb-2"
-                      value="{{ @$category->keywords }}" />
+                      value="{{ @$category->keywords }}" placeholder="Categry Keywords"/>
                   <!--end::Editor-->
                   <!--begin::Description-->
                   <div class="text-muted fs-7">Set a list of keywords that the category is related to. Separate the
@@ -260,7 +258,7 @@
               <!--begin::Input group-->
               <div class="mb-10">
                   <!--begin::Label-->
-                  <label class="form-label">Meta Tag Title</label>
+                  <label class="form-label">Title</label>
                   <!--end::Label-->
                   <!--begin::Input-->
                   <input type="text" class="form-control mb-2" name="meta_tag" placeholder="Meta tag name"
@@ -275,10 +273,10 @@
               <!--begin::Input group-->
               <div class="mb-10 fv-row">
                   <!--begin::Label-->
-                  <label class="form-label">Meta Tag Description</label>
+                  <label class="form-label">Description</label>
                   <!--end::Label-->
                   <!--begin::Editor-->
-                  <textarea name="meta_description" class="form-control" >  {{ strip_tags(@$category->meta->description) }}                          </textarea>
+                  <textarea name="meta_description" class="form-control" placeholder="Meta Tag description">{{ strip_tags(@$category->meta->description) }}</textarea>
                   <!--begin::Description-->
                   <div class="text-muted fs-7">Set a meta tag description to the category for increased SEO ranking.
                   </div>
@@ -288,11 +286,11 @@
               <!--begin::Input group-->
               <div>
                   <!--begin::Label-->
-                  <label class="form-label">Meta Tag Keywords</label>
+                  <label class="form-label">Keywords</label>
                   <!--end::Label-->
                   <!--begin::Editor-->
                   <input id="meta_keywords" name="meta_keywords" class="form-control mb-2"
-                      value="{{ @$category->meta->keywords }}" />
+                      value="{{ @$category->meta->keywords }}" placeholder="Meta tag Keywords "/>
                   <!--end::Editor-->
                   <!--begin::Description-->
                   <div class="text-muted fs-7">Set a list of keywords that the category is related to. Separate the

@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\AttributeController;
+use App\Http\Controllers\AttributeValueController;
+use App\Http\Controllers\RuleController;
 use App\Http\Controllers\BannerController;
 use App\Http\Controllers\CategoryController;
 use Illuminate\Support\Facades\Route;
@@ -95,13 +97,33 @@ Route::middleware('auth')->group(function () {
             Route::get('/' , 'index')->name('attribute.index');
             Route::get('/add' , 'create')->name('attribute.add');
             Route::post('/store' ,'store')->name('attribute.store');
-            Route::post('/valuestore' ,'valuestore')->name('attribute.valuestore');
             Route::get('{id}' ,'show')->name('attribute.view');
             Route::get('{id}/edit' ,'edit')->name('attribute.edit');
-            Route::get('/value/{id}/edit', 'attributevalue')->name('attribute.value.edit');
             Route::post('{id}/update' ,'update')->name('attribute.update');
             Route::delete('{id}/delete' ,'destroy')->name('attribute.delete');
-            Route::delete('value/{id}/delete' ,'destroyattribute')->name('attribute.value.delete');
+        });
+     });
+     Route::controller(AttributeValueController::class)->group(function(){
+        Route::group(['prefix' =>'attribute-value'] , function()
+        {
+            Route::get('/' , 'index')->name('attribute-value.index');
+            Route::get('/add' , 'create')->name('attribute-value.add');
+            Route::post('/store' ,'store')->name('attribute-value.store');
+            Route::get('{id}/edit' ,'edit')->name('attribute-value.edit');
+            Route::post('{id}/update' ,'update')->name('attribute-value.update');
+            Route::delete('{id}/delete' ,'destroy')->name('attribute-value.delete');
+        });
+     });
+
+     Route::controller(RuleController::class)->group(function(){
+        Route::group(['prefix' =>'rule'] , function()
+        {
+            Route::get('/' , 'index')->name('rule.index');
+            Route::get('/add' , 'create')->name('rule.add');
+            Route::post('/store' ,'store')->name('rule.store');
+            Route::get('{id}/edit' ,'edit')->name('rule.edit');
+            Route::post('{id}/update' ,'update')->name('rule.update');
+            Route::delete('{id}/delete' ,'destroy')->name('rule.delete');
         });
      });
 

@@ -5,7 +5,6 @@
 <!--end::Vendor Stylesheets-->
 @endsection
 <x-app-layout>
-
     <!--begin::Toolbar-->
     <div id="kt_app_toolbar" class="app-toolbar py-3 py-lg-6">
 

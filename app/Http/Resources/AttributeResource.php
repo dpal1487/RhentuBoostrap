@@ -27,6 +27,7 @@ class AttributeResource extends JsonResource
             'description' => $this->description,
             'category' =>new CategoryResource($this->category),
             'values' => AttributeValueResource::collection($this->values),
+            'attributeRule' =>new AttributeRuleResource($this->attributeRule),
 
         ];
     }

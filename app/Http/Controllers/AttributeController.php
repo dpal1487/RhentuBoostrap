@@ -65,20 +65,12 @@ class AttributeController extends Controller
             'display_order' =>$request->display_order,
             'status' => $request->status,
         ]);
-        print_r($request->add_rule_conditions);
-
-// exit;    
-
         foreach ($request->add_rule_conditions as $key => $value) {
-
-
-
             AttributeRule::create([
                 'attribute_id' =>$attribute->id,
                 'rule_id' => $value['rule'],
             ]);
         }
-
         return response()->json(['success'=>true,'message'=>'Attribute created successfully']);
     }
 

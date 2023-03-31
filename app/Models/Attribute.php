@@ -12,7 +12,7 @@ class Attribute extends Model
   protected $hidden = ['created_at', 'updated_at', 'category_id'];
   public function rules()
   {
-    return $this->hasMany(\App\Http\Models\Rules::class, 'attribute_id');
+    return $this->hasMany(\App\Http\Models\Rule::class, 'attribute_id');
   }
   public function attribute()
   {

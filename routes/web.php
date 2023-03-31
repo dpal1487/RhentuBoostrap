@@ -15,6 +15,10 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\ReviewsController;
 use App\Http\Controllers\PlanController;
+use App\Http\Controllers\BrandController;
+use App\Http\Controllers\BrandModelController;
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -43,25 +47,32 @@ Route::middleware('auth')->group(function () {
 
       // user profile
 
-    Route::group(['prefix' => 'user'], function () {
-        Route::get('/', [UserController::class, 'index'])->name('user');
-        Route::get('/{id}/items', [UserController::class, 'items'])->name('user.items');
-        Route::get('/{id}/overview', [UserController::class, 'overview'])->name('user.overview');
-        Route::get('/{id}/address', [UserController::class, 'address'])->name('user.address');
-        Route::get('/{id}/packages', [UserController::class, 'packages'])->name('user.packages');
-        Route::get('/{id}/reports', [UserController::class, 'reports'])->name('user.reports');
+      Route::controller(UserController::class)->group(function(){
+        Route::group(['prefix' => 'user'], function ()
+        {
+
+        Route::get('/', 'index')->name('user');
+        Route::get('/{id}/items', 'items')->name('user.items');
+        Route::get('/{id}/overview', 'overview')->name('user.overview');
+        Route::get('/{id}/address', 'address')->name('user.address');
+        Route::get('/{id}/packages', 'packages')->name('user.packages');
+        Route::get('/{id}/reports', 'reports')->name('user.reports');
     });
+});
     // item page
-    Route::group(['prefix' => 'item'], function () {
-        Route::get('/' , [ItemController::class , 'index'])->name('item');
-        Route::get('/details/{id}' , [ItemController::class , 'details'])->name('item/details');
-        Route::get('/customers' , [ItemController::class , 'details'])->name('item/customers');
-        Route::post('/status' , [ItemController::class , 'updateStatus'])->name('/item/status');
 
-        Route::get('/reviews/{id}' , [ReviewController::class , 'reviews'])->name('item/reviews');
+    Route::controller(ItemController::class)->group(function(){
+        Route::group(['prefix' => 'item'], function ()
+        {
+            Route::get('/' ,'index')->name('item');
+            Route::get('/details/{id}', 'details')->name('item.details');
+            Route::get('/customers' , 'details')->name('item.customers');
+            Route::post('/status' , 'updateStatus')->name('item.status');
+         });
+        });
 
-        // Route::get('category' , [CategoryController::class , 'category'])->name('category');
-     });
+     Route::get('/reviews/{id}' , [ReviewController::class , 'reviews'])->name('item/reviews');
+
 
      // category
 
@@ -140,10 +151,36 @@ Route::middleware('auth')->group(function () {
         });
      });
 
+     Route::controller(BrandController::class)->group(function(){
+        Route::group(['prefix' =>'brand'] , function()
+        {
+            Route::get('/' , 'index')->name('brand.index');
+            Route::get('/add' , 'create')->name('brand.add');
+            Route::post('/store' ,'store')->name('brand.store');
+            Route::get('{id}/view' ,'show')->name('brand.view');
+            Route::get('{id}/edit' ,'edit')->name('brand.edit');
+            Route::post('{id}/update' ,'update')->name('brand.update');
+            Route::delete('{id}/delete' ,'destroy')->name('brand.delete');
+        });
+     });
+
+     Route::controller(BrandModelController::class)->group(function(){
+        Route::group(['prefix' =>'brand-model'] , function()
+        {
+            Route::get('/' , 'index')->name('brand-model.index');
+            Route::get('/add' , 'create')->name('brand-model.add');
+            Route::post('/store' ,'store')->name('brand-model.store');
+            Route::get('{id}/edit' ,'edit')->name('brand-model.edit');
+            Route::post('{id}/update' ,'update')->name('brand-model.update');
+            Route::delete('{id}/delete' ,'destroy')->name('brand-model.delete');
+        });
+     });
+
 
      Route::controller(ImageController::class)->group(function(){
             Route::post('/upload/image' , 'uploadImage');
             Route::post('/upload/banner' , 'uploadBanner');
+            Route::post('/upload/brand' , 'uploadBrand');
      });
 
 

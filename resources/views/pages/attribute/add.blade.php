@@ -13,20 +13,12 @@
 
         <!--begin::Content container-->
         <div id="kt_app_content_container" class="app-container container-xxl">
-            <div class="row">
-                <div class="col-md-6">
-                    <form class="form d-flex flex-column flex-lg-row" id="attribute_form"
+                    <form class="form d-flex flex-column flex-lg-row gap-5" id="attribute_form"
                         action="{{ url('attribute/store') }}" method="POST">
                         @csrf
                         @include('pages.attribute._fields')
-                </div>
-                <div class="col-md-6">
-                    @include('pages.attribute._rulefields')
                     </form>
-                </div>
-            </div>
 
-        </div>
         <!--end::Content container-->
     </div>
     <!--end::Content-->

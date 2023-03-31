@@ -49,7 +49,7 @@ class AttributeValueController extends Controller
             'status' => $request->status,
         ]);
 
-        return response()->json(['success'=>true,'message'=>'Attribute created successfully']);
+        return response()->json(['success'=>true,'message'=>'Attribute Value created successfully']);
     }
 
     /**
@@ -95,7 +95,7 @@ class AttributeValueController extends Controller
             'status' => $request->status,
         ]);
 
-        return response()->json(['success'=>true,'message'=>'Attribute updated successfully']);
+        return response()->json(['success'=>true,'message'=>'Attribute Value updated successfully']);
     }
 
     /**

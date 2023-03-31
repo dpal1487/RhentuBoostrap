@@ -57,7 +57,7 @@
                         blockUI.block();
 
 
-                    const res = await axios.post('{{ route('/item/status') }}', {
+                    const res = await axios.post('{{ route('item.status') }}', {
                             'item_id': ItemId,
                             'itemstatus_id': itemStatusId
                         })

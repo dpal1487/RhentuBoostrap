@@ -4,18 +4,18 @@
     <!--begin::Input group-->
     <div class="fv-row mb-5">
         <!--begin::Label-->
-        <label class="form-label">Attribute Value</label>
+        <label class="form-label">Value</label>
         <!--end::Label-->
         <!--begin::Editor-->
         <input type="text" name="attribute_value" id="attribute_value" class="form-control mb-2"
-            placeholder="Attribute field" valur={{ @$attributeValue->attribute_value }} />
+            placeholder="Attribute Value" valur={{ @$attributeValue->attribute_value }} />
         <!--end::Editor-->
     </div>
     <!--end::Input group-->
     <!--begin::Input group-->
     <div class="fv-row mb-5">
         <!--begin::Label-->
-        <label class="form-label">Attribute Status</label>
+        <label class="form-label">Status</label>
         <!--begin::Label-->
         <!--begin::Label-->
         <select class="form-select mb-2" id="status" name="status" data-control="select2"

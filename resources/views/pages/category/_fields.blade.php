@@ -23,11 +23,11 @@
               @else
                   <style>
                       .image-input-placeholder {
-                          background-image: url('{{ asset('assets/media/svg/files/blank-image.svg') }}');
+                          background-image: url({{ asset('assets/media/svg/files/blank-image.svg') }});
                       }
 
                       [data-theme="dark"] .image-input-placeholder {
-                          background-image: url('{{ asset('assets/media/svg/files/blank-image-dark.svg') }}');
+                          background-image: url({{ asset('assets/media/svg/files/blank-image-dark.svg') }});
                       }
                   </style>
               @endif
@@ -90,6 +90,8 @@
                   <h2>Banner Image </h2>
               </div>
               <!--end::Card title-->
+              {{ @$category->image->name }}
+              {{ @$category->banner->banner->name }}
           </div>
           <!--end::Card header-->
           <!--begin::Card body-->
@@ -99,7 +101,7 @@
               @if (@$category->image->name)
                   <style>
                       .image-input-placeholder {
-                          background-image: url({{ asset('assets/image/category/original/') }}/{{ @$category->image->name }});
+                          background-image: url({{ asset('assets/image/banner/original/') }}/{{ @$category->banner->banner->name }});
                       }
                   </style>
               @else
@@ -187,7 +189,7 @@
                       <!--end::Label-->
                       <div class="">
                           <!--begin::Input-->
-                          <input type="text" name="name" class="form-control mb-2" placeholder="Product name"
+                          <input type="text" name="name" class="form-control mb-2" placeholder="Category name"
                               value="{{ @$category->name }}" />
                           <!--end::Input-->
                           <!--begin::Description-->
@@ -261,7 +263,7 @@
                   <label class="form-label">Title</label>
                   <!--end::Label-->
                   <!--begin::Input-->
-                  <input type="text" class="form-control mb-2" name="meta_tag" placeholder="Meta tag name"
+                  <input type="text" class="form-control mb-2" name="meta_tag" placeholder="Meta Tag Title"
                       value="{{ @$category->meta->tag }}" />
                   <!--end::Input-->
                   <!--begin::Description-->
@@ -276,7 +278,7 @@
                   <label class="form-label">Description</label>
                   <!--end::Label-->
                   <!--begin::Editor-->
-                  <textarea name="meta_description" class="form-control" placeholder="Meta Tag description">{{ strip_tags(@$category->meta->description) }}</textarea>
+                  <textarea name="meta_description" class="form-control" placeholder="Meta Tag Description">{{ strip_tags(@$category->meta->description) }}</textarea>
                   <!--begin::Description-->
                   <div class="text-muted fs-7">Set a meta tag description to the category for increased SEO ranking.
                   </div>

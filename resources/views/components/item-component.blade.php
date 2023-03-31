@@ -336,7 +336,7 @@
             // console.log("id", ItemId, "value", itemStatusId);
             // console.log("Item Status Id", axios.get )
 
-            const res = await axios.post('{{ route('/item/status') }}', {
+            const res = await axios.post('{{ route('item.status') }}', {
                     'item_id': ItemId,
                     'itemstatus_id': itemStatusId
                 })

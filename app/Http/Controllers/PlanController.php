@@ -73,7 +73,7 @@ class PlanController extends Controller
             'description' => $request->description,
         ]);
 
-        return response()->json(['success' => true, 'message' => 'Category created successfully']);
+        return response()->json(['success' => true, 'message' => 'Plan created successfully']);
     }
 
     /**
@@ -133,7 +133,7 @@ class PlanController extends Controller
                 'category_id' => $id,
                 'image_id' => $request->banner_id,
             ]);
-            return response()->json(['success' => true, 'message' => 'Category Updated successfully']);
+            return response()->json(['success' => true, 'message' => 'Plan Updated successfully']);
         }
     }
 
@@ -146,7 +146,7 @@ class PlanController extends Controller
         $category = new CategoryResource($category);
         // dd($category->image);
         if ($category->delete()) {
-            return response()->json(['success' => true, 'message' => 'Category has been deleted successfully.']);
+            return response()->json(['success' => true, 'message' => 'Plan has been deleted successfully.']);
         }
         return response()->json(['success' => false, 'message' => 'Opps something went wrong!'], 400);
     }

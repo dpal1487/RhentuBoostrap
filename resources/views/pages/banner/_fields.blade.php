@@ -54,7 +54,7 @@
                       data-kt-image-input-action="cancel" data-bs-toggle="tooltip" title="Cancel avatar">
                       <i class="bi bi-x fs-2"></i>
                   </span>
-                  <input type="hidden" name="banner_id" value="{{ @$banner->banner->banner->id }}" id="image_id">
+                  <input type="hidden" name="banner_image" value="{{ @$banner->banner->banner->id }}" id="image_id">
 
                   <!--end::Cancel-->
                   <!--begin::Remove-->
@@ -73,7 +73,7 @@
                       @enderror
                   </div>
               </div>
-              <div class="text-muted fs-7">Set the category thumbnail image. Only *.png, *.jpg and *.jpeg image files
+              <div class="text-muted fs-7">Set the Banner image. Only *.png, *.jpg and *.jpeg image files
                   are accepted</div>
               <!--end::Description-->
           </div>
@@ -104,7 +104,7 @@
                       <!--end::Label-->
                       <div class="">
                           <!--begin::Input-->
-                          <input type="text" name="title" class="form-control mb-2" placeholder="Product name"
+                          <input type="text" name="title" class="form-control mb-2" placeholder="Banner Name"
                               value="{{ @$banner->title }}" />
                           <!--end::Input-->
                           <!--begin::Description-->
@@ -126,7 +126,7 @@
                       <!--end::Label-->
                       <div class="">
                           <!--begin::Input-->
-                          <input type="text" name="url" class="form-control mb-2" placeholder="Banner url"
+                          <input type="url" name="url" class="form-control mb-2" placeholder="Banner url"
                               value="{{ @$banner->url }}" />
                           <!--end::Input-->
                           <!--begin::Description-->
@@ -144,7 +144,7 @@
                   <label class="form-label">Description</label>
                   <!--end::Label-->
                   <!--begin::Editor-->
-                  <textarea name="description" class="form-control">{{ @$banner->description }}</textarea>
+                  <textarea name="description" class="form-control" placeholder="Banner Description">{{ @$banner->description }}</textarea>
                   <!--end::Editor-->
                   <!--begin::Description-->
                   <div class="text-muted fs-7">Set a description to the category for better visibility.</div>

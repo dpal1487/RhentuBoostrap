@@ -17,7 +17,7 @@ class BannerController extends Controller
 
         $banners = new Banner();
         if($request->q){
-            $banners = $banners->where('name','like',"%{$request->q}%");
+            $banners = $banners->where('title','like',"%{$request->q}%");
         }
         $banners = $banners->paginate(100)->appends(request()->query());
         $banners = BannerResource::collection($banners);
@@ -34,7 +34,8 @@ class BannerController extends Controller
         $validator = Validator::make($request->all(), [
             'description' => 'required',
             'title' => 'required',
-            'url' => 'required'
+            'url' => 'required|url',
+            'banner_image' =>'required'
 
         ]);
 
@@ -49,7 +50,7 @@ class BannerController extends Controller
             'title' => $request->title,
             'description' => $request->description,
             'url' =>$request->url,
-            'image_id' =>$request->banner_id,
+            'image_id' =>$request->banner_image,
             'status' => 1,
         ]);
 

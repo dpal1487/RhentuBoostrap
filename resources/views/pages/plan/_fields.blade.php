@@ -2,7 +2,7 @@
    <div class="card-body pt-0">
        <div class="row g-3">
            <div class="mb-10 fv-row col-6">
-               <label class="required form-label">Plan Name</label>
+               <label class="required form-label">Name</label>
                <div class="">
                    <input type="text" name="name" class="form-control mb-2" placeholder="Plan name"
                        value="{{ @$plan->name }}" />
@@ -22,6 +22,8 @@
                            </option>
                        @endforeach
                    </select>
+                   <div class="text-muted fs-7">Select Category For Plan</div>
+
                </div>
            </div>
        </div>
@@ -59,7 +61,6 @@
                <div class="">
                    <input type="text" name="expires_in_days" class="form-control mb-2" placeholder="Expires In Days"
                        value="{{ @$plan->expires_in_days }}" />
-                   <div class="text-muted fs-7">An Expires In Days field is required.</div>
                </div>
            </div>
        </div>
@@ -74,12 +75,16 @@
            </div>
            <div class="mb-10 fv-row col-6">
                <label class="form-label required">Status </label>
+               <div class="">
                <select class="form-select mb-2" name="status" data-control="select2"
                    data-placeholder="Select an option">
                    <option value="">Select an option</option>
                    <option value="1" @selected(@$plan->status == '1')>Active</option>
                    <option value="0" @selected(@$plan->status == '0')>In Active</option>
                </select>
+               <div class="text-muted fs-7">Status is required </div>
+               </div>
+
            </div>
        </div>
 

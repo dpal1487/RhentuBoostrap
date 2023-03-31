@@ -43,7 +43,7 @@ class UserController extends Controller
         $title = "User Overview";
         $data = User::find($id);
 
-        return view('pages.user.overview')->with(['title' =>  $title , 'data' => new UserResource($data)]);
+        return view('pages.user.overview')->with(['title' =>  $title , 'user' => new UserResource($data)]);
 
      }
 

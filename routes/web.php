@@ -1,15 +1,14 @@
 <?php
+use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\AttributeController;
 use App\Http\Controllers\AttributeValueController;
 use App\Http\Controllers\RuleController;
 use App\Http\Controllers\BannerController;
 use App\Http\Controllers\CategoryController;
-use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ImageController;
 use App\Http\Controllers\ItemController;
-
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ReviewController;
@@ -17,6 +16,12 @@ use App\Http\Controllers\ReviewsController;
 use App\Http\Controllers\PlanController;
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\BrandModelController;
+use App\Http\Controllers\CouponController;
+use App\Http\Controllers\FaqController;
+use App\Http\Controllers\FaqsCategoryController;
+
+
+
 
 
 
@@ -144,7 +149,7 @@ Route::middleware('auth')->group(function () {
             Route::get('/' , 'index')->name('plan.index');
             Route::get('/add' , 'create')->name('plan.add');
             Route::post('/store' ,'store')->name('plan.store');
-            Route::get('{id}/view' ,'show')->name('plan.view');
+            Route::get('{id}' ,'show')->name('plan.view');
             Route::get('{id}/edit' ,'edit')->name('plan.edit');
             Route::post('{id}/update' ,'update')->name('plan.update');
             Route::delete('{id}/delete' ,'destroy')->name('plan.delete');
@@ -157,7 +162,7 @@ Route::middleware('auth')->group(function () {
             Route::get('/' , 'index')->name('brand.index');
             Route::get('/add' , 'create')->name('brand.add');
             Route::post('/store' ,'store')->name('brand.store');
-            Route::get('{id}/view' ,'show')->name('brand.view');
+            Route::get('{id}' ,'show')->name('brand.view');
             Route::get('{id}/edit' ,'edit')->name('brand.edit');
             Route::post('{id}/update' ,'update')->name('brand.update');
             Route::delete('{id}/delete' ,'destroy')->name('brand.delete');
@@ -176,13 +181,52 @@ Route::middleware('auth')->group(function () {
         });
      });
 
+     Route::controller(CouponController::class)->group(function(){
+        Route::group(['prefix' =>'coupon'] , function()
+        {
+            Route::get('/' , 'index')->name('coupon.index');
+            Route::get('/add' , 'create')->name('coupon.add');
+            Route::post('/store' ,'store')->name('coupon.store');
+            Route::get('{id}' ,'show')->name('coupon.view');
+            Route::get('{id}/edit' ,'edit')->name('coupon.edit');
+            Route::post('{id}/update' ,'update')->name('coupon.update');
+            Route::delete('{id}/delete' ,'destroy')->name('coupon.delete');
+        });
+     });
+
 
      Route::controller(ImageController::class)->group(function(){
             Route::post('/upload/image' , 'uploadImage');
+            Route::post('/upload/category-banner' , 'uploadCategoryImage');
             Route::post('/upload/banner' , 'uploadBanner');
             Route::post('/upload/brand' , 'uploadBrand');
+            Route::post('/upload/faq' , 'uploadFaq');
      });
 
+     Route::controller(FaqsCategoryController::class)->group(function(){
+        Route::group(['prefix' =>'faqs'] , function()
+        {
+            Route::get('/' , 'index')->name('faqs.index');
+            Route::get('/add' , 'create')->name('faqs.add');
+            Route::post('/store' ,'store')->name('faqs.store');
+            Route::get('{id}' ,'show')->name('faqs.view');
+            Route::get('{id}/edit' ,'edit')->name('faqs.edit');
+            Route::post('{id}/update' ,'update')->name('faqs.update');
+            Route::delete('{id}/delete' ,'destroy')->name('faqs.delete');
+        });
+     });
+
+     Route::controller(FaqController::class)->group(function(){
+        Route::group(['prefix' =>'faqs-model'] , function()
+        {
+            Route::get('/' , 'index')->name('faqs-model.index');
+            Route::get('/add' , 'create')->name('faqs-model.add');
+            Route::post('/store' ,'store')->name('faqs-model.store');
+            Route::get('{id}/edit' ,'edit')->name('faqs-model.edit');
+            Route::post('{id}/update' ,'update')->name('faqs-model.update');
+            Route::delete('{id}/delete' ,'destroy')->name('faqs-model.delete');
+        });
+     });
 
     // admin profile page
 

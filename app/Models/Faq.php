@@ -5,11 +5,16 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Coupon extends Model
+class Faq extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'code','expires_at','type','discount','descriptions'
+        'category_id' , 'title' , 'artical',
 ];
+
+public function category()
+{
+    return $this->hasOne(Category::class , 'id' , 'category_id');
+}
 }

@@ -87,13 +87,14 @@
                                 </div>
                                 <div class="fv-row mb-6">
                                     <!--begin::Label-->
-                                    <label
-                                        class="col-lg-4 col-form-label  fw-semibold fs-6">Gender</label>
+
                                     <!--end::Label-->
                                     <!--begin::Col-->
                                     <div class="col-lg-8 fv-row">
                                         <!--begin::Options-->
                                         <div class="d-flex align-items-center mt-3">
+                                            <label
+                                        class="col-lg-4 col-form-label  fw-semibold fs-6">Gender</label>
                                             <!--begin::Option-->
                                             <label
                                                 class="form-check form-check-custom form-check-inline form-check-solid me-5">
@@ -118,8 +119,8 @@
                                 <div class="fv-row mb-8">
                                     <!--begin::DOB-->
 
-                                    <input type="date" placeholder="Date Of Birth" name="date_of_birth" autocomplete="off"
-                                        class="form-control bg-transparent " />
+                                    <input placeholder="Date Of Birth" name="date_of_birth" autocomplete="off"
+                                        class="form-control bg-transparent " id="kt_datepicker_1"/>
                                     <!--end::Email-->
                                 </div>
                                 <div class="fv-row mb-8">
@@ -215,6 +216,8 @@
         <!--end::Custom Javascript-->
         <!--end::Javascript-->
 
-
+<script>
+    $("#kt_datepicker_1").flatpickr();
+    </script>
 
 </x-guest-layout>

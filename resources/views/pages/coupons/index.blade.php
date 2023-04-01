@@ -7,11 +7,8 @@
 
     <!--begin::Toolbar-->
     <div id="kt_app_toolbar" class="app-toolbar py-3 py-lg-6">
-        <!--begin::Toast-->
 
-        <!--end::Toast-->
-        <x-header title="Plans" />
-        <pre>
+        <x-header title="Coupons" />
     </div>
     <!--end::Toolbar-->
    <!--begin::Content-->
@@ -25,7 +22,7 @@
                 <!--begin::Card title-->
                 <div class="card-title">
                     <!--begin::Search-->
-                    <form action="{{ route('attribute.index') }}">
+                    <form action="{{ route('coupon.index') }}">
                         <div class="d-flex align-items-center position-relative my-1">
                             <!--begin::Svg Icon | path: icons/duotune/general/gen021.svg-->
                             <span class="svg-icon svg-icon-1 position-absolute ms-4">
@@ -35,7 +32,7 @@
                                 </svg>
                             </span>
                             <!--end::Svg Icon-->
-                            <input type="search" name="q" class="form-control form-control-solid w-250px ps-14" placeholder="Search Atttribute" />
+                            <input type="search" name="q" class="form-control form-control-solid w-250px ps-14" placeholder="Search Coupon" />
                         </div>
                     </form>
                     <!--end::Search-->
@@ -43,10 +40,7 @@
                 <!--end::Card title-->
                 <!--begin::Card toolbar-->
                 <div class="card-toolbar">
-                    <!--begin::Add customer-->
-                    <a href="{{ route('plan.add') }}" class="btn btn-primary">Add <i class="fas fa-plane-alt    "></i></a>
-                    {{-- <a href="{{ route('category.add') }}" class="btn btn-primary g-5">Add Category</a> --}}
-                    <!--end::Add customer-->
+                    <a href="{{ route('coupon.add') }}" class="btn btn-primary">Add <i class="fas fa-plane-alt    "></i></a>
                 </div>
                 <!--end::Card toolbar-->
             </div>
@@ -54,7 +48,7 @@
             <!--begin::Card body-->
             <div class="card-body pt-0">
                 <!--begin::Table-->
-                <table class="table align-middle table-row-dashed fs-6 gy-5" id="plan_table">
+                <table class="table align-middle table-row-dashed fs-6 gy-5" id="coupon_table">
                     <!--begin::Table head-->
                     <thead>
                         <!--begin::Table row-->
@@ -64,11 +58,13 @@
                                     <input class="form-check-input" type="checkbox" value="1" />
                                 </div>
                             </th>
-                            <th class="min-w-100px">Name</th>
+                            <th class="min-w-100px">Code</th>
+                            <th class="min-w-100px">Type</th>
+                            <th class="min-w-100px">Discount</th>
                             <th class="min-w-100px">Description</th>
 
-                            <th class="min-w-100px">Ammount</th>
-                            <th class="min-w-100px">Status</th>
+                            <th class="min-w-100px">Expires At</th>
+
                             <th class="text-end min-w-70px">Actions</th>
                         </tr>
                         <!--end::Table row-->
@@ -77,7 +73,7 @@
                     <!--begin::Table body-->
                     <tbody class="fw-semibold text-gray-600">
                         <!--begin::Table row-->
-                            @foreach ($plans as $plan)
+                            @foreach ($coupons as $coupon)
                                 <tr>
                                 <td>
                                     <div class="form-check form-check-sm form-check-custom form-check-solid">
@@ -88,7 +84,7 @@
                                     <div class="d-flex">
                                         <div class="ms-5">
                                             <!--begin::Title-->
-                                            <a href="" class="text-gray-800 text-hover-primary fs-5 fw-bold mb-1" plan-filter="plan_name">{{ $plan->name }}</a>
+                                            <p class="text-gray-800 fs-5 fw-bold mb-1" coupon-filter="coupon_code">{{ $coupon->code }}</p>
                                             <!--end::Title-->
 
                                         </div>
@@ -96,19 +92,18 @@
                                 </td>
 
                                 <td>
-                                    {{ $plan->sort_description }}
+                                    {{ $coupon->type }}
                                 </td>
                                 <td>
-                                    {{ $plan->price }}
+                                    {{ $coupon->discount }}
+                                </td>
+                                <td>
+                                    {{strip_tags( $coupon->descriptions) }}
                                 </td>
 
                                  <td>
-                                    @if ($plan->status == 1)
-                                        <div class="badge badge-light-success">Active</div>
-                                    @else
-                                        <div class="badge badge-light-info">In Active</div>
-                                    @endif
-                                    <!--end::Badges-->
+                                    {{ $coupon->expires_at }}
+
                                 </td>
 
                                 <td class="text-end">
@@ -122,11 +117,14 @@
                                     <!--begin::Menu-->
                                     <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-semibold fs-7 w-125px py-4" data-kt-menu="true">
                                         <!--begin::Menu item-->
+                                        {{-- <div class="menu-item px-3">
+                                            <a href="{{ route('coupon.view', ['id' => $coupon->id]) }}" class="menu-link px-3">View</a>
+                                        </div> --}}
                                         <div class="menu-item px-3">
-                                            <a href="{{ route('plan.edit', ['id' => $plan->id]) }}" class="menu-link px-3">Edit</a>
+                                            <a href="{{ route('coupon.edit', ['id' => $coupon->id]) }}" class="menu-link px-3">Edit</a>
                                         </div>
                                         <div class="menu-item px-3">
-                                            <a href="#" class="menu-link px-3" data-id="{{ $plan->id }}" plan-table="delete_row">Delete</a>
+                                            <a href="#" class="menu-link px-3" data-id="{{ $coupon->id }}" coupon-table="delete_row">Delete</a>
                                         </div>
                                         <!--end::Menu item-->
                                     </div>
@@ -143,9 +141,9 @@
                 <!--end::Table-->
 
                 <div class="row">
-                    <div class="col-sm-12 d-flex align-items-center justify-content-center justify-content-md-end">
-                            {{ $plans->links() }}
-                    </div>
+
+                            {{ $coupons->links() }}
+                    
                 </div>
             </div>
             <!--end::Card body-->
@@ -158,6 +156,6 @@
     @section('javascript')
     <script src="{{ asset('assets/js/widgets.bundle.js') }}"></script>
     <script src="{{ asset('assets/js/custom/widgets.js') }}"></script>
-    <script src="{{ asset('assets/js/custom/pages/plan/index.js') }}"></script>
+    <script src="{{ asset('assets/js/custom/pages/coupon/index.js') }}"></script>
 @endsection
 </x-app-layout>

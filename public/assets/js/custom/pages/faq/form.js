@@ -3,7 +3,7 @@
 // Class definition
 var KTSigninGeneral = function() {
     // Elements
-    var form = document.getElementById('category_form');
+    var form = document.getElementById('faq_form');
     var submitButton =document.getElementById('submit');
 
     var validator;
@@ -22,27 +22,20 @@ var KTSigninGeneral = function() {
 			form,
 			{
 				fields: {
-                    name: {
+                    title: {
                         validators: {
                             notEmpty: {
                                 message: 'The field is required'
                             }
                         }
                     },
-                    parent: {
+                    status: {
                         validators: {
                             notEmpty: {
                                 message: 'The field is required'
                             }
                         }
                     },
-                    category_description: {
-                        validators: {
-                            notEmpty: {
-                                message: 'The field is required'
-                            }
-                        }
-                    }
 				},
 				plugins: {
 					trigger: new FormValidation.plugins.Trigger(),
@@ -81,7 +74,7 @@ var KTSigninGeneral = function() {
                             }
                         }).then(function (result) {
                             if(result.value){
-                                window.location.assign('/category');
+                                window.location.assign('/faqs');
                             }
                         })
                     }).catch((error)=>{
@@ -114,7 +107,7 @@ var KTSigninGeneral = function() {
     return {
         // Initialization
         init: function() {
-            form = document.querySelector('#category_form');
+            form = document.querySelector('#faq_form');
             submitButton = document.querySelector('#submit');
 
             handleForm();
@@ -134,7 +127,7 @@ KTUtil.onDOMContentLoaded(function() {
         data.append('image', file);
         blockUI.block();
         try {
-            let response = await axios.post('/upload/image',
+            let response = await axios.post('/upload/faq',
                 data, {
                     headers: {
                         'Content-Type': 'multipart/form-data'
@@ -151,31 +144,4 @@ KTUtil.onDOMContentLoaded(function() {
         }
         console.log("see response", response.data);
     })
-
-    $('#bannerimageInput').change(async function () {
-        const file = this.files[0];
-        // console.log("see event", file);
-        const data = new FormData();
-
-        data.append('image', file);
-        blockUI.block();
-        try {
-            let response = await axios.post('/upload/category-banner',
-                data, {
-                    headers: {
-                        'Content-Type': 'multipart/form-data'
-                    }
-                }).then((response) => {
-                $("#banner_image_id").val(response.data.data.id)
-            }).finally(()=>{
-                blockUI.release()
-            });
-
-            // window.location.reload();
-        } catch (error) {
-            console.log(error);
-        }
-
-        console.log("see response", response.data);
-    });
 });

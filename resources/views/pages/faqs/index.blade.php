@@ -7,10 +7,7 @@
 
     <!--begin::Toolbar-->
     <div id="kt_app_toolbar" class="app-toolbar py-3 py-lg-6">
-        <!--begin::Toast-->
-
-        <!--end::Toast-->
-        <x-header title="Plans" />
+        <x-header title="FAQs" />
         <pre>
     </div>
     <!--end::Toolbar-->
@@ -25,7 +22,7 @@
                 <!--begin::Card title-->
                 <div class="card-title">
                     <!--begin::Search-->
-                    <form action="{{ route('attribute.index') }}">
+                    <form action="{{ route('faqs.index') }}">
                         <div class="d-flex align-items-center position-relative my-1">
                             <!--begin::Svg Icon | path: icons/duotune/general/gen021.svg-->
                             <span class="svg-icon svg-icon-1 position-absolute ms-4">
@@ -35,7 +32,7 @@
                                 </svg>
                             </span>
                             <!--end::Svg Icon-->
-                            <input type="search" name="q" class="form-control form-control-solid w-250px ps-14" placeholder="Search Atttribute" />
+                            <input type="search" name="q" class="form-control form-control-solid w-250px ps-14" placeholder="Search FAQs" />
                         </div>
                     </form>
                     <!--end::Search-->
@@ -44,8 +41,7 @@
                 <!--begin::Card toolbar-->
                 <div class="card-toolbar">
                     <!--begin::Add customer-->
-                    <a href="{{ route('plan.add') }}" class="btn btn-primary">Add <i class="fas fa-plane-alt    "></i></a>
-                    {{-- <a href="{{ route('category.add') }}" class="btn btn-primary g-5">Add Category</a> --}}
+                    <a href="{{ route('faqs.add') }}" class="btn btn-primary">Add FAQs</a>
                     <!--end::Add customer-->
                 </div>
                 <!--end::Card toolbar-->
@@ -54,21 +50,14 @@
             <!--begin::Card body-->
             <div class="card-body pt-0">
                 <!--begin::Table-->
-                <table class="table align-middle table-row-dashed fs-6 gy-5" id="plan_table">
+                <table class="table align-middle table-row-dashed fs-6 gy-5" id="faq_table">
                     <!--begin::Table head-->
                     <thead>
                         <!--begin::Table row-->
                         <tr class="text-start text-gray-400 fw-bold fs-7 text-uppercase gs-0">
-                            <th class="w-1px pe-2">
-                                  <div class="form-check form-check-sm form-check-custom form-check-solid">
-                                    <input class="form-check-input" type="checkbox" value="1" />
-                                </div>
-                            </th>
-                            <th class="min-w-100px">Name</th>
-                            <th class="min-w-100px">Description</th>
-
-                            <th class="min-w-100px">Ammount</th>
-                            <th class="min-w-100px">Status</th>
+                            <th class="w-1px pe-2"> No </th>
+                            <th class="min-w-250px">Name</th>
+                            <th class="min-w-50px">FAQs Status</th>
                             <th class="text-end min-w-70px">Actions</th>
                         </tr>
                         <!--end::Table row-->
@@ -77,56 +66,69 @@
                     <!--begin::Table body-->
                     <tbody class="fw-semibold text-gray-600">
                         <!--begin::Table row-->
-                            @foreach ($plans as $plan)
-                                <tr>
+                            @foreach ($faqs as $faq)
+<tr>
+                                <!--begin::Checkbox-->
                                 <td>
                                     <div class="form-check form-check-sm form-check-custom form-check-solid">
                                         <input class="form-check-input" type="checkbox" value="1" />
                                     </div>
                                 </td>
+                                <!--end::Checkbox-->
+                                <!--begin::faq=-->
                                 <td>
                                     <div class="d-flex">
+                                        <!--begin::Thumbnail-->
+                                        <a href="" class="symbol symbol-50px">
+                                            <span class="symbol-label" style="background-image:url({{ asset('assets/image/faq/original/') }}/{{ @$faq->image->name }} "></span>
+                                        </a>
+                                        <!--end::Thumbnail-->
                                         <div class="ms-5">
                                             <!--begin::Title-->
-                                            <a href="" class="text-gray-800 text-hover-primary fs-5 fw-bold mb-1" plan-filter="plan_name">{{ $plan->name }}</a>
+                                            <a href="" class="text-gray-800 text-hover-primary fs-5 fw-bold mb-1" faq-filter="faq_name">{{ @$faq->title }}</a>
                                             <!--end::Title-->
-
                                         </div>
                                     </div>
                                 </td>
-
-                                <td>
-                                    {{ $plan->sort_description }}
-                                </td>
-                                <td>
-                                    {{ $plan->price }}
-                                </td>
-
+                                <!--end::faq=-->
+                                 <!--begin::Type=-->
                                  <td>
-                                    @if ($plan->status == 1)
-                                        <div class="badge badge-light-success">Active</div>
-                                    @else
-                                        <div class="badge badge-light-info">In Active</div>
-                                    @endif
+                                    <!--begin::Badges-->
+                                    @if ($faq->status == 1)
+<div class="badge badge-light-success">Active</div>
+@else
+<div class="badge badge-light-info">In Active</div>
+@endif
                                     <!--end::Badges-->
                                 </td>
-
+                                <!--end::Type=-->
+                                <!--begin::Action=-->
                                 <td class="text-end">
                                     <a href="#" class="btn btn-sm btn-light btn-active-light-primary" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">Actions
+                                    <!--begin::Svg Icon | path: icons/duotune/arrows/arr072.svg-->
                                     <span class="svg-icon svg-icon-5 m-0">
                                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <path d="M11.4343 12.7344L7.25 8.55005C6.83579 8.13583 6.16421 8.13584 5.75 8.55005C5.33579 8.96426 5.33579 9.63583 5.75 10.05L11.2929 15.5929C11.6834 15.9835 12.3166 15.9835 12.7071 15.5929L18.25 10.05C18.6642 9.63584 18.6642 8.96426 18.25 8.55005C17.8358 8.13584 17.1642 8.13584 16.75 8.55005L12.5657 12.7344C12.2533 13.0468 11.7467 13.0468 11.4343 12.7344Z" fill="currentColor" />
                                         </svg>
                                     </span>
-                                    </a>
+                                    <!--end::Svg Icon--></a>
                                     <!--begin::Menu-->
                                     <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-semibold fs-7 w-125px py-4" data-kt-menu="true">
                                         <!--begin::Menu item-->
                                         <div class="menu-item px-3">
-                                            <a href="{{ route('plan.edit', ['id' => $plan->id]) }}" class="menu-link px-3">Edit</a>
+                                            <a href="{{ route('faqs.view', ['id' => $faq->id]) }}" class="menu-link px-3">View</a>
                                         </div>
                                         <div class="menu-item px-3">
-                                            <a href="#" class="menu-link px-3" data-id="{{ $plan->id }}" plan-table="delete_row">Delete</a>
+                                            <a href="{{ route('faqs.edit', ['id' => $faq->id]) }}" class="menu-link px-3">Edit</a>
+                                        </div>
+                                        <!--end::Menu item-->
+                                        <!--begin::Menu item-->
+
+                                        <div class="menu-item px-3">
+
+                                            <a href="#" class="menu-link px-3" data-id="{{ $faq->id }}" faq-table="delete_row">Delete</a>
+
+
                                         </div>
                                         <!--end::Menu item-->
                                     </div>
@@ -134,7 +136,7 @@
                                 </td>
                                 <!--end::Action=-->
                             </tr>
-                        @endforeach
+@endforeach
 
                         <!--end::Table row-->
                     </tbody>
@@ -142,11 +144,14 @@
                 </table>
                 <!--end::Table-->
 
-                <div class="row">
-                    <div class="col-sm-12 d-flex align-items-center justify-content-center justify-content-md-end">
-                            {{ $plans->links() }}
+            <div class="row">
+                <div class="col-sm-12 d-flex align-items-center justify-content-center justify-content-md-end">
+                    <div class="dataTables_paginate paging_simple_numbers"
+                        id="kt_ecommerce_category_table_paginate">
+                        {{ $faqs->links() }}
                     </div>
                 </div>
+            </div>
             </div>
             <!--end::Card body-->
         </div>
@@ -157,7 +162,7 @@
 <!--end::Content-->
     @section('javascript')
     <script src="{{ asset('assets/js/widgets.bundle.js') }}"></script>
-    <script src="{{ asset('assets/js/custom/widgets.js') }}"></script>
-    <script src="{{ asset('assets/js/custom/pages/plan/index.js') }}"></script>
+                        <script src="{{ asset('assets/js/custom/widgets.js') }}"></script>
+                        <script src="{{ asset('assets/js/custom/pages/faq/index.js') }}"></script>
 @endsection
 </x-app-layout>

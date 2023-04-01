@@ -8,6 +8,28 @@ var PlanForm = function() {
 
     var validator;
 
+    const initRuleFormRepeater = () => {
+        $('#plan_conditions').repeater({
+            initEmpty: false,
+
+            defaultValues: {
+                'text-input': 'foo'
+            },
+
+            show: function () {
+                $(this).slideDown();
+
+                // Init select2 on new repeated items
+                initConditionsSelect2();
+            },
+
+            hide: function (deleteElement) {
+                $(this).slideUp(deleteElement);
+            }
+        });
+    }
+
+
     // Handle form
     var handleForm = function(e) {
         // Init form validation rules. For more info check the FormValidation plugin's official documentation:https://formvalidation.io/
@@ -18,58 +40,170 @@ var PlanForm = function() {
                     name: {
                         validators: {
                             notEmpty: {
-                                message: 'The Plan Name field is required'
+                                message: 'field is required'
                             }
                         }
                     },
-
+                    price: {
+                        validators: {
+                            notEmpty: {
+                                message: 'field is required'
+                            },
+                            regexp: {
+                                regexp: /^[0-9]+$/,
+                                message: 'only number allowd'
+                            },
+                        }
+                    },
+                    currency: {
+                        validators: {
+                            notEmpty: {
+                                message: 'field is required'
+                            },
+                            regexp: {
+                                regexp: /^[0-9]+$/,
+                                message: 'only number allowd'
+                            }
+                        }
+                    },
                     category: {
                         validators: {
                             notEmpty: {
-                                message: 'The Category field is required'
+                                message: 'field is required'
                             }
                         }
                     },
-                    amount: {
-                        validators: {
-                            notEmpty: {
-                                message: 'The amount is required'
-                            }
-                        }
-                    },
-                    currancy: {
-                        validators: {
-                            notEmpty: {
-                                message: 'The currancy field is required'
-                            }
-                        }
-                    }
-                    ,
                     no_of_ads: {
                         validators: {
                             notEmpty: {
-                                message: 'The no of ads field is required'
+                                message: 'field is required'
+                            },
+                            regexp: {
+                                regexp: /^[0-9]+$/,
+                                message: 'only number allowd'
                             }
                         }
                     },
-                    discount : {
+                    sign_up_fee: {
+                        validators: {
+                            notEmpty: {
+                                message: 'field is required'
+                            },
+                            regexp: {
+                                regexp: /^[0-9]+$/,
+                                message: 'only number allowd'
+                            }
+                        }
+                    },
+                    trial_period: {
+                        validators: {
+                            notEmpty: {
+                                message: 'field is required'
+                            },
+                            regexp: {
+                                regexp: /^[0-9]+$/,
+                                message: 'only number allowd'
+                            }
+                        }
+                    },
+                    trial_interval : {
                         validators:{
                             notEmpty:{
-                                message:'The discount field is required'
+                                message:'field is required'
+                            },
+                            regexp: {
+                                regexp: /^[0-9]+$/,
+                                message: 'only number allowd'
+                            }
+                        }
+                    },
+                    invoice_period: {
+                        validators: {
+                            notEmpty: {
+                                message: 'field is required'
+                            },
+                            regexp: {
+                                regexp: /^[0-9]+$/,
+                                message: 'only number allowd'
+                            }
+                        }
+                    },
+                    invoice_interval: {
+                        validators: {
+                            notEmpty: {
+                                message: 'field is required'
+                            }
+                        }
+                    },
+                    grace_period: {
+                        validators: {
+                            notEmpty: {
+                                message: 'field is required'
+                            },
+                            regexp: {
+                                regexp: /^[0-9]+$/,
+                                message: 'only number allowd'
+                            }
+                        }
+                    },
+                    grace_interval: {
+                        validators: {
+                            notEmpty: {
+                                message: 'field is required'
+                            }
+                        }
+                    },
+                    prorate_day: {
+                        validators: {
+
+                            regexp: {
+                                regexp: /^[0-9]+$/,
+                                message: 'only number allowd'
+                            }
+                        }
+                    },
+                    prorate_period: {
+                        validators: {
+
+                            regexp: {
+                                regexp: /^[0-9]+$/,
+                                message: 'only number allowd'
+                            }
+                        }
+                    },
+                    prorate_extend_due: {
+                        validators: {
+
+                            regexp: {
+                                regexp: /^[0-9]+$/,
+                                message: 'only number allowd'
+                            }
+                        }
+                    },
+                    active_subscribers_limit: {
+                        validators: {
+
+                            regexp: {
+                                regexp: /^[0-9]+$/,
+                                message: 'only number allowd'
+                            }
+                        }
+                    },
+                    sort_order: {
+                        validators: {
+                            notEmpty: {
+                                message: 'field is required'
+                            },
+                            regexp: {
+                                regexp: /^[0-9]+$/,
+                                message: 'only number allowd'
                             }
                         }
                     },
                     status: {
                         validators: {
                             notEmpty: {
-                                message: 'The status field is required'
-                            }
-                        }
-                    },
-                    description: {
-                        validators: {
-                            notEmpty: {
-                                message: 'The description field is required'
+                                message: 'field is required'
                             }
                         }
                     }
@@ -148,6 +282,8 @@ var PlanForm = function() {
             submitButton = document.querySelector('#submit');
 
             handleForm();
+            initRuleFormRepeater();
+
         }
     };
 }();

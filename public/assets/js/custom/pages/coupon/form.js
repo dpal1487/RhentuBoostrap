@@ -1,19 +1,12 @@
 "use strict";
 
 // Class definition
-var KTSigninGeneral = function() {
+var PlanForm = function() {
     // Elements
-    var form = document.getElementById('category_form');
+    var form = document.getElementById('coupon_form');
     var submitButton =document.getElementById('submit');
 
     var validator;
-
-    // $('#submit').on('click', function)
-
-
-    // const form = document.getElementById('kt_ecommerce_add_category_form');
-    // const submitButton = document.getElementById('submit');
-
 
     // Handle form
     var handleForm = function(e) {
@@ -22,24 +15,39 @@ var KTSigninGeneral = function() {
 			form,
 			{
 				fields: {
-                    name: {
+                    code: {
                         validators: {
                             notEmpty: {
-                                message: 'The field is required'
+                                message: 'The Code field is required'
                             }
                         }
                     },
-                    parent: {
+
+                    expires_in_days: {
                         validators: {
                             notEmpty: {
-                                message: 'The field is required'
+                                message: 'The Category field is required'
                             }
                         }
                     },
-                    category_description: {
+                    type: {
                         validators: {
                             notEmpty: {
-                                message: 'The field is required'
+                                message: 'The amount is required'
+                            }
+                        }
+                    },
+                    discount : {
+                        validators:{
+                            notEmpty:{
+                                message:'The discount field is required'
+                            }
+                        }
+                    },
+                    description: {
+                        validators: {
+                            notEmpty: {
+                                message: 'The description field is required'
                             }
                         }
                     }
@@ -66,7 +74,7 @@ var KTSigninGeneral = function() {
                     blockUI.block();
 
                     // Show loading indication
-                    submitButton.setAttribute('data-kt-indicator', 'on');
+                    submitButton.setAttribute('data-coupon-indicator', 'on');
 
                     // Disable button to avoid multiple click
                     submitButton.disabled = true;
@@ -81,7 +89,7 @@ var KTSigninGeneral = function() {
                             }
                         }).then(function (result) {
                             if(result.value){
-                                window.location.assign('/category');
+                                window.location.assign('/coupon');
                             }
                         })
                     }).catch((error)=>{
@@ -90,7 +98,7 @@ var KTSigninGeneral = function() {
                           }
                     }).finally(()=>{
                         submitButton.disabled = false
-                        submitButton.setAttribute('data-kt-indicator', 'off');
+                        submitButton.setAttribute('data-coupon-indicator', 'off');
                     blockUI.release();
 
                     })
@@ -114,7 +122,7 @@ var KTSigninGeneral = function() {
     return {
         // Initialization
         init: function() {
-            form = document.querySelector('#category_form');
+            form = document.querySelector('#coupon_form');
             submitButton = document.querySelector('#submit');
 
             handleForm();
@@ -124,58 +132,13 @@ var KTSigninGeneral = function() {
 
 // On document ready
 KTUtil.onDOMContentLoaded(function() {
-    KTSigninGeneral.init();
+    PlanForm.init();
 
-    $('#imageInput').change(async function () {
-        const file = this.files[0];
-        // console.log("see event", file);
-        const data = new FormData();
-
-        data.append('image', file);
-        blockUI.block();
-        try {
-            let response = await axios.post('/upload/image',
-                data, {
-                    headers: {
-                        'Content-Type': 'multipart/form-data'
-                    }
-                }).then((response) => {
-                $("#image_id").val(response.data.data.id)
-            }).finally(()=>{
-                blockUI.release()
-            });
-
-            // window.location.reload();
-        } catch (error) {
-            console.log(error);
-        }
-        console.log("see response", response.data);
-    })
-
-    $('#bannerimageInput').change(async function () {
-        const file = this.files[0];
-        // console.log("see event", file);
-        const data = new FormData();
-
-        data.append('image', file);
-        blockUI.block();
-        try {
-            let response = await axios.post('/upload/category-banner',
-                data, {
-                    headers: {
-                        'Content-Type': 'multipart/form-data'
-                    }
-                }).then((response) => {
-                $("#banner_image_id").val(response.data.data.id)
-            }).finally(()=>{
-                blockUI.release()
-            });
-
-            // window.location.reload();
-        } catch (error) {
-            console.log(error);
-        }
-
-        console.log("see response", response.data);
-    });
 });
+
+$("#kt_datepicker_1").flatpickr(
+    {
+        enableTime: true,
+        dateFormat: "Y-m-d H:i",
+    }
+);

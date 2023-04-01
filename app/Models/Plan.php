@@ -5,6 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Ramsey\Uuid\Uuid;
+use Illuminate\Support\Str;
+
 
 class Plan extends Model
 {
@@ -14,25 +16,36 @@ class Plan extends Model
     public $incrementing = false;
 
     protected $fillable =[
+        'slug',
         'name',
         'category_id',
         'no_of_ads',
+        'sort_description',
         'description',
-        'amount',
+        'is_active',
+        'price',
+        'signup_fee',
         'currency',
-        'expires_in_days',
-        'discount',
-        'status',
+        'trial_period',
+        'trial_interval',
+        'invoice_period',
+        'invoice_interval',
+        'grace_period',
+        'grace_interval',
+        'prorate_day',
+        'prorate_period',
+        'prorate_extend_due',
+        'active_subscribers_limit',
+        'sort_order',
 ];
-    public function category()
-        {
-            return $this->hasOne(Category::class, 'id', 'category_id');
-        }
-    protected static function boot()
+
+protected static function boot()
     {
         parent::boot();
-        static::creating(function (Model $model) {
-            $model->setAttribute($model->getKeyName(), Uuid::uuid4());
+        static::creating(function ($plan) {
+            // $model->setAttribute($model->getKeyName(), Uuid::uuid4());
+            $plan->slug = Str::slug($plan->name);
+
         });
     }
 }

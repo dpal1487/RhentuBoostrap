@@ -25,7 +25,7 @@
             </div>
         @endif
         <!--end::Toast-->
-        <x-header title="Banner" />
+        <x-header title="Banners" />
         <pre>
     </div>
     <!--end::Toolbar-->

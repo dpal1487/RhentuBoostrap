@@ -30,7 +30,7 @@ class PlanController extends Controller
      */
     public function create()
     {
-        $category = Category::where('parent_id', '=', null)->get();
+        $category = Category::get();
         return view('pages.plan.add', ['category' => $category]);
     }
 
@@ -41,14 +41,27 @@ class PlanController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'name' => 'required',
+            'price' => 'required|integer',
             'category' => 'required',
-            'amount' => 'required',
-            'currancy' => 'required',
-            'no_of_ads' => 'required',
-            'discount' => 'required',
-            'status' => 'required',
-            'description' => 'required',
+            'no_of_ads' => 'required|integer',
+            'currency' => 'required|integer',
+            'sign_up_fee' => 'required|integer',
+            'trial_period' => 'required|integer',
+            'trial_interval' => 'required',
+            'invoice_period' => 'required|integer',
+            'invoice_interval' => 'required',
+            'grace_period' => 'required|integer',
+            'grace_interval' => 'required',
+            'sort_order' => 'required|integer',
+            'status' => 'required|integer',
+            'sort_description' => 'required',
+            'prorate_day' => 'nullable|integer',
+            'prorate_period' => 'nullable|integer',
+            'prorate_extend_due' => 'nullable|integer',
+            'active_subscribers_limit' => 'nullable|integer',
         ]);
+
+        // return $request->plan_conditions;
 
         if ($validator->fails()) {
             return response()->json(
@@ -59,18 +72,27 @@ class PlanController extends Controller
                 400,
             );
         }
-
-        // return Plan::create();
         $plan = Plan::create([
             'name' => $request->name,
+            'price' => $request->price,
             'category_id' => $request->category,
-            'amount' => $request->amount,
-            'currancy' => $request->currancy,
             'no_of_ads' => $request->no_of_ads,
-            'expires_in_days' => $request->expires_in_days,
-            'discount' => $request->discount,
-            'status' => $request->status,
-            'description' => $request->description,
+            'currency' => $request->currency,
+            'signup_fee' => $request->sign_up_fee,
+            'trial_period' => $request->trial_period,
+            'trial_interval' => $request->trial_interval,
+            'invoice_period' => $request->invoice_period,
+            'invoice_interval' => $request->invoice_interval,
+            'grace_period' => $request->grace_period,
+            'grace_interval' => $request->grace_interval,
+            'prorate_day' => $request->prorate_day,
+            'prorate_period' => $request->prorate_period,
+            'prorate_extend_due' => $request->prorate_extend_due,
+            'active_subscribers_limit' => $request->active_subscribers_limit,
+            'sort_order' => $request->sort_order,
+            'is_active' => $request->status,
+            'sort_description' => $request->sort_description,
+            'description' => json_encode($request->plan_conditions),
         ]);
 
         return response()->json(['success' => true, 'message' => 'Plan created successfully']);
@@ -87,22 +109,40 @@ class PlanController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Plan $plan)
+    public function edit(Plan $plan, $id)
     {
-        $categoryParent = Category::where('parent_id', '=', null)->get();
-        $category = Category::find($id);
-        $category = new CategoryResource($category);
+        $category = Category::get();
+        $plan = Plan::find($id);
+        $plan = new PlanResource($plan);
         // return $category;
-        return view('pages.category.edit', ['categoryParent' => $categoryParent, 'category' => $category]);
+        return view('pages.plan.edit', ['plan' => $plan, 'category' => $category]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Plan $plan)
+    public function update(Request $request, Plan $plan, $id)
     {
         $validator = Validator::make($request->all(), [
             'name' => 'required',
+            'price' => 'required|integer',
+            'category' => 'required',
+            'no_of_ads' => 'required|integer',
+            'currency' => 'required|integer',
+            'sign_up_fee' => 'required|integer',
+            'trial_period' => 'required|integer',
+            'trial_interval' => 'required',
+            'invoice_period' => 'required|integer',
+            'invoice_interval' => 'required',
+            'grace_period' => 'required|integer',
+            'grace_interval' => 'required',
+            'sort_order' => 'required|integer',
+            'status' => 'required|integer',
+            'sort_description' => 'required',
+            'prorate_day' => 'nullable|integer',
+            'prorate_period' => 'nullable|integer',
+            'prorate_extend_due' => 'nullable|integer',
+            'active_subscribers_limit' => 'nullable|integer',
         ]);
 
         if ($validator->fails()) {
@@ -110,29 +150,32 @@ class PlanController extends Controller
                 'error' => $validator->errors()->all(),
             ]);
         }
-        // dd($request);
 
-        $category = Category::find($id);
-        if ($category) {
-            $meta = Meta::where(['id' => $category->meta_id])->update([
-                'description' => $request->meta_description,
-                'tag' => $request->meta_tag,
-                'keywords' => $request->meta_keywords,
-            ]);
-            $category = Category::where(['id' => $id])->update([
+        $plan = Plan::find($id);
+        if ($plan) {
+            $plan = Plan::where(['id' => $id])->update([
                 'name' => $request->name,
-                'slug' => $request->name,
-                'description' => $request->category_description,
-                'keywords' => $request->keywords,
-                'parent_id' => $request->parent_id,
-                // 'meta_id' =>$meta->id,
-                'image_id' => $request->image,
+                'price' => $request->price,
+                'category_id' => $request->category,
+                'no_of_ads' => $request->no_of_ads,
+                'currency' => $request->currency,
+                'signup_fee' => $request->sign_up_fee,
+                'trial_period' => $request->trial_period,
+                'trial_interval' => $request->trial_interval,
+                'invoice_period' => $request->invoice_period,
+                'invoice_interval' => $request->invoice_interval,
+                'grace_period' => $request->grace_period,
+                'grace_interval' => $request->grace_interval,
+                'prorate_day' => $request->prorate_day,
+                'prorate_period' => $request->prorate_period,
+                'prorate_extend_due' => $request->prorate_extend_due,
+                'active_subscribers_limit' => $request->active_subscribers_limit,
+                'sort_order' => $request->sort_order,
+                'is_active' => $request->status,
+                'sort_description' => $request->sort_description,
+                'description' => json_encode($request->plan_conditions),
             ]);
 
-            $CategoryBanner = CategoryBanner::where(['category_id' => $id])->update([
-                'category_id' => $id,
-                'image_id' => $request->banner_id,
-            ]);
             return response()->json(['success' => true, 'message' => 'Plan Updated successfully']);
         }
     }
@@ -140,12 +183,11 @@ class PlanController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Plan $plan)
+    public function destroy(Plan $plan, $id)
     {
-        $category = Category::find($id);
-        $category = new CategoryResource($category);
-        // dd($category->image);
-        if ($category->delete()) {
+        $plan = Plan::find($id);
+        $plan = new PlanResource($plan);
+        if ($plan->delete()) {
             return response()->json(['success' => true, 'message' => 'Plan has been deleted successfully.']);
         }
         return response()->json(['success' => false, 'message' => 'Opps something went wrong!'], 400);

@@ -25,7 +25,7 @@ class AttributeResource extends JsonResource
             'display_order	' => $this->display_order	,
             'status' => $this->status,
             'description' => $this->description,
-            'category' =>new CategoryResource($this->category),
+            'category' =>$this->category,
             'values' => AttributeValueResource::collection($this->values),
             'attributeRule' =>new AttributeRuleResource($this->attributeRule),
 

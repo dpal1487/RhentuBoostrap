@@ -28,27 +28,13 @@ class FaqController extends Controller
         return view('pages.faqs.index' ,compact('faqs'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        $categories = Category::get();
-        // return $categories;
-        return view('pages.faqs.add' , [ 'categories' => $categories ]);
-    }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'name' => 'required',
-            'category' => 'required',
-            'brand_image' => 'required',
-            'description' => 'required',
-            'status' => 'required',
+            'title' => 'required',
+            'actical' => 'required',
+            'faq_category' =>'required',
         ]);
 
         if ($validator->fails()) {
@@ -59,51 +45,40 @@ class FaqController extends Controller
         }
         // dd($request);
         $bran = Faq::create([
-            'name' => $request->name,
-            'description' => $request->description,
-            'category_id' => $request->category,
-            'status' =>$request->status,
-            'image_id' =>$request->brand_image,
+            'title' => $request->title,
+            'artical' => $request->actical,
+            'category_id' => $request->faq_category,
         ]);
 
-        return response()->json(['success'=>true,'message'=>'Brand created successfully']);
+        return response()->json(['success'=>true,'message'=>'FAQs created successfully']);
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Faq $faq , $id)
-    {
-        $faq = Faq::find($id);
-        $faq = new FAQsResource($faq);
-
-        // return $faq;
-        return view('pages.faqs.view' , [ 'faq' => $faq ] );
-    }
 
     /**
      * Show the form for editing the specified resource.
      */
     public function edit(Faq $faq , $id)
     {
-        $categories = Category::get();
+
         $faq = Faq::find($id);
-        $faq =new FAQsResource($faq);
-        // return $faq;
-        return view('pages.faqs.edit' , [ 'faq' => $faq,'categories'=>$categories ]);
+        if($faq){
+            return response()->json($faq);
+        }
+
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Faq $faq)
+    public function update(Request $request, Faq $faq , $id)
     {
         $validator = Validator::make($request->all(), [
-            'name' => 'required',
-            'category' => 'required',
-            'brand_image' => 'required',
-            'description' => 'required',
-            'status' => 'required',
+            'title' => 'required',
+            'actical' => 'required',
+            'faq_category' =>'required',
         ]);
 
         if ($validator->fails()) {
@@ -112,31 +87,28 @@ class FaqController extends Controller
                     ]);
         }
 
-        $brand = Brand::find($id);
-        if($brand){
-            $brand = Faq::where(['id'=>$id])->update([
-            'name' => $request->name,
-            'slug' => Str::slug($request->name),
-            'description' => $request->description,
-            'category_id' => $request->category,
-            'status' =>$request->status,
-            'image_id' =>$request->brand_image,
+        $faq = Faq::find($id);
+        if($faq){
+            $faq = Faq::where(['id'=>$id])->update([
+                'title' => $request->title,
+            'artical' => $request->actical,
+            'category_id' => $request->faq_category,
             ]);
 
-            return response()->json(['success'=>true,'message'=>'Brand Updated successfully']);
+            return response()->json(['success'=>true,'message'=>'FAQs Updated successfully']);
         }
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Faq $faq)
+    public function destroy(Faq $faq ,$id)
     {
-        $brand = Faq::find($id);
-        $brand =new BrandResource($brand);
+        $faq = Faq::find($id);
+        // $brand =new BrandResource($brand);
         // dd($category->image);
-        if($brand->delete()){
-            return response()->json(['success'=>true,'message'=>'Brand has been deleted successfully.']);
+        if($faq->delete()){
+            return response()->json(['success'=>true,'message'=>'FAQs has been deleted successfully.']);
         }
         return response()->json(['success'=>false,'message'=>'Opps something went wrong!'],400);
     }

@@ -73,6 +73,7 @@ class FaqsCategoryController extends Controller
     {
         $faq = FAQsCategory::find($id);
         $faq = new FAQsResource($faq);
+        // return $faq;
         return view('pages.faqs.view', ['faq' => $faq]);
     }
 

@@ -4,31 +4,25 @@
     <!--begin::Input group-->
     <div class="fv-row mb-5">
         <!--begin::Label-->
-        <label class="form-label">Name</label>
+        <label class="form-label">Title</label>
         <!--end::Label-->
-        <input type="text" name="title" id="name" class="form-control mb-2"
-            placeholder="Brand Name"  />
+        <input type="text" name="title" id="title" class="form-control mb-2"
+            placeholder="Title"  />
+        <!--end::Editor-->
+    </div>
+    <div class="fv-row mb-5">
+        <!--begin::Label-->
+        <label class="form-label">Artical</label>
+        <!--end::Label-->
+        <input type="text" name="actical" id="artical" class="form-control mb-2"
+            placeholder="Artical"  />
         <!--end::Editor-->
     </div>
     <!--end::Input group-->
-    <!--begin::Input group-->
-    <div class="fv-row mb-5">
-        <!--begin::Label-->
-        <label class="form-label">Status</label>
-        <!--begin::Label-->
-        <!--begin::Label-->
-        <select class="form-select mb-2" id="status" name="status" data-control="select2"
-            data-placeholder="Select an option">
-            <option value="">Select an option</option>
-            <option value="1">Active</option>
-            <option value="0">Inactive</option>
-        </select>
-        <!--begin::Label-->
-    </div>
-    <!--end::Input group-->
+
     <!--end::Card body-->
-    <input type="test" name="brand_id" value="{{ $faq->id }}" />
-    <input type="tets" name="brand_model_value_id" id="brand_model_id" />
+    <input type="hidden" name="faq_category" value="{{ $faq->id }}" />
+    <input type="hidden" name="faq_category_id" id="faq_category_id" />
     <div class="modal-footer">
         <button type="button" class="btn btn-light btn-sm" data-bs-dismiss="modal">Close</button>
         <button type="button" id="submit" class="btn btn-primary btn-sm">Save changes</button>

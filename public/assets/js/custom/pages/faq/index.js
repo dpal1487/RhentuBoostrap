@@ -97,7 +97,7 @@ var KTAppEcommerceCategories = function () {
                     blockUI.block();
                     if (result.value) {
                         axios
-                        .delete("/faq-model/" + id +"/delete")
+                        .delete("/faqs-model/" + id +"/delete")
                         .then((response) => {
                           toastr.success(response.data.message);
                           $(parent).remove().draw();
@@ -143,7 +143,7 @@ KTUtil.onDOMContentLoaded(function () {
 });
 
 // Make the DIV element draggable:
-var element = document.querySelector('#attributeModel');
+var element = document.querySelector('#faqModel');
 
 var element = document.querySelector('#faqModelEditmodel');
 

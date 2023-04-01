@@ -123,7 +123,7 @@
                             <tbody class="fw-semibold text-gray-600">
                                 <!--begin::Table row-->
 
-                                {{-- @foreach ($faq->models as $value)
+                                @foreach ($faq->faqcategorys as $value)
                                     <tr>
                                         <td>
                                             <div class="form-check form-check-sm form-check-custom form-check-solid">
@@ -136,7 +136,7 @@
                                                     <!--begin::Title-->
                                                     <a href=""
                                                         class="text-gray-800 text-hover-primary fs-5 fw-bold mb-1"
-                                                        faq-filter="faq_value">{{ $value->name }}</a>
+                                                        faq-filter="faq_value">{{ $value->title }}</a>
                                                     <!--end::Title-->
 
 
@@ -185,7 +185,7 @@
                                         </td>
                                         <!--end::Action=-->
                                     </tr>
-                                @endforeach --}}
+                                @endforeach
 
                                 <!--end::Table row-->
                             </tbody>

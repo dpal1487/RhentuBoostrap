@@ -13,8 +13,4 @@ class Faq extends Model
         'category_id' , 'title' , 'artical',
 ];
 
-public function category()
-{
-    return $this->hasOne(Category::class , 'id' , 'category_id');
-}
 }

@@ -15,7 +15,9 @@ class FAQsResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            'category' => $this->faqcategory,
+            'title' => $this->title,
+            'status' => $this->status,
+            'categories' => $this->faqcategorys,
             'image' => $this->image,
         ];
     }

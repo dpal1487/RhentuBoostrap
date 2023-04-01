@@ -17,14 +17,14 @@ var KTSigninGeneral = function () {
         validator = FormValidation.formValidation(
             form, {
                 fields: {
-                    name: {
+                    title: {
                         validators: {
                             notEmpty: {
                                 message: 'The field is required'
                             }
                         }
                     },
-                    status: {
+                    actical: {
                         validators: {
                             notEmpty: {
                                 message: 'The field is required'
@@ -106,16 +106,17 @@ var KTSigninGeneral = function () {
 
 
                 var id = $(this).data('id');
-                form.setAttribute("action", '/faq-model/' + id + '/update');
+                form.setAttribute("action", '/faqs-model/' + id + '/update');
                 // Select all delete buttons
                 const editBtn = table.querySelectorAll('[faq-model-edit="edit_row"]');
                 e.preventDefault();
                 // Select parent row
-                axios.get("/faq-model/" + id + "/edit")
+                axios.get("/faqs-model/" + id + "/edit")
                     .then((response) => {
                         // $("#attribut_value_id")[0].value = response.data.id
-                        $("#faq_model_id").attr("value", response.data.id)
-                        $("#name").val(response.data.name)
+                        $("#faq_category_id").val(response.data.id)
+                        $("#title").val(response.data.title)
+                        $("#artical").val(response.data.artical)
                         $("#status").val(response.data.status)
                     }).finally(() => {
                         $('#status').select2().trigger('change');
@@ -135,7 +136,7 @@ var KTSigninGeneral = function () {
             document.getElementsByClassName("modal-title")[0].innerHTML  = 'Add FAQs Store';
 
             form.reset();
-            form.setAttribute("action", '/faq-model/store');
+            form.setAttribute("action", '/faqs-model/store');
         });
 
     }
@@ -143,7 +144,7 @@ var KTSigninGeneral = function () {
         addAttributeButton.addEventListener("click", function () {
             document.getElementsByClassName("modal-title")[0].innerHTML   = 'Edt faq Value';
             var id = (addAttributeButton).getAttribute("data-id");
-            form.setAttribute("action", '/faq-model/' + id + '/update');
+            form.setAttribute("action", '/faqs-model/' + id + '/update');
         });
     }
     // Public functions

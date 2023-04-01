@@ -78,7 +78,7 @@
                     <tbody class="fw-semibold text-gray-600">
                         <!--begin::Table row-->
                             @foreach ($plans as $plan)
-                                <tr>
+<tr>
                                 <td>
                                     <div class="form-check form-check-sm form-check-custom form-check-solid">
                                         <input class="form-check-input" type="checkbox" value="1" />
@@ -104,10 +104,10 @@
 
                                  <td>
                                     @if ($plan->status == 1)
-                                        <div class="badge badge-light-success">Active</div>
-                                    @else
-                                        <div class="badge badge-light-info">In Active</div>
-                                    @endif
+<div class="badge badge-light-success">Active</div>
+@else
+<div class="badge badge-light-info">In Active</div>
+@endif
                                     <!--end::Badges-->
                                 </td>
 
@@ -134,7 +134,7 @@
                                 </td>
                                 <!--end::Action=-->
                             </tr>
-                        @endforeach
+@endforeach
 
                         <!--end::Table row-->
                     </tbody>
@@ -157,7 +157,7 @@
 <!--end::Content-->
     @section('javascript')
     <script src="{{ asset('assets/js/widgets.bundle.js') }}"></script>
-    <script src="{{ asset('assets/js/custom/widgets.js') }}"></script>
-    <script src="{{ asset('assets/js/custom/pages/plan/index.js') }}"></script>
+        <script src="{{ asset('assets/js/custom/widgets.js') }}"></script>
+        <script src="{{ asset('assets/js/custom/pages/plan/index.js') }}"></script>
 @endsection
 </x-app-layout>

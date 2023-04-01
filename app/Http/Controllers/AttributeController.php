@@ -78,7 +78,6 @@ class AttributeController extends Controller
     {
         $attribute = Attribute::find($id);
         $attribute = new AttributeResource($attribute);
-
         // return $attribute;
         return view('pages.attribute.view' , [ 'attribute' => $attribute ] );
     }

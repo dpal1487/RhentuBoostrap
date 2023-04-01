@@ -7,7 +7,8 @@
 
    <!--begin::Toolbar-->
    <div id="kt_app_toolbar" class="app-toolbar py-3 py-lg-6">
-    <x-header :title="$title" />
+    <x-header title="Item Details" />
+
     <pre>
 </div>
 <!--end::Toolbar-->

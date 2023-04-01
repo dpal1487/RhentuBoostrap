@@ -132,7 +132,7 @@ var KTSigninGeneral = function () {
 
     var addAttribute = () => {
         addAttributeButton.addEventListener("click", function () {
-            document.getElementsByClassName("modal-title")[0].innerHTML  = 'Add faq Store';
+            document.getElementsByClassName("modal-title")[0].innerHTML  = 'Add FAQs Store';
 
             form.reset();
             form.setAttribute("action", '/faq-model/store');

@@ -29,7 +29,7 @@
                                             <th>Name </th>
                                             <td class="fs-6 fw-bold text-gray-800">{{ $faq->title }}</td>
                                         </tr>
-                                      
+
                                         <tr>
                                             <td>FAQs Image</td>
                                             <td class="fs-6 fw-bold text-gray-800 whitespace-break">
@@ -70,7 +70,7 @@
                 <!--begin::Card header-->
                 <div class="card-header border-0 cursor-pointer" role="button" data-bs-toggle="collapse">
                     <div class="card-title d-flex align-items-center justify-content-between w-100">
-                        <h3 class="fw-bold m-0">faq Value</h3>
+                        <h3 class="fw-bold m-0">Faq Value</h3>
                         <button type="button" id="add_faq" data-id="{{ $faq->id }}" class="btn btn-primary"
                             data-bs-toggle="modal" data-bs-target="#faqModel">
                             Add
@@ -83,7 +83,7 @@
                     <div class="modal-dialog">
                         <div class="modal-content position-absolute">
                             <div class="modal-header">
-                                <h5 class="modal-title">Add faq Value</h5>
+                                <h5 class="modal-title">Add Faq Value</h5>
                             </div>
                             <form class="form d-flex flex-column flex-lg-row" id="faq_form" action=""
                                 method="POST">

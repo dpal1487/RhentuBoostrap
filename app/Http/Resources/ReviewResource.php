@@ -21,6 +21,7 @@ class ReviewResource extends JsonResource
             'title' => $this->title,
             'category' => $this->category,
             'reviews' => $this->reviews,
+            'review' => $this->review->reviews,
             'user' => $this->user,
 
         ];

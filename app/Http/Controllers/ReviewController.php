@@ -7,6 +7,7 @@ use App\Models\Item;
 use App\Models\Review;
 use Illuminate\Http\Request;
 use App\Http\Resources\ItemResource;
+use App\Http\Resources\ItemReviewsResource;
 
 class ReviewController extends Controller
 {
@@ -21,7 +22,7 @@ class ReviewController extends Controller
 
         //  return new ReviewResource($item);
 
-         return view('pages.item.reviews' , ['title' => $title ,'itemreview' =>new ReviewResource($item)]);
+         return view('pages.item.reviews' , ['title' => $title ,'itemreview' =>new ItemReviewsResource($item)]);
      }
     public function index()
     {

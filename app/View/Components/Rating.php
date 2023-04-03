@@ -12,9 +12,10 @@ class Rating extends Component
      * Create a new component instance.
      */
     public $itemreview;
+
     public function __construct()
     {
-        //
+        // $this->itemreview = $itemreview;
     }
 
     /**

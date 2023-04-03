@@ -73,9 +73,7 @@ Route::middleware('auth')->group(function () {
             Route::post('/status' , 'updateStatus')->name('item.status');
          });
         });
-
      Route::get('/reviews/{id}' , [ReviewController::class , 'reviews'])->name('item/reviews');
-
 
      // category
 

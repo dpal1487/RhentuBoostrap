@@ -19,9 +19,9 @@ class ItemReviewsResource extends JsonResource
             'user_id' =>$this->user_id,
             'title' =>$this->title,
             'content' =>$this->content,
-            'rating' =>$this->rating,
+            'reviews' =>$this->reviews,
             'status' =>$this->status,
-            
+
         ];
     }
 }

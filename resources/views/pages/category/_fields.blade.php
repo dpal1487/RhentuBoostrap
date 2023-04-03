@@ -56,7 +56,7 @@
                       data-kt-image-input-action="cancel" data-bs-toggle="tooltip" title="Cancel avatar">
                       <i class="bi bi-x fs-2"></i>
                   </span>
-                  <input type="text" name="image" value="{{ @$category->image->id }}" id="image_id">
+                  <input type="hidden" name="image" value="{{ @$category->image->id }}" id="image_id">
 
                   <!--end::Cancel-->
                   <!--begin::Remove-->
@@ -139,7 +139,7 @@
                       data-kt-image-input-action="cancel" data-bs-toggle="tooltip" title="Cancel avatar">
                       <i class="bi bi-x fs-2"></i>
                   </span>
-                  <input type="text" name="banner_id" value="{{ @$category->banner->banner->id }}"
+                  <input type="hidden" name="banner_id" value="{{ @$category->banner->banner->id }}"
                       id="banner_image_id">
 
                   <!--end::Cancel-->

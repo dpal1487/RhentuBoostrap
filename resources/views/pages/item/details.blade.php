@@ -12,6 +12,21 @@
         <!--begin::Content container-->
         <div id="kt_app_content_container" class="app-container container-xxl">
             <!--begin::Details-->
+            {{-- <div class="tns" style="direction: ltr">
+                <div data-tns="true" data-tns-nav-position="bottom" data-tns-mouse-drag="true" data-tns-controls="false">
+                    <!--begin::Item-->
+                    <div class="text-center px-5 pt-5 pt-lg-10 px-lg-10">
+                        <img src="{{ asset('assets/media/avatars/300-1.jpg') }}" class="card-rounded shadow mw-500" alt="" />
+                    </div>
+                    <!--end::Item-->
+                    <div class="text-center px-5 pt-5 pt-lg-10 px-lg-10">
+                        <img src="{{ asset('assets/media/stock/600x400/img-1.jpg') }}" class="card-rounded shadow mw-100" alt="" />
+                    </div>
+                    <div class="text-center px-5 pt-5 pt-lg-10 px-lg-10">
+                        <img src="{{ asset('assets/media/stock/600x400/img-1.jpg') }}" class="card-rounded shadow mw-100" alt="" />
+                    </div>
+                </div>
+            </div> --}}
             <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
                 <div class="carousel-indicators">
                     <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"

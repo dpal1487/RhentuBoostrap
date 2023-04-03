@@ -52,7 +52,7 @@
             </div>
             <!--end::Card header-->
             <!--begin::Card body-->
-            <div class="card-body pt-0">
+            <div class="card-body overflow-auto pt-0">
                 <!--begin::Table-->
                 <table class="table align-middle table-row-dashed fs-6 gy-5" id="attribute_table">
                     <!--begin::Table head-->
@@ -71,7 +71,7 @@
                             <th class="min-w-100px">Atttribute Parent</th>
                             <th class="min-w-100px">Status</th>
 
-                            <th class="text-end min-w-70px">Actions</th>
+                            <th class="text-end min-w-100px">Actions</th>
                         </tr>
                         <!--end::Table row-->
                     </thead>

@@ -46,7 +46,7 @@
             </div>
             <!--end::Card header-->
             <!--begin::Card body-->
-            <div class="card-body pt-0">
+            <div class="card-body overflow-auto pt-0">
                 <!--begin::Table-->
                 <table class="table align-middle table-row-dashed fs-6 gy-5" id="coupon_table">
                     <!--begin::Table head-->
@@ -65,7 +65,7 @@
 
                             <th class="min-w-100px">Expires At</th>
 
-                            <th class="text-end min-w-70px">Actions</th>
+                            <th class="text-end min-w-100px">Actions</th>
                         </tr>
                         <!--end::Table row-->
                     </thead>
@@ -143,7 +143,7 @@
                 <div class="row">
 
                             {{ $coupons->links() }}
-                    
+
                 </div>
             </div>
             <!--end::Card body-->

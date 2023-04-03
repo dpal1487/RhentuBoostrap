@@ -100,7 +100,7 @@
                 <!--begin::Content-->
                 <div class="collapse show">
                     <!--begin::Card body-->
-                    <div class="card-body border-top p-9">
+                    <div class="card-body overflow-auto border-top p-9">
                         <!--begin::Table-->
                         <table class="table align-middle table-row-dashed fs-6 gy-5" id="faq_table">
                             <!--begin::Table head-->
@@ -144,11 +144,22 @@
                                             </div>
                                         </td>
                                         <td>
-                                            @if ($value->status == 1)
+                                            <div class="d-flex">
+                                                <div class="ms-5">
+                                                    <!--begin::Title-->
+                                                    <a href=""
+                                                        class="text-gray-800 text-hover-primary fs-5 fw-bold mb-1"
+                                                        faq-filter="faq_value">{{ $value->artical }}</a>
+                                                    <!--end::Title-->
+
+
+                                                </div>
+                                            </div>
+                                            {{-- @if ($value->status == 1)
                                                 <div class="badge badge-light-success">Active</div>
                                             @else
                                                 <div class="badge badge-light-info">In Active</div>
-                                            @endif
+                                            @endif --}}
                                         </td>
                                         <td class="text-end">
                                             <a href="#" class="btn btn-sm btn-light btn-active-light-primary"

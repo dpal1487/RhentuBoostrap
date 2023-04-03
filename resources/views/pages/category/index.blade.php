@@ -53,9 +53,9 @@
             </div>
             <!--end::Card header-->
             <!--begin::Card body-->
-            <div class="card-body pt-0">
+            <div class="card-body overflow-auto pt-0">
                 <!--begin::Table-->
-                <table class="table align-middle table-row-dashed fs-6 gy-5" id="plan_table">
+                <table class="table w-100 align-middle table-row-dashed fs-6 gy-5 table-responsive" id="plan_table">
                     <!--begin::Table head-->
                     <thead>
                         <!--begin::Table row-->
@@ -71,7 +71,7 @@
                             <th class="min-w-100px">Meta Keyword</th>
                             <th class="min-w-100px">Category Parent</th>
                             <th class="min-w-50px">Category Status</th>
-                            <th class="text-end min-w-70px">Actions</th>
+                            <th class="text-end min-w-100px">Actions</th>
                         </tr>
                         <!--end::Table row-->
                     </thead>

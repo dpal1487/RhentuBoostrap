@@ -53,6 +53,7 @@
                 </div>
                 <!--end::Card header-->
                 <!--begin::Card body-->
+
                 <div class="card-body overflow-auto pt-0">
                     <!--begin::Table-->
                     <table class="table align-middle table-row-dashed fs-6 gy-5" id="coupon_table">
@@ -62,9 +63,9 @@
                             <tr class="text-start text-gray-400 fw-bold fs-7 text-uppercase gs-0">
                                 <th class="w-1px pe-2">
                                     <div class="form-check form-check-sm form-check-custom form-check-solid">
-                                        <input class="form-check-input" type="checkbox" value="1" />
-                                    </div>
-                                </th>
+                                      <input class="form-check-input" type="checkbox" data-kt-check="true" data-kt-check-target="#coupon_table .form-check-input" value="1" />
+                                  </div>
+                              </th>
                                 <th class="min-w-100px">Name </th>
                                 <th class="min-w-100px">Title</th>
                                 <th class="min-w-100px">Content</th>
@@ -78,7 +79,7 @@
                         <!--begin::Table body-->
                         <tbody class="fw-semibold text-gray-600">
                             <!--begin::Table row-->
-                            @foreach ($customer_reviews as $value)
+                            @foreach ($reviews as $value)
                                 <tr>
                                     <td>
                                         <div class="form-check form-check-sm form-check-custom form-check-solid">
@@ -103,7 +104,7 @@
                                     </td>
                                     <td>
                                         {{ $value->review->content}}
-                                      
+
                                     </td>
 
                                     <td class="text-end" data-order="rating-5">
@@ -182,7 +183,7 @@
 
                     <div class="row">
 
-                        {{ $customer_reviews->links() }}
+                        {{ $reviews->links() }}
 
                     </div>
                 </div>

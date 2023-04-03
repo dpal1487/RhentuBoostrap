@@ -5,10 +5,14 @@ namespace App\Http\Controllers;
 use App\Http\Resources\AddressResource;
 use App\Http\Resources\ItemResource;
 use App\Http\Resources\UserResource;
+use App\Http\Resources\ReviewResource;
 use App\Models\Address;
 use App\Models\Item;
 use App\Models\ItemStatus;
 use App\Models\User;
+use App\Models\UserReview;
+
+
 use App\Models\UserAddress;
 use Illuminate\Http\Request;
 use DataTables;
@@ -85,18 +89,23 @@ class UserController extends Controller
         // dd($data);
         return view('pages.user.packages' , ['title' => $title ,'user' => $data]);
      }
-
-
-
-
-
      public function reports($id)
      {
         $title = "Item Report";
         $data = User::find($id);
-
         // dd($data);
         return view('pages.user.reports' , ['title' => $title ,'user' => $data]);
+
+     }
+
+     public function reviews($id)
+     {
+        $data = User::find($id);
+        $review = UserReview::where('user_id',$id)->get();
+
+        $review = ReviewResource::collection($review);
+        // return $review;
+        return view('pages.user.review' )->with(['user' => $data , 'review' => $review]);
 
      }
 

@@ -55,14 +55,13 @@
                         <tr class="text-start text-gray-400 fw-bold fs-7 text-uppercase gs-0">
                             <th class="w-1px pe-2">
                                   <div class="form-check form-check-sm form-check-custom form-check-solid">
-                                    <input class="form-check-input" type="checkbox" value="1" />
+                                    <input class="form-check-input" data-kt-check="true" data-kt-check-target="#page_table .form-check-input" type="checkbox" id="page_table" value="1" />
                                 </div>
                             </th>
                             <th class="min-w-100px">Title</th>
                             <th class="min-w-100px">Headings</th>
                             <th class="min-w-100px">Meta</th>
                             <th class="min-w-100px">Status</th>
-
                             <th class="text-end min-w-100px">Actions</th>
                         </tr>
                         <!--end::Table row-->
@@ -75,7 +74,7 @@
                                 <tr>
                                 <td>
                                     <div class="form-check form-check-sm form-check-custom form-check-solid">
-                                        <input class="form-check-input" type="checkbox" value="1" />
+                                        <input class="form-check-input" type="checkbox" id="page_table" value="1" />
                                     </div>
                                 </td>
                                 <td>

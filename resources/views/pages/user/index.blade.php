@@ -44,12 +44,16 @@
             <!--begin::Card body-->
             <div class="card-body overflow-auto pt-0">
                 <!--begin::Table-->
-                <table class="table align-middle table-row-dashed fs-6 gy-5" id="kt_ecommerce_category_table">
+                <table class="table align-middle table-row-dashed fs-6 gy-5" id="user_table">
                     <!--begin::Table head-->
                     <thead>
                         <!--begin::Table row-->
                         <tr class="text-start text-gray-400 fw-bold fs-7 text-uppercase gs-0">
-                            <th class="min-w-50px">No</th>
+                            <th class="w-1px pe-2">
+                                <div class="form-check form-check-sm form-check-custom form-check-solid">
+                                  <input class="form-check-input" type="checkbox" data-kt-check="true" data-kt-check-target="#user_table .form-check-input" value="1" />
+                              </div>
+                          </th>
                             <th class="min-w-150px">Name</th>
                             <th class="min-w-150px">Email</th>
                             <th class="min-w-150px">Mobile</th>
@@ -62,10 +66,12 @@
 
                     <tbody class="fw-semibold text-gray-600">
                         @foreach ($result as $row)
-                        <!--begin::Table row-->
+<!--begin::Table row-->
                         <tr>
                             <!--begin::Table row-->
-                            <td>{{ ++$loop->index }}
+                            <td> <div class="form-check form-check-sm form-check-custom form-check-solid">
+                                <input class="form-check-input" type="checkbox" value="1" />
+                            </div></td>
                                 <!--begin::name=-->
                                 <td>{{ $row->first_name }} {{ $row->last_name }}</td>
                                 <!--end::name=-->
@@ -86,7 +92,7 @@
                                 <!--end::Action=-->
                             </tr>
                         <!--end::Table row-->
-                        @endforeach
+@endforeach
 
                     </tbody>
                     <!--end::Table body-->
@@ -110,14 +116,14 @@
 <!--end::Content-->
     @section('javascript')
     <script src="{{ asset('assets/plugins/custom/datatables/datatables.bundle.js') }}"></script>
-        <!--begin::Custom Javascript(used for this page only)-->
-      <script src="{{ asset('assets/js/custom/apps/ecommerce/catalog/categories.js') }}"></script>
-      <script src="{{ asset('assets/js/widgets.bundle.js') }}"></script>
-      <script src="{{ asset('assets/js/custom/widgets.js') }}"></script>
-      <script src="{{ asset('assets/js/custom/apps/chat/chat.js') }}"></script>
-      <script src="{{ asset('assets/js/custom/utilities/modals/upgrade-plan.js') }}"></script>
-      <script src="{{ asset('assets/js/custom/utilities/modals/create-app.js') }}"></script>
-      <script src="{{ asset('assets/js/custom/utilities/modals/users-search.js') }}"></script>
-      <!--end::Custom Javascript-->
+                <!--begin::Custom Javascript(used for this page only)-->
+              <script src="{{ asset('assets/js/custom/apps/ecommerce/catalog/categories.js') }}"></script>
+              <script src="{{ asset('assets/js/widgets.bundle.js') }}"></script>
+              <script src="{{ asset('assets/js/custom/widgets.js') }}"></script>
+              <script src="{{ asset('assets/js/custom/apps/chat/chat.js') }}"></script>
+              <script src="{{ asset('assets/js/custom/utilities/modals/upgrade-plan.js') }}"></script>
+              <script src="{{ asset('assets/js/custom/utilities/modals/create-app.js') }}"></script>
+              <script src="{{ asset('assets/js/custom/utilities/modals/users-search.js') }}"></script>
+              <!--end::Custom Javascript-->
 @endsection
 </x-app-layout>

@@ -14,14 +14,14 @@ class CustomerReviewController extends Controller
      */
     public function index(Request $request)
     {
-        $customer_reviews = new CustomerReview();
+        $reviews = new CustomerReview();
         if($request->q){
-            $customer_reviews = $customer_review->where('name','like',"%{$request->q}%");
+            $reviews = $review->where('name','like',"%{$request->q}%");
         }
-        $customer_reviews = $customer_reviews->paginate(10)->appends(request()->query());
-        $customer_reviews = CustomerReviewResource::collection($customer_reviews);
+        $reviews = $reviews->paginate(10)->appends(request()->query());
+        $reviews = CustomerReviewResource::collection($reviews);
         // return $customer_reviews;
-        return view('pages.customer-review.index' ,compact('customer_reviews'));
+        return view('pages.customer-review.index' ,compact('reviews'));
     }
 
     /**

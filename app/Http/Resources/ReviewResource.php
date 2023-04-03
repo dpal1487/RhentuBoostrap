@@ -20,7 +20,9 @@ class ReviewResource extends JsonResource
             'rating' => $this->rating,
             'title' => $this->title,
             'category' => $this->category,
-            // 'user' => new ItemResource($this->user)
+            'reviews' => $this->reviews,
+            'user' => $this->user,
+
         ];
     }
 }

@@ -59,6 +59,7 @@ Route::middleware('auth')->group(function () {
         Route::get('/{id}/address', 'address')->name('user.address');
         Route::get('/{id}/packages', 'packages')->name('user.packages');
         Route::get('/{id}/reports', 'reports')->name('user.reports');
+        Route::get('/{id}/reviews', 'reviews')->name('user.reviews');
     });
 });
     // item page

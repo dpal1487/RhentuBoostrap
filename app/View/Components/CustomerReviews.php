@@ -6,16 +6,17 @@ use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class Header extends Component
+class CustomerReviews extends Component
 {
     /**
      * Create a new component instance.
      */
 
-    public $title;
-    public function __construct($title)
+    public $customerreviews;
+
+    public function __construct($customerreviews)
     {
-       $this->title = $title;
+        $this->customerreviews = $customerreviews;
     }
 
     /**
@@ -23,6 +24,6 @@ class Header extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.header');
+        return view('components.customer-reviews');
     }
 }

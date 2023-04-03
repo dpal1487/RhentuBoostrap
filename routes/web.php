@@ -19,10 +19,8 @@ use App\Http\Controllers\BrandModelController;
 use App\Http\Controllers\CouponController;
 use App\Http\Controllers\FaqController;
 use App\Http\Controllers\FaqsCategoryController;
-
-
-
-
+use App\Http\Controllers\CustomerReviewController;
+use App\Http\Controllers\PageController;
 
 
 /*
@@ -55,7 +53,6 @@ Route::middleware('auth')->group(function () {
       Route::controller(UserController::class)->group(function(){
         Route::group(['prefix' => 'user'], function ()
         {
-
         Route::get('/', 'index')->name('user');
         Route::get('/{id}/items', 'items')->name('user.items');
         Route::get('/{id}/overview', 'overview')->name('user.overview');
@@ -225,6 +222,32 @@ Route::middleware('auth')->group(function () {
             Route::get('{id}/edit' ,'edit')->name('faqs-model.edit');
             Route::post('{id}/update' ,'update')->name('faqs-model.update');
             Route::delete('{id}/delete' ,'destroy')->name('faqs-model.delete');
+        });
+     });
+
+     Route::controller(CustomerReviewController::class)->group(function(){
+        Route::group(['prefix' =>'customer-review'] , function()
+        {
+            Route::get('/' , 'index')->name('customer-review.index');
+            Route::get('/add' , 'create')->name('customer-review.add');
+            Route::post('/store' ,'store')->name('customer-review.store');
+            Route::get('{id}/view' ,'show')->name('customer-review.view');
+            Route::get('{id}/edit' ,'edit')->name('customer-review.edit');
+            Route::post('{id}/update' ,'update')->name('customer-review.update');
+            Route::delete('{id}/delete' ,'destroy')->name('customer-review.delete');
+        });
+     });
+
+     Route::controller(PageController::class)->group(function(){
+        Route::group(['prefix' =>'page'] , function()
+        {
+            Route::get('/' , 'index')->name('page.index');
+            Route::get('/add' , 'create')->name('page.add');
+            Route::post('/store' ,'store')->name('page.store');
+            Route::get('{id}/view' ,'show')->name('page.view');
+            Route::get('{id}/edit' ,'edit')->name('page.edit');
+            Route::post('{id}/update' ,'update')->name('page.update');
+            Route::delete('{id}/delete' ,'destroy')->name('page.delete');
         });
      });
 

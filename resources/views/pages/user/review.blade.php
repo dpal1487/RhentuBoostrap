@@ -250,7 +250,6 @@
                     </div>
                 </div>
                 <x-customer-reviews :customerreviews="$review" />
-
                 <!--end::Card body-->
             </div>
             <!--end::details View-->

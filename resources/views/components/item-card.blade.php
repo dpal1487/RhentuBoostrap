@@ -206,8 +206,6 @@
                                     </path>
                                 </svg>
                             </span>
-
-
                             <!--end::Svg Icon-->{{ $item->security_price }} Security Price
                             </@php
 

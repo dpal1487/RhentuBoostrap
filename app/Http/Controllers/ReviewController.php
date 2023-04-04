@@ -20,7 +20,7 @@ class ReviewController extends Controller
          $title = "Item Reviews";
          $item = Item::where(['id' => $id])->first();
 
-        //  return new ReviewResource($item);
+        //  return new ItemReviewsResource($item);
 
          return view('pages.item.reviews' , ['title' => $title ,'itemreview' =>new ItemReviewsResource($item)]);
      }

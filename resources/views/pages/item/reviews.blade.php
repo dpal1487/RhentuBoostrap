@@ -24,31 +24,24 @@
                         <div class="col-md-9">
                             <div class="fs-3 fw-bold text-theme-primary">
                                 <span>{{ $itemreview->category->name}} </span><br>
+
                                 <span>Cusmtomer Reviews</span>
                                 <span class="badge badge-light-info fs-6 fw-bold">
-
-
-                                    {{ $itemreview->reviews[0]['rating'] }}
                                     @if ($itemreview->review == null)
                                     0 Reviews
                                     @else
-
-                                    {{ $itemreview->review->reviews[0]['rating'] }}  Reviews
+                                    {{ $itemreview->review->review->rating}}  Reviews
                                     @endif
                                 </span></span>
                             </div>
                             <div class="rating">
                                 <div class="d-flex">
-
-                                    <x-rating :itemreview="$itemreview"/>
                                         <div class="rating">
                                             <div class="rating-label checked">
                                                 <?php
-                                                $unselected = 5 - $itemreview->review->reviews[0]['rating'];
-
-
+                                                $unselected = 5 - $itemreview->review->review->rating;
                                                 $selected_stars = '';
-                                                for ($i = 0; $i < $itemreview->review->reviews[0]['rating']; $i++) {
+                                                for ($i = 0; $i < $itemreview->review->review->rating; $i++) {
                                                     $selected_stars .= '<span class="svg-icon svg-icon-2"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"> <path d="M11.1359 4.48359C11.5216 3.82132 12.4784 3.82132 12.8641 4.48359L15.011 8.16962C15.1523 8.41222 15.3891 8.58425 15.6635 8.64367L19.8326 9.54646C20.5816 9.70867 20.8773 10.6186 20.3666 11.1901L17.5244 14.371C17.3374 14.5803 17.2469 14.8587 17.2752 15.138L17.7049 19.382C17.7821 20.1445 17.0081 20.7069 16.3067 20.3978L12.4032 18.6777C12.1463 18.5645 11.8537 18.5645 11.5968 18.6777L7.69326 20.3978C6.99192 20.7069 6.21789 20.1445 6.2951 19.382L6.7248 15.138C6.75308 14.8587 6.66264 14.5803 6.47558 14.371L3.63339 11.1901C3.12273 10.6186 3.41838 9.70867 4.16744 9.54646L8.3365 8.64367C8.61089 8.58425 8.84767 8.41222 8.98897 8.16962L11.1359 4.48359Z" fill="currentColor"></path></svg></span>';
                                                 }
                                                 echo $selected_stars;
@@ -69,10 +62,8 @@
                                     @if ($itemreview->review == null)
                                     0  Out Of 5
                                     @else
-
                                     {{ $itemreview->review->reviews[0]['rating'] }}  Out Of 5
                                     @endif
-
                                 </span>
                             </div>
                             <div class="">
@@ -127,13 +118,10 @@
                                 </div>
                             </div>
                         </div>
-
                     </div>
                 </div>
-
                 <div class="col-sm-12 col-md-7 overflow-auto" style="height: 100vh;">
-
-
+                    @foreach ( $itemreview->reviews as $itemreview)
                     <div class="card mb-3 mt-4 rounded shadow-sm">
                         <div class="card-body p-4">
                             <div class="d-flex align-items-stretch justify-content-between">
@@ -144,114 +132,37 @@
                                     </div>
                                     <div class="">
                                         <h4>
-                                            @if ($itemreview->review == null)
+                                            @if ($itemreview == null)
                                             John Doe
                                             @else
-
-                                            {{ $itemreview->review->user->first_name}} {{ $itemreview->review->user->last_name}}
+                                            {{ $itemreview->user->first_name}}
+                                            {{ $itemreview->user->last_name}}
                                             @endif
-
                                         </h4>
                                         <div class="rating">
                                             <div class="d-flex">
-                                                <x-rating />
-
+                                                <x-rating :itemreview="$itemreview"/>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="w-fit">
-
                                     @if ($itemreview->review == null)
-
                                     @else
-
-
-                                    {{ $itemreview->review->user->created_at->format('d M Y')}}
+                                    {{ $itemreview->user->created_at->format('d M Y')}}
                                     @endif
-
                                 </div>
                             </div>
                             <div class="mt-2">
                                 @if ($itemreview->review == null)
-
                                 @else
-
-
+                                {{ $itemreview->review->title}}<br>
                                 {{ $itemreview->review->content}}
                                 @endif
-
-
-
                             </div>
                         </div>
                     </div>
-
-
-
-                    <div class="card mb-3 mt-4 rounded shadow-sm">
-                        <div class="card-body p-4">
-                            <div class="d-flex align-items-stretch justify-content-between">
-                                <div class="d-flex align-items-stretch">
-                                    <div class="me-4" style="height: 4rem;">
-                                        <img alt="user image" src="{{ asset('assets/media/avatars/300-1.jpg') }}"
-                                            style="width: 4rem;" class="rounded h-100" />
-                                    </div>
-                                    <div class="">
-                                        <h4>John Doe</h4>
-                                        <div class="rating">
-                                            <div class="d-flex">
-                                                <x-rating />
-
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="w-fit">
-                                    28 Mar, 2022
-                                </div>
-                            </div>
-                            <div class="mt-2">
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                                Quasi, porro iste? Error ratione beatae, necessitatibus aspernatur iste a obcaecati
-                                recusandae,
-                                consectetur repellendus repellat officiis deserunt? Quisquam nesciunt quasi nisi
-                                tempore.
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="card mb-3 mt-4 rounded shadow-sm">
-                        <div class="card-body p-4">
-                            <div class="d-flex align-items-stretch justify-content-between">
-                                <div class="d-flex align-items-stretch">
-                                    <div class="me-4" style="height: 4rem;">
-                                        <img alt="user image" src="{{ asset('assets/media/avatars/300-1.jpg') }}"
-                                            style="width: 4rem;" class="rounded h-100" />
-                                    </div>
-                                    <div class="">
-                                        <h4>John Doe</h4>
-                                        <div class="rating">
-                                            <div class="d-flex">
-                                                <x-rating />
-
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="w-fit">
-                                    2 Mar, 2022
-                                </div>
-                            </div>
-                            <div class="mt-2">
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                                Quasi, porro iste? Error ratione beatae, necessitatibus aspernatur iste a obcaecati
-                                recusandae,
-                                consectetur repellendus repellat officiis deserunt? Quisquam nesciunt quasi nisi
-                                tempore.
-                            </div>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
             </div>
         </div>

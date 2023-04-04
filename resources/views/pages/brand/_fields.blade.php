@@ -138,7 +138,7 @@
                         data-placeholder="Select an option">
                         <option value="">Select an option</option>
                         <option value="1" @selected(@$brand->status == '1')>Active</option>
-                        <option value="0" @selected(@$brand->status == '0')>In Active</option>
+                        <option value="0" @selected(@$brand->status == '0')>Inactive</option>
                     </select>
                     <div class="text-muted fs-7">Status is required </div>
                     </div>

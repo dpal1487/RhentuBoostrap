@@ -25,7 +25,7 @@ class UserController extends Controller
      * Display a listing of the resource.
      */
 
-     public $data;
+    public $data;
     public function index(Request $request)
     {
 

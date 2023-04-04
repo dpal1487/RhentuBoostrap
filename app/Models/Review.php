@@ -12,7 +12,6 @@ class Review extends Model
 
     public function review()
     {
-        return $this->hasOne(UserReview::class , 'review_id' , 'id');
+        return $this->belongsTo(UserReview::class , 'review_id' , 'id');
     }
-
 }

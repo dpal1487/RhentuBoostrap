@@ -13,9 +13,9 @@ class Rating extends Component
      */
     public $itemreview;
 
-    public function __construct()
+    public function __construct($itemreview)
     {
-        // $this->itemreview = $itemreview;
+        $this->itemreview = $itemreview;
     }
 
     /**

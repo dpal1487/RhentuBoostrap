@@ -23,7 +23,7 @@ class TimePeriodController extends Controller
         //     $timePeriods = $timePeriods->where('name', 'like', "%{$request->q}%");
         // }
 
-        $timePeriods = TimePeriod::paginate(100)->appends(request()->query());
+        $timePeriods = Category::paginate(100);
         // $timePeriods = $timePeriods->paginate(100)->appends(request()->query());
         $timePeriods = TimePeriodResource::collection($timePeriods);
         // return TimePeriodResource::collection($timePeriods);
@@ -83,7 +83,11 @@ class TimePeriodController extends Controller
         $categories = Category::get();
         $times = Time::get();
 
-        $timePeriod = TimePeriod::find($id);
+        $timePeriod = TimePeriod::where('category_id' , '=' , $id)->get();
+
+
+
+        dd($timePeriod);
         $timePeriod = new TimePeriodResource($timePeriod);
         return view('pages.time-period.edit' , [ 'timePeriod'=>$timePeriod ,'times' =>$times , 'categories' =>$categories ]);
     }

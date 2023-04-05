@@ -3,7 +3,7 @@
        <div class="card card-flush py-4">
            <div class="card-body pt-0">
                <div class="row g-3">
-                   <div class="mb-10 fv-row col-5">
+                   <div class="mb-10 fv-row col-12 col-lg-5 ">
                        <!--begin::Label-->
                        <label class="required form-label">Category </label>
                        <!--end::Label-->
@@ -23,7 +23,7 @@
                        </div>
                    </div>
 
-               <div id="add_time_conditions" data-select2-id="select2-data-kt_ecommerce_add_category_conditions" class="mb-10 fv-row col-5">
+               <div id="add_time_conditions" data-select2-id="select2-data-kt_ecommerce_add_category_conditions" class="mb-10 fv-row col-12 col-lg-5">
                    <!--begin::Form group-->
                    <div class="">
                     <label class="required form-label">Time </label>

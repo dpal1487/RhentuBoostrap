@@ -37,7 +37,7 @@ class TimeController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'title' => 'required',
+            'title' => ['required','unique:'.Time::class],
             'status' => 'required',
             'description' => 'required',
         ]);

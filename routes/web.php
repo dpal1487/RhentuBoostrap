@@ -23,6 +23,9 @@ use App\Http\Controllers\CustomerReviewController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\EnquirieController;
 use App\Http\Controllers\ReportTypeController;
+use App\Http\Controllers\NotificationTypeController;
+
+
 
 
 
@@ -249,6 +252,17 @@ Route::middleware('auth')->group(function () {
             Route::get('{id}/edit', 'edit')->name('report-types.edit');
             Route::post('{id}/update', 'update')->name('report-types.update');
             Route::delete('{id}/delete', 'destroy')->name('report-types.delete');
+        });
+    });
+    Route::controller(NotificationTypeController::class)->group(function () {
+        Route::group(['prefix' => 'notification-types'], function () {
+            Route::get('/', 'index')->name('notification-types.index');
+            Route::get('/add', 'create')->name('notification-types.add');
+            Route::post('/store', 'store')->name('notification-types.store');
+            Route::get('{id}/view', 'show')->name('notification-types.view');
+            Route::get('{id}/edit', 'edit')->name('notification-types.edit');
+            Route::post('{id}/update', 'update')->name('notification-types.update');
+            Route::delete('{id}/delete', 'destroy')->name('notification-types.delete');
         });
     });
 

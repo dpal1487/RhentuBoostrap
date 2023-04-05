@@ -40,14 +40,14 @@ var PlanForm = function() {
                     name: {
                         validators: {
                             notEmpty: {
-                                message: 'field is required'
+                                message: 'The Name field is required'
                             }
                         }
                     },
                     price: {
                         validators: {
                             notEmpty: {
-                                message: 'field is required'
+                                message: 'The Price field is required'
                             },
                             regexp: {
                                 regexp: /^[0-9]+$/,
@@ -58,7 +58,7 @@ var PlanForm = function() {
                     currency: {
                         validators: {
                             notEmpty: {
-                                message: 'field is required'
+                                message: 'The Currency field is required'
                             },
                             regexp: {
                                 regexp: /^[0-9]+$/,
@@ -69,14 +69,14 @@ var PlanForm = function() {
                     category: {
                         validators: {
                             notEmpty: {
-                                message: 'field is required'
+                                message: 'The Category field is required'
                             }
                         }
                     },
                     no_of_ads: {
                         validators: {
                             notEmpty: {
-                                message: 'field is required'
+                                message: 'The Number Of Adds field is required'
                             },
                             regexp: {
                                 regexp: /^[0-9]+$/,
@@ -87,7 +87,7 @@ var PlanForm = function() {
                     sign_up_fee: {
                         validators: {
                             notEmpty: {
-                                message: 'field is required'
+                                message: 'The Sign Up Fee field is required'
                             },
                             regexp: {
                                 regexp: /^[0-9]+$/,
@@ -98,7 +98,7 @@ var PlanForm = function() {
                     trial_period: {
                         validators: {
                             notEmpty: {
-                                message: 'field is required'
+                                message: 'The Trial Period field is required'
                             },
                             regexp: {
                                 regexp: /^[0-9]+$/,
@@ -109,7 +109,7 @@ var PlanForm = function() {
                     trial_interval : {
                         validators:{
                             notEmpty:{
-                                message:'field is required'
+                                message:'The Trial Interval field is required'
                             },
                             regexp: {
                                 regexp: /^[0-9]+$/,
@@ -120,7 +120,7 @@ var PlanForm = function() {
                     invoice_period: {
                         validators: {
                             notEmpty: {
-                                message: 'field is required'
+                                message: 'The Invoice Period field is required'
                             },
                             regexp: {
                                 regexp: /^[0-9]+$/,
@@ -131,14 +131,14 @@ var PlanForm = function() {
                     invoice_interval: {
                         validators: {
                             notEmpty: {
-                                message: 'field is required'
+                                message: 'The Invoice Interval field is required'
                             }
                         }
                     },
                     grace_period: {
                         validators: {
                             notEmpty: {
-                                message: 'field is required'
+                                message: 'The Grace Period field is required'
                             },
                             regexp: {
                                 regexp: /^[0-9]+$/,
@@ -149,7 +149,7 @@ var PlanForm = function() {
                     grace_interval: {
                         validators: {
                             notEmpty: {
-                                message: 'field is required'
+                                message: 'The Grace Interval field is required'
                             }
                         }
                     },
@@ -192,7 +192,7 @@ var PlanForm = function() {
                     sort_order: {
                         validators: {
                             notEmpty: {
-                                message: 'field is required'
+                                message: 'The Sort Order field is required'
                             },
                             regexp: {
                                 regexp: /^[0-9]+$/,
@@ -203,7 +203,7 @@ var PlanForm = function() {
                     status: {
                         validators: {
                             notEmpty: {
-                                message: 'field is required'
+                                message: 'The Status field is required'
                             }
                         }
                     }

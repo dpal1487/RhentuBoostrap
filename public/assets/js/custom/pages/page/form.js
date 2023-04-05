@@ -18,7 +18,7 @@ var PlanForm = function() {
                     title: {
                         validators: {
                             notEmpty: {
-                                message: 'field is required'
+                                message: 'The Title field is required'
                             }
                         }
                     },
@@ -26,21 +26,21 @@ var PlanForm = function() {
                     heading: {
                         validators: {
                             notEmpty: {
-                                message: 'field is required'
+                                message: 'The Heading field is required'
                             }
                         }
                     },
                     status: {
                         validators: {
                             notEmpty: {
-                                message: 'field is required'
+                                message: 'The Status field is required'
                             }
                         }
                     },
                     meta : {
                         validators:{
                             notEmpty:{
-                                message:'field is required'
+                                message:'The Meta field is required'
                             }
                         }
                     }

@@ -26,14 +26,14 @@ var PlanForm = function() {
                     expires_in_days: {
                         validators: {
                             notEmpty: {
-                                message: 'The Category field is required'
+                                message: 'The Expires Days field is required'
                             }
                         }
                     },
                     type: {
                         validators: {
                             notEmpty: {
-                                message: 'The amount is required'
+                                message: 'The Type is required'
                             }
                         }
                     },

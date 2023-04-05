@@ -55,14 +55,14 @@
             <!--begin::Card body-->
             <div class="card-body overflow-auto pt-0">
                 <!--begin::Table-->
-                <table class="table w-100 align-middle table-row-dashed fs-6 gy-5 table-responsive" id="plan_table">
+                <table class="table w-100 align-middle table-row-dashed fs-6 gy-5 table-responsive" id="category_table">
                     <!--begin::Table head-->
                     <thead>
                         <!--begin::Table row-->
                         <tr class="text-start text-gray-400 fw-bold fs-7 text-uppercase gs-0">
                             <th class="w-1px pe-2">
                                 <div class="form-check form-check-sm form-check-custom form-check-solid">
-                                  <input class="form-check-input" type="checkbox" data-kt-check="true" data-kt-check-target="#plan_table .form-check-input" value="1" />
+                                  <input class="form-check-input" type="checkbox" data-kt-check="true" data-kt-check-target="#category_table .form-check-input" value="1" />
                               </div>
                           </th>
                             <th class="min-w-250px">Category</th>

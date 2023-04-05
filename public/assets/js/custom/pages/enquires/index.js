@@ -49,7 +49,7 @@ var KTAppEcommerceCategories = function () {
                           if (error.response.status == 400) {
                             toastr.error(error.response.data.message);
                           }
-                        }).finally(()=>blockUI.release());
+                        });
                     } else if (result.dismiss === 'cancel') {
                         Swal.fire({
                             text: reportType + " was not deleted.",
@@ -61,12 +61,12 @@ var KTAppEcommerceCategories = function () {
                             }
                         });
                     }
-                });
+                }).finally(()=>blockUI.release());
             })
         });
     }
 
-    
+
     // Public methods
     return {
         init: function () {

@@ -60,7 +60,7 @@ var KTAttributeGeneral = function () {
                     name: {
                         validators: {
                             notEmpty: {
-                                message: 'The field is required'
+                                message: 'The Name field is required'
                             }
                         }
                     },
@@ -68,7 +68,7 @@ var KTAttributeGeneral = function () {
                     category: {
                         validators: {
                             notEmpty: {
-                                message: 'The field is required'
+                                message: 'The Category field is required'
                             }
                         }
                     },
@@ -82,7 +82,7 @@ var KTAttributeGeneral = function () {
                     type: {
                         validators: {
                             notEmpty: {
-                                message: 'The field is required'
+                                message: 'The Type field is required'
                             }
                         }
                     },
@@ -96,7 +96,7 @@ var KTAttributeGeneral = function () {
                     status: {
                         validators: {
                             notEmpty: {
-                                message: 'The field is required'
+                                message: 'The Status field is required'
                             }
                         }
                     }

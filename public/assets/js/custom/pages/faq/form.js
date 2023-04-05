@@ -25,14 +25,14 @@ var KTSigninGeneral = function() {
                     title: {
                         validators: {
                             notEmpty: {
-                                message: 'The field is required'
+                                message: 'The Title field is required'
                             }
                         }
                     },
                     status: {
                         validators: {
                             notEmpty: {
-                                message: 'The field is required'
+                                message: 'The Status field is required'
                             }
                         }
                     },

@@ -24,6 +24,7 @@ use App\Http\Controllers\PageController;
 use App\Http\Controllers\EnquirieController;
 use App\Http\Controllers\ReportTypeController;
 use App\Http\Controllers\NotificationTypeController;
+use App\Http\Controllers\ItemStatusController;
 
 
 
@@ -263,6 +264,18 @@ Route::middleware('auth')->group(function () {
             Route::get('{id}/edit', 'edit')->name('notification-types.edit');
             Route::post('{id}/update', 'update')->name('notification-types.update');
             Route::delete('{id}/delete', 'destroy')->name('notification-types.delete');
+        });
+    });
+
+    Route::controller(ItemStatusController::class)->group(function () {
+        Route::group(['prefix' => 'item-status'], function () {
+            Route::get('/', 'index')->name('item-status.index');
+            Route::get('/add', 'create')->name('item-status.add');
+            Route::post('/store', 'store')->name('item-status.store');
+            Route::get('{id}/view', 'show')->name('item-status.view');
+            Route::get('{id}/edit', 'edit')->name('item-status.edit');
+            Route::post('{id}/update', 'update')->name('item-status.update');
+            Route::delete('{id}/delete', 'destroy')->name('item-status.delete');
         });
     });
 

@@ -26,7 +26,7 @@ var KTSigninGeneral = function () {
                     status: {
                         validators: {
                             notEmpty: {
-                                message: 'The field is required'
+                                message: 'The Status field is required'
                             }
                         }
                     }

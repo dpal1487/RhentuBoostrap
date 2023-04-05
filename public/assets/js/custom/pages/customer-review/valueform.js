@@ -18,14 +18,14 @@ var KTSigninGeneral = function() {
                     attribute_value: {
                         validators: {
                             notEmpty: {
-                                message: 'The field is required'
+                                message: 'The Attribute Value field is required'
                             }
                         }
                     },
                     status: {
                         validators: {
                             notEmpty: {
-                                message: 'The field is required'
+                                message: 'The Status field is required'
                             }
                         }
                     }

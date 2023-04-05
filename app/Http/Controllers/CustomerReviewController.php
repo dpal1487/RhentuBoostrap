@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\CustomerReview;
+use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Resources\CustomerReviewResource;
 
@@ -16,7 +17,7 @@ class CustomerReviewController extends Controller
     {
         $reviews = new CustomerReview();
         if($request->q){
-            $reviews = $review->where('name','like',"%{$request->q}%");
+            $reviews = $reviews->where('name','like',"%{$request->q}%");
         }
         $reviews = $reviews->paginate(10)->appends(request()->query());
         $reviews = CustomerReviewResource::collection($reviews);

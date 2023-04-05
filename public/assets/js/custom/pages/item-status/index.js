@@ -11,7 +11,7 @@ var KTAppEcommerceCategories = function () {
     // Delete cateogry
     var handleDeleteRows = () => {
         // Select all delete buttons
-        const deleteButtons = table.querySelectorAll('[page-table="delete_row"]');
+        const deleteButtons = table.querySelectorAll('[item-status-table="delete_row"]');
 
         deleteButtons.forEach(d => {
             // Delete button on click
@@ -22,11 +22,11 @@ var KTAppEcommerceCategories = function () {
                 const parent = e.target.closest('tr');
                 var id = $(this).data('id');
                 // Get category name
-                const pageTitle = parent.querySelector('[page-filter = "page_title"]').innerText;
+                const ItemStatus = parent.querySelector('[item-status-filter="item_status_title"]').innerText;
 
                 // SweetAlert2 pop up --- official docs reference: https://sweetalert2.github.io/
                 Swal.fire({
-                    text: "Are you sure you want to delete " + pageTitle + "?",
+                    text: "Are you sure you want to delete " + ItemStatus + "?",
                     icon: "warning",
                     showCancelButton: true,
                     buttonsStyling: true,
@@ -40,7 +40,7 @@ var KTAppEcommerceCategories = function () {
                     blockUI.block();
                     if (result.value) {
                         axios
-                        .delete("/page/" + id +"/delete")
+                        .delete("/item-status/" + id +"/delete")
                         .then((response) => {
                           toastr.success(response.data.message);
                           $(parent).remove().draw();
@@ -52,9 +52,9 @@ var KTAppEcommerceCategories = function () {
                         });
                     } else if (result.dismiss === 'cancel') {
                         Swal.fire({
-                            text: pageTitle + " was not deleted.",
+                            text: ItemStatus + " was not deleted.",
                             icon: "error",
-                            buttonsStyling: false,
+                            buttonsStyling: true,
                             confirmButtonText: "Ok, got it!",
                             customClass: {
                                 confirmButton: "btn fw-bold btn-primary",
@@ -68,7 +68,7 @@ var KTAppEcommerceCategories = function () {
     // Public methods
     return {
         init: function () {
-            table = document.querySelector('#page_table');
+            table = document.querySelector('#item_status_table');
             if (!table) {
                 return;
             }

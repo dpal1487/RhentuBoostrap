@@ -18,7 +18,7 @@ class NotificationTypeController extends Controller
     {
         $notificationtypes = new NotificationType();
         if ($request->q) {
-            $notificationtypes = $notificationtypes->where('title', 'like', "%{$request->q}%");
+            $notificationtypes = $notificationtypes->where('label', 'like', "%{$request->q}%");
         }
         $notificationtypes = $notificationtypes->paginate(10)->appends(request()->query());
         $notificationtypes = NotificationTypeResource::collection($notificationtypes);

@@ -10,7 +10,7 @@
 
         <!--begin::Content container-->
         <div id="kt_app_content_container" class="app-container container-xxl">
-            <form class="form d-flex flex-column flex-lg-row" action="{{ route('attribute.update',['id'=>$attribute->id]) }}" id="attribute_form"
+            <form class="form d-flex flex-column gap-5 flex-lg-row" action="{{ route('attribute.update',['id'=>$attribute->id]) }}" id="attribute_form"
                 method="POST">
                 @csrf
                 <!--begin::Aside column-->
@@ -26,5 +26,7 @@
     <script src="{{ asset('assets/js/widgets.bundle.js') }}"></script>
     <script src="{{ asset('assets/js/custom/widgets.js') }}"></script>
     <script src="{{ asset('assets/js/custom/pages/attributes/form.js') }}"></script>
+    <script src="{{ asset('assets/plugins/custom/formrepeater/formrepeater.bundle.js') }}"></script>
+
     @endsection
 </x-app-layout>

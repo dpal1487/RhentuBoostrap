@@ -1,7 +1,7 @@
   <!--end::Aside column-->
   <!--begin::Main column-->
   <!--begin::General options-->
-  <div class="d-flex flex-column flex-row-fluid gap-7 gap-lg-10">
+  <div class="d-flex col-12 col-lg-8 flex-column flex-row-fluid gap-7 gap-lg-10">
       <div class="card card-flush py-4">
           <!--begin::Card header-->
           <div class="card-header">
@@ -151,7 +151,7 @@
           </div>
       </div>
   </div>
-  <div class="d-flex flex-column flex-row-fluid gap-7 gap-lg-10">
+  <div class="d-flex col-12 col-lg-4 flex-column flex-row-fluid gap-7 gap-lg-10">
       <div class="card card-flush py-4">
           <!--begin::Card header-->
           <div class="card-header">

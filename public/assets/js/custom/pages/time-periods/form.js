@@ -3,7 +3,7 @@
 // Class definition
 var PlanForm = function() {
     // Elements
-    var form = document.getElementById('item_period_form');
+    var form = document.getElementById('time_period_form');
     var submitButton =document.getElementById('submit');
 
     var validator;
@@ -143,7 +143,7 @@ var PlanForm = function() {
     return {
         // Initialization
         init: function() {
-            form = document.querySelector('#item_period_form');
+            form = document.querySelector('#time_period_form');
             submitButton = document.querySelector('#submit');
 
             handleForm();

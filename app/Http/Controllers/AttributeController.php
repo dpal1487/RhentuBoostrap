@@ -78,16 +78,21 @@ class AttributeController extends Controller
     {
         $attribute = Attribute::find($id);
         $attribute = new AttributeResource($attribute);
+
+
         // return $attribute;
-        return view('pages.attribute.view' , [ 'attribute' => $attribute ] );
+        return view('pages.attribute.view' , [ 'attribute' => $attribute  ] );
     }
 
     public function edit($id)
     {
         $category = Category::get();
+        $rules = Rule::get();
         $attribute = Attribute::find($id);
         $attribute = new AttributeResource($attribute);
-        return view('pages.attribute.edit' , [ 'attribute'=>$attribute , 'category' =>$category ]);
+        // return $attribute;
+
+        return view('pages.attribute.edit' , [ 'attribute'=>$attribute , 'category' =>$category , 'rules' => $rules ]);
     }
     public function attributevalue($id)
     {

@@ -3,7 +3,7 @@
        <div class="card card-flush py-4">
            <div class="card-body pt-0">
                <div class="row g-3">
-                   <div class="mb-10 fv-row col-6">
+                   <div class="mb-10 fv-row col-5">
                        <!--begin::Label-->
                        <label class="required form-label">Category </label>
                        <!--end::Label-->
@@ -13,7 +13,7 @@
                                <option value="">Select an option</option>
 
                                @foreach ($categories as $val)
-                                   <option @selected($val->id == @$plan->category_id) value="{{ $val->id }}">
+                                   <option @selected($val->id == @$timePeriod->category_id) value="{{ $val->id }}">
                                        {{ $val->name }}
                                    </option>
                                    {{-- <option value="{{ $val->id }}"> {{ $val->name }}</option> --}}
@@ -22,11 +22,13 @@
                            <div class="text-muted fs-7">Category is required.</div>
                        </div>
                    </div>
-               </div>
-               <div id="add_time_conditions" data-select2-id="select2-data-kt_ecommerce_add_category_conditions">
+
+               <div id="add_time_conditions" data-select2-id="select2-data-kt_ecommerce_add_category_conditions" class="mb-10 fv-row col-5">
                    <!--begin::Form group-->
-                   <div class="form-group">
-                       <div data-repeater-list="add_time_conditions" class="d-flex flex-column gap-3">
+                   <div class="">
+                    <label class="required form-label">Time </label>
+
+                       <div data-repeater-list="add_time_conditions">
                            <div data-repeater-item="" class="row align-items-center">
                                <!--begin::Select2-->
                                <div class="fv-row col-10">
@@ -70,6 +72,7 @@
                    </div>
                    <!--end::Form group-->
                </div>
+            </div>
            </div>
            <!--end::Card body-->
        </div>

@@ -80,10 +80,12 @@ class TimePeriodController extends Controller
      */
     public function edit(TimePeriod $timePeriod , $id)
     {
-        $category = Category::get();
+        $categories = Category::get();
+        $times = Time::get();
 
-        $attribute = new TimePeriodResource($attribute);
-        return view('pages.time-period.edit' , [ 'attribute'=>$attribute , 'category' =>$category ]);
+        $timePeriod = TimePeriod::find($id);
+        $timePeriod = new TimePeriodResource($timePeriod);
+        return view('pages.time-period.edit' , [ 'timePeriod'=>$timePeriod ,'times' =>$times , 'categories' =>$categories ]);
     }
 
     /**
@@ -92,12 +94,8 @@ class TimePeriodController extends Controller
     public function update(Request $request, TimePeriod $timePeriod , $id)
     {
         $validator = Validator::make($request->all(), [
-            'name' => 'required',
             'category' => 'required',
-            'field' => 'required',
-            'type' => 'required',
-            'display_order' => 'required',
-            'status' => 'required'
+            'add_time_conditions.*.time' => 'required'
 
         ]);
 
@@ -106,18 +104,14 @@ class TimePeriodController extends Controller
                         'error' => $validator->errors()->all()
                     ]);
         }
-        $attribute = Attribute::find($id);
-        if($attribute){
-            $attribute = Attribute::where(['id'=>$attribute->id])->update([
-                'name' => $request->name,
-                'field' =>$request->field,
+        $timePeriod = TimePeriod::find($id);
+        if($timePeriod){
+            foreach ($request->add_time_conditions as $key => $value) {
+                $timePeriod = TimePeriod::where(['id'=>$timePeriod->id])->update([
                 'category_id' =>$request->category,
-                'type' => $request->type,
-                'data_type' =>$request->data_type,
-                'description' => $request->description,
-                'display_order' =>$request->display_order,
-                'status' => $request->status,
+                'time_id' => $value['time'],
             ]);
+        }
             return response()->json(['success'=>true,'message'=>'Time Period Updated successfully']);
 
         }
@@ -128,7 +122,7 @@ class TimePeriodController extends Controller
      */
     public function destroy(TimePeriod $timePeriod , $id)
     {
-        $attribute = Attribute::find($id);
+        $attribute = TimePeriod::find($id);
         if($attribute->delete()){
             return response()->json(['success'=>true,'message'=>'Time Period has been deleted successfully.']);
         }

@@ -68,9 +68,9 @@ var KTAppEcommerceCategories = function () {
 
     var handleEditRows = () => {
         // Select all delete buttons
-        const deleteButtons = table.querySelectorAll('[attribute-value-edit="edit_row"]');
+        const editButtons = table.querySelectorAll('[attribute-value-edit="edit_row"]');
 
-        deleteButtons.forEach(d => {
+        editButtons.forEach(d => {
             // Delete button on click
             d.addEventListener('click', function (e) {
                 e.preventDefault();

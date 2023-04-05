@@ -1,5 +1,5 @@
    <!--start::Card body-->
-   <div class="d-flex flex-column flex-row-fluid gap-5 gap-lg-10">
+   <div class="col-12 col-lg-8 d-flex flex-column flex-row-fluid gap-5 mb-4">
        <div class="card card-flush py-4">
            <div class="card-body pt-0">
                <div class="row g-3">
@@ -215,7 +215,7 @@
            <!--end::Card body-->
        </div>
    </div>
-   <div class="d-flex flex-column flex-row-fluid gap-7 gap-lg-10">
+   <div class="col-12 col-lg-4 d-flex flex-column flex-row-fluid gap-7">
        <div class="card card-flush py-4">
            <!--begin::Card header-->
            <div class="card-header">

@@ -11,7 +11,7 @@ var KTAppEcommerceCategories = function () {
     // Delete cateogry
     var handleDeleteRows = () => {
         // Select all delete buttons
-        const deleteButtons = table.querySelectorAll('[time-table="delete_row"]');
+        const deleteButtons = table.querySelectorAll('[time-period-table="delete_row"]');
 
         deleteButtons.forEach(d => {
             // Delete button on click
@@ -22,11 +22,11 @@ var KTAppEcommerceCategories = function () {
                 const parent = e.target.closest('tr');
                 var id = $(this).data('id');
                 // Get category name
-                const timeTitle = parent.querySelector('[time-filter="time_title"]').innerText;
+                const timePeriod = parent.querySelector('[time-period-filter="time_period_name"]').innerText;
 
                 // SweetAlert2 pop up --- official docs reference: https://sweetalert2.github.io/
                 Swal.fire({
-                    text: "Are you sure you want to delete " + timeTitle + "?",
+                    text: "Are you sure you want to delete " + timePeriod + "?",
                     icon: "warning",
                     showCancelButton: true,
                     buttonsStyling: true,
@@ -40,7 +40,7 @@ var KTAppEcommerceCategories = function () {
                     blockUI.block();
                     if (result.value) {
                         axios
-                        .delete("/time/" + id +"/delete")
+                        .delete("/time-periods/" + id +"/delete")
                         .then((response) => {
                           toastr.success(response.data.message);
                           $(parent).remove().draw();
@@ -52,7 +52,7 @@ var KTAppEcommerceCategories = function () {
                         });
                     } else if (result.dismiss === 'cancel') {
                         Swal.fire({
-                            text: timeTitle + " was not deleted.",
+                            text: timePeriod + " was not deleted.",
                             icon: "error",
                             buttonsStyling: true,
                             confirmButtonText: "Ok, got it!",
@@ -68,7 +68,7 @@ var KTAppEcommerceCategories = function () {
     // Public methods
     return {
         init: function () {
-            table = document.querySelector('#time_table');
+            table = document.querySelector('#time_periods_table');
             if (!table) {
                 return;
             }

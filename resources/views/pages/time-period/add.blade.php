@@ -9,7 +9,7 @@
     <div id="kt_app_toolbar" class="app-toolbar py-3 py-lg-6">
         <!--begin::Content container-->
         <div id="kt_app_content_container" class="app-container container-xxl">
-            <form class="form d-flex flex-column flex-lg-row gap-5" id="item_period_form" action="{{ url('time-periods/store') }}"
+            <form class="form d-flex flex-column flex-lg-row gap-5" id="time_period_form" action="{{ url('time-periods/store') }}"
                 method="POST">
                 @csrf
                 @include('pages.time-period._fields')

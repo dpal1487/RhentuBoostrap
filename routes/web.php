@@ -25,6 +25,8 @@ use App\Http\Controllers\EnquirieController;
 use App\Http\Controllers\ReportTypeController;
 use App\Http\Controllers\NotificationTypeController;
 use App\Http\Controllers\ItemStatusController;
+use App\Http\Controllers\TimeController;
+use App\Http\Controllers\TimePeriodController;
 
 
 
@@ -279,6 +281,29 @@ Route::middleware('auth')->group(function () {
         });
     });
 
+    Route::controller(TimeController::class)->group(function () {
+        Route::group(['prefix' => 'time'], function () {
+            Route::get('/', 'index')->name('time.index');
+            Route::get('/add', 'create')->name('time.add');
+            Route::post('/store', 'store')->name('time.store');
+            Route::get('{id}/view', 'show')->name('time.view');
+            Route::get('{id}/edit', 'edit')->name('time.edit');
+            Route::post('{id}/update', 'update')->name('time.update');
+            Route::delete('{id}/delete', 'destroy')->name('time.delete');
+        });
+    });
+
+    Route::controller(TimePeriodController::class)->group(function () {
+        Route::group(['prefix' => 'time-periods'], function () {
+            Route::get('/', 'index')->name('time-periods.index');
+            Route::get('/add', 'create')->name('time-periods.add');
+            Route::post('/store', 'store')->name('time-periods.store');
+            Route::get('{id}/view', 'show')->name('time-periods.view');
+            Route::get('{id}/edit', 'edit')->name('time-periods.edit');
+            Route::post('{id}/update', 'update')->name('time-periods.update');
+            Route::delete('{id}/delete', 'destroy')->name('time-periods.delete');
+        });
+    });
     // admin profile page
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

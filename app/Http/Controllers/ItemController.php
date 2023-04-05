@@ -14,7 +14,7 @@ class ItemController extends Controller
      * Display a listing of the resource.
      */
 
-    public function index()
+    public function index(Request $request)
     {
         $title = "Item Details";
         // $data = User::find($id);

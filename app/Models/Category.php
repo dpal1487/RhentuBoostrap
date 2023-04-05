@@ -68,5 +68,10 @@ class Category extends Model
     return $this->hasOne(CategoryBanner::class , 'category_id' , 'id');
   }
 
+  public function times()
+  {
+    return $this->hasMany(TimePeriod::class , 'time_id' , 'id');
+  }
+
 
 }

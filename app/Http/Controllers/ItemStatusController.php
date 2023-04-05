@@ -13,7 +13,7 @@ class ItemStatusController extends Controller
     /**
      * Display a listing of the resource.
      */
-     public function index(Request $request)
+    public function index(Request $request)
     {
         $ItemStatuss = new ItemStatus();
         if ($request->q) {
@@ -29,7 +29,6 @@ class ItemStatusController extends Controller
     public function create()
     {
         return view('pages.item-status.add');
-
     }
 
     /**
@@ -73,7 +72,7 @@ class ItemStatusController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(ItemStatus $itemStatus , $id)
+    public function edit(ItemStatus $itemStatus, $id)
     {
         $ItemStatus = ItemStatus::find($id);
         $ItemStatus = new ItemStatusesResource($ItemStatus);
@@ -83,7 +82,7 @@ class ItemStatusController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, ItemStatus $itemStatus , $id)
+    public function update(Request $request, ItemStatus $itemStatus, $id)
     {
         $validator = Validator::make($request->all(), [
             'label' => 'required',
@@ -111,7 +110,7 @@ class ItemStatusController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(ItemStatus $itemStatus , $id)
+    public function destroy(ItemStatus $itemStatus, $id)
     {
         $ItemStatus = ItemStatus::find($id);
         $ItemStatus = new ItemStatusesResource($ItemStatus);

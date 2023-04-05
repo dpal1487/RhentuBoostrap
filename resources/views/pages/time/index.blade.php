@@ -8,7 +8,7 @@
     <!--begin::Toolbar-->
     <div id="kt_app_toolbar" class="app-toolbar py-3 py-lg-6">
 
-        <x-header title="Customer Review" />
+        <x-header title="Time" />
     </div>
     <!--end::Toolbar-->
     <!--begin::Content-->
@@ -22,7 +22,7 @@
                     <!--begin::Card title-->
                     <div class="card-title">
                         <!--begin::Search-->
-                        <form action="{{ route('customer-review.index') }}">
+                        <form action="{{ route('time.index') }}">
                             <div class="d-flex align-items-center position-relative my-1">
                                 <!--begin::Svg Icon | path: icons/duotune/general/gen021.svg-->
                                 <span class="svg-icon svg-icon-1 position-absolute ms-4">
@@ -38,40 +38,39 @@
                                 </span>
                                 <!--end::Svg Icon-->
                                 <input type="search" name="q"
-                                    class="form-control form-control-solid w-250px ps-14" placeholder="Search Customer" />
+                                    class="form-control form-control-solid w-250px ps-14" placeholder="Search Time" />
                             </div>
                         </form>
                         <!--end::Search-->
                     </div>
                     <!--end::Card title-->
                     <!--begin::Card toolbar-->
-                    {{-- <div class="card-toolbar">
-                        <a href="{{ route('customer-review.add') }}" class="btn btn-primary">Add <i
-                                class="fas fa-plane-alt    "></i></a>
-                    </div> --}}
+                    <div class="card-toolbar">
+                        <a href="{{ route('time.add') }}" class="btn btn-primary">Add
+                            <i class="fas fa-plane-alt    "></i></a>
+                    </div>
                     <!--end::Card toolbar-->
                 </div>
                 <!--end::Card header-->
                 <!--begin::Card body-->
-
                 <div class="card-body overflow-auto pt-0">
                     <!--begin::Table-->
-                    <table class="table align-middle table-row-dashed fs-6 gy-5" id="coupon_table">
+                    <table class="table align-middle table-row-dashed fs-6 gy-5" id="time_table">
                         <!--begin::Table head-->
                         <thead>
                             <!--begin::Table row-->
                             <tr class="text-start text-gray-400 fw-bold fs-7 text-uppercase gs-0">
                                 <th class="w-1px pe-2">
                                     <div class="form-check form-check-sm form-check-custom form-check-solid">
-                                      <input class="form-check-input" type="checkbox" data-kt-check="true" data-kt-check-target="#coupon_table .form-check-input" value="1" />
-                                  </div>
-                              </th>
-                                <th class="min-w-100px">Name </th>
-                                <th class="min-w-100px">Title</th>
-                                <th class="min-w-100px">Content</th>
-                                <th class="min-w-100px">Rating</th>
+                                        <input class="form-check-input" type="checkbox" data-kt-check="true"
+                                            data-kt-check-target="#time_table .form-check-input"
+                                            value="1" />
+                                    </div>
+                                </th>
+                                <th class="min-w-100px">Titme</th>
+                                <th class="min-w-100px">Description</th>
                                 <th class="min-w-100px">Status</th>
-                                {{-- <th class="text-end min-w-100px">Actions</th> --}}
+                                <th class="text-end min-w-100px">Actions</th>
                             </tr>
                             <!--end::Table row-->
                         </thead>
@@ -79,7 +78,7 @@
                         <!--begin::Table body-->
                         <tbody class="fw-semibold text-gray-600">
                             <!--begin::Table row-->
-                            @foreach ($reviews as $value)
+                            @foreach ($times as $time)
                                 <tr>
                                     <td>
                                         <div class="form-check form-check-sm form-check-custom form-check-solid">
@@ -90,56 +89,25 @@
                                         <div class="d-flex">
                                             <div class="ms-5">
                                                 <!--begin::Title-->
-                                                <p class="text-gray-800 fs-5 fw-bold mb-1"
-                                                    custome-review-filter="coupon_code">{{ $value->user->first_name }}
-                                                    {{ $value->user->last_name }}</p>
+                                                <p class="text-gray-800 fs-5 fw-bold mb-1" time-filter="time_title">
+                                                    {{ $time->title }}</p>
                                                 <!--end::Title-->
-
                                             </div>
                                         </div>
                                     </td>
 
                                     <td>
-                                        {{ $value->review->title }}
+                                        {{ $time->description }}
                                     </td>
                                     <td>
-                                        {{ $value->review->content}}
-
-                                    </td>
-
-                                    <td class="text-end" data-order="rating-5">
-                                        <div class="rating">
-                                            <div class="rating-label checked">
-                                                <?php
-                                                $unselected = 5 - $value->review->rating;
-
-
-                                                $selected_stars = '';
-                                                for ($i = 0; $i < $value->review->rating; $i++) {
-                                                    $selected_stars .= '<span class="svg-icon svg-icon-2"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"> <path d="M11.1359 4.48359C11.5216 3.82132 12.4784 3.82132 12.8641 4.48359L15.011 8.16962C15.1523 8.41222 15.3891 8.58425 15.6635 8.64367L19.8326 9.54646C20.5816 9.70867 20.8773 10.6186 20.3666 11.1901L17.5244 14.371C17.3374 14.5803 17.2469 14.8587 17.2752 15.138L17.7049 19.382C17.7821 20.1445 17.0081 20.7069 16.3067 20.3978L12.4032 18.6777C12.1463 18.5645 11.8537 18.5645 11.5968 18.6777L7.69326 20.3978C6.99192 20.7069 6.21789 20.1445 6.2951 19.382L6.7248 15.138C6.75308 14.8587 6.66264 14.5803 6.47558 14.371L3.63339 11.1901C3.12273 10.6186 3.41838 9.70867 4.16744 9.54646L8.3365 8.64367C8.61089 8.58425 8.84767 8.41222 8.98897 8.16962L11.1359 4.48359Z" fill="currentColor"></path></svg></span>';
-                                                }
-                                                echo $selected_stars;
-                                                ?>
-                                            </div>
-                                            <?php
-                                            $unselected_stars = '';
-                                            if(!is_nan($unselected)){
-                                                for ($i = 0; $i < $unselected; $i++) {
-                                                    $unselected_stars .= '<span class="svg-icon svg-icon-2"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"> <path d="M11.1359 4.48359C11.5216 3.82132 12.4784 3.82132 12.8641 4.48359L15.011 8.16962C15.1523 8.41222 15.3891 8.58425 15.6635 8.64367L19.8326 9.54646C20.5816 9.70867 20.8773 10.6186 20.3666 11.1901L17.5244 14.371C17.3374 14.5803 17.2469 14.8587 17.2752 15.138L17.7049 19.382C17.7821 20.1445 17.0081 20.7069 16.3067 20.3978L12.4032 18.6777C12.1463 18.5645 11.8537 18.5645 11.5968 18.6777L7.69326 20.3978C6.99192 20.7069 6.21789 20.1445 6.2951 19.382L6.7248 15.138C6.75308 14.8587 6.66264 14.5803 6.47558 14.371L3.63339 11.1901C3.12273 10.6186 3.41838 9.70867 4.16744 9.54646L8.3365 8.64367C8.61089 8.58425 8.84767 8.41222 8.98897 8.16962L11.1359 4.48359Z" fill="currentColor"></path></svg></span>';
-                                                }
-                                            }
-                                            echo $unselected_stars;
-                                            ?>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        @if ($value->review->status == 1)
+                                        @if ($time->status == 1)
                                             <div class="badge badge-light-success">Active</div>
                                         @else
                                             <div class="badge badge-light-info">In Active</div>
                                         @endif
+                                        <!--end::Badges-->
                                     </td>
-                                    {{-- <td class="text-end">
+                                    <td class="text-end">
                                         <a href="#" class="btn btn-sm btn-light btn-active-light-primary"
                                             data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">Actions
                                             <span class="svg-icon svg-icon-5 m-0">
@@ -154,37 +122,28 @@
                                         <!--begin::Menu-->
                                         <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-semibold fs-7 w-125px py-4"
                                             data-kt-menu="true">
-                                            <!--begin::Menu item-->
                                             <div class="menu-item px-3">
-                                                <a href="{{ route('customer-review.view', ['id' => $value->id]) }}"
-                                                    class="menu-link px-3">View</a>
-                                            </div>
-                                            <div class="menu-item px-3">
-                                                <a href="{{ route('customer-review.edit', ['id' => $value->id]) }}"
+                                                <a href="{{ route('time.edit', ['id' => $time->id]) }}"
                                                     class="menu-link px-3">Edit</a>
                                             </div>
                                             <div class="menu-item px-3">
-                                                <a href="#" class="menu-link px-3" data-id="{{ $value->id }}"
-                                                    custome-review-table="delete_row">Delete</a>
+                                                <a href="#" class="menu-link px-3" data-id="{{ $time->id }}"
+                                                    time-table="delete_row">Delete</a>
                                             </div>
                                             <!--end::Menu item-->
                                         </div>
                                         <!--end::Menu-->
-                                    </td> --}}
+                                    </td>
                                     <!--end::Action=-->
                                 </tr>
                             @endforeach
-
                             <!--end::Table row-->
                         </tbody>
                         <!--end::Table body-->
                     </table>
                     <!--end::Table-->
-
                     <div class="row">
-
-                        {{ $reviews->links() }}
-
+                        {{ $times->links() }}
                     </div>
                 </div>
                 <!--end::Card body-->
@@ -197,6 +156,6 @@
     @section('javascript')
         <script src="{{ asset('assets/js/widgets.bundle.js') }}"></script>
         <script src="{{ asset('assets/js/custom/widgets.js') }}"></script>
-        <script src="{{ asset('assets/js/custom/pages/coupon/index.js') }}"></script>
+        <script src="{{ asset('assets/js/custom/pages/time/index.js') }}"></script>
     @endsection
 </x-app-layout>

@@ -12,4 +12,9 @@ class AttributeRule extends Model
     protected  $fillable = [
         'attribute_id','rule_id'
 ];
+
+public function attributeRule()
+    {
+        return $this->hasOne(Rule::class , 'id' , 'rule_id');
+    }
 }

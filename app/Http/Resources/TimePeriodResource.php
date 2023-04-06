@@ -15,8 +15,9 @@ class TimePeriodResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            'categories' =>$this->categories,
-            'times' =>$this->times,
+            'id' => $this->time->id,
+            'title' => $this->time->title,
+            'description' => $this->time->description,
         ];
     }
 }

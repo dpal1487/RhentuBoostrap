@@ -296,11 +296,11 @@ Route::middleware('auth')->group(function () {
     Route::controller(TimePeriodController::class)->group(function () {
         Route::group(['prefix' => 'time-periods'], function () {
             Route::get('/', 'index')->name('time-periods.index');
-            Route::get('/add', 'create')->name('time-periods.add');
+            Route::get('{id}/add', 'create')->name('time-periods.add');
             Route::post('/store', 'store')->name('time-periods.store');
             Route::get('{id}/view', 'show')->name('time-periods.view');
             Route::get('{id}/edit', 'edit')->name('time-periods.edit');
-            Route::post('{id}/update', 'update')->name('time-periods.update');
+            Route::any('{id}/update', 'update')->name('time-periods.update');
             Route::delete('{id}/delete', 'destroy')->name('time-periods.delete');
         });
     });

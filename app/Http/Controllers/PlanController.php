@@ -28,10 +28,12 @@ class PlanController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Request $request)
     {
+        $segments = $request->segments();
+
         $category = Category::get();
-        return view('pages.plan.add', ['category' => $category]);
+        return view('pages.plan.add', ['category' => $category , 'segments' =>$segments]);
     }
 
     /**
@@ -40,8 +42,8 @@ class PlanController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'name' => 'required',
-            'price' => 'required|integer',
+            'name' => ['required','unique:'.Plan::class],
+            'price' => 'required|regex:/^\d*(\.\d{1,2})?$/',
             'category' => 'required',
             'no_of_ads' => 'required|integer',
             'currency' => 'required|integer',
@@ -109,13 +111,15 @@ class PlanController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Plan $plan, $id)
+    public function edit(Request $request, Plan $plan, $id)
     {
+        $segments = $request->segments();
+
         $category = Category::get();
         $plan = Plan::find($id);
         $plan = new PlanResource($plan);
         // return $category;
-        return view('pages.plan.edit', ['plan' => $plan, 'category' => $category]);
+        return view('pages.plan.edit', ['plan' => $plan, 'category' => $category ,'segments' => $segments]);
     }
 
     /**
@@ -125,7 +129,7 @@ class PlanController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'name' => 'required',
-            'price' => 'required|integer',
+            'price' => 'required|regex:/^\d*(\.\d{1,2})?$/',
             'category' => 'required',
             'no_of_ads' => 'required|integer',
             'currency' => 'required|integer',

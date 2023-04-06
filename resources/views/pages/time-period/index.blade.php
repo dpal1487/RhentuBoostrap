@@ -44,7 +44,7 @@
                 <!--begin::Card toolbar-->
                 <div class="card-toolbar">
                     <!--begin::Add customer-->
-                    <a href="{{ route('time-periods.add') }}" class="btn btn-primary">Add </a>
+                    {{-- <a href="{{ route('time-periods.add') }}" class="btn btn-primary">Add </a> --}}
                     {{-- <a href="{{ route('category.add') }}" class="btn btn-primary g-5">Add Category</a> --}}
                     <!--end::Add customer-->
                 </div>
@@ -65,9 +65,7 @@
                               </div>
                           </th>
                             <th class="min-w-100px">Category</th>
-                            <th class="min-w-100px">Time</th>
                             <th class="min-w-100px">Description</th>
-                            <th class="min-w-100px">Status</th>
                             <th class="text-end min-w-100px">Actions</th>
                         </tr>
                         <!--end::Table row-->
@@ -77,7 +75,7 @@
                     <tbody class="fw-semibold text-gray-600">
                         <!--begin::Table row-->
 
-                            @foreach ($timePeriods as $timePeriod)
+                            @foreach ($categories as $category)
 <tr>
                                 <td>
                                     <div class="form-check form-check-sm form-check-custom form-check-solid">
@@ -88,25 +86,16 @@
                                     <div class="d-flex">
                                         <div class="ms-5">
                                             <!--begin::Title-->
-                                            <a href="" class="text-gray-800 text-hover-primary fs-5 fw-bold mb-1" time-period-filter="time_period_name">{{ $timePeriod->category->name }}</a>
+                                            <a href="{{ route('time-periods.add', ['id' => $category->id]) }}" class="text-gray-800 text-hover-primary fs-5 fw-bold mb-1" time-period-filter="time_period_name">{{ $category->name }}</a>
                                             <!--end::Title-->
                                         </div>
                                     </div>
                                 </td>
+
                                 <td>
-                                    {{ $timePeriod->time->title }}
+                                    {{ $category->description }}
                                 </td>
-                                <td>
-                                    {{ $timePeriod->time->description }}
-                                </td>
-                                 <td>
-                                    @if ($timePeriod->time->status == 1)
-                                        <div class="badge badge-light-success">Active</div>
-                                        @else
-                                        <div class="badge badge-light-info">In Active</div>
-                                        @endif
-                                    <!--end::Badges-->
-                                </td>
+
                                 <td class="text-end">
                                     <a href="#" class="btn btn-sm btn-light btn-active-light-primary" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">Actions
                                     <span class="svg-icon svg-icon-5 m-0">
@@ -119,10 +108,10 @@
                                     <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-semibold fs-7 w-125px py-4" data-kt-menu="true">
                                         <!--begin::Menu item-->
                                         <div class="menu-item px-3">
-                                            <a href="{{ route('time-periods.edit', ['id' => $timePeriod->id]) }}" class="menu-link px-3">Edit</a>
+                                            <a href="{{ route('time-periods.edit', ['id' => $category->id]) }}" class="menu-link px-3">Edit</a>
                                         </div>
                                         <div class="menu-item px-3">
-                                            <a href="#" class="menu-link px-3" data-id="{{ $timePeriod->id }}" time-period-table="delete_row">Delete</a>
+                                            <a href="#" class="menu-link px-3" data-id="{{ $category->id }}" time-period-table="delete_row">Delete</a>
                                         </div>
                                         <!--end::Menu item-->
                                     </div>

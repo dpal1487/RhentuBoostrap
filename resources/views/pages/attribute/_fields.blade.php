@@ -1,6 +1,8 @@
-  <!--end::Aside column-->
-  <!--begin::Main column-->
-  <!--begin::General options-->
+<style>
+    .form-select+span+span {
+        display: none;
+    }
+</style>
   <div class="d-flex col-12 col-lg-8 flex-column flex-row-fluid gap-7 gap-lg-10">
       <div class="card card-flush py-4">
           <!--begin::Card header-->
@@ -164,11 +166,18 @@
           <div class="card-body pt-0">
               <div id="add_rule_conditions" data-select2-id="select2-data-kt_ecommerce_add_category_conditions">
                   <!--begin::Form group-->
-                  <div class="form-group">
-                      <div data-repeater-list="add_rule_conditions" class="d-flex flex-column gap-3">
-                          <div data-repeater-item="" class="row align-items-center">
+                  <div class="">
+                    <div>
+                        {{-- {{ dd($attribute->attributeRules) }} --}}
+
+                    <div class="row align-items-center">
+
+                        <div data-repeater-list="add_rule_conditions" class="fv-row">
+
+                          <div data-repeater-item="" class="row align-items-center fv-row col-12">
                               <!--begin::Select2-->
-                              <div class="fv-row col-10">
+
+                              <div data-repeater-item="" class="d-flex align-items-center mb-4">
                                   <select class="form-select" data-control="select2"
                                       name="add_rule_conditions[0][rule]" data-placeholder="Select an option"
                                       data-add-rule="condition_type">
@@ -176,14 +185,9 @@
                                       @foreach (@$rules as $rule)
                                           <option value="{{ @$rule->id }}">{{ @$rule->rule }}</option>
                                       @endforeach
-
                                   </select>
-                              </div>
-                              <!--end::Select2-->
-                              <!--begin::Button-->
-                              <div class="fv-row col-2">
                                   <button type="button" data-repeater-delete=""
-                                      class="btn btn-sm btn-icon btn-light-danger">
+                                      class="btn btn-sm btn-icon btn-light-danger ms-4">
                                       <svg stroke="currentColor" fill="none" stroke-width="0" viewBox="0 0 15 15"
                                           height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
                                           <path fill-rule="evenodd" clip-rule="evenodd"
@@ -192,9 +196,11 @@
                                       </svg>
                                   </button>
                               </div>
-                              <!--end::Button-->
+                              <!--end::Select2-->
                           </div>
                       </div>
+                    </div>
+                    </div>
                   </div>
 
                   <div class="form-group mt-5">
@@ -219,7 +225,13 @@
         <!--end::Button-->
         <button type="submit" class="btn btn-primary" id="submit">
             <!--begin::Indicator label-->
-            <span class="indicator-label">Save</span>
+            <span class="indicator-label">
+                @if ($segments[1] == "add")
+                    Save
+                @elseif ($segments[2] = "edit")
+                    Update
+                @endif
+            </span>
             <!--end::Indicator label-->
             <!--begin::Indicator progress-->
             <span class="indicator-progress">Please wait...

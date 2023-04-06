@@ -27,12 +27,13 @@ class AttributeController extends Controller
         return view('pages.attribute.index' , compact('attributes' ));
     }
 
-    public function create()
+    public function create(Request $request)
     {
+        $segments = $request->segments();
         $category = Category::get();
 
         $rules = Rule::get();
-        return view('pages.attribute.add', ['category' =>$category , 'rules' => $rules]);
+        return view('pages.attribute.add', ['category' =>$category , 'rules' => $rules , 'segments' =>$segments]);
     }
 
     public function store(Request $request)
@@ -84,15 +85,16 @@ class AttributeController extends Controller
         return view('pages.attribute.view' , [ 'attribute' => $attribute  ] );
     }
 
-    public function edit($id)
+    public function edit(Request $request, $id)
     {
+        $segments = $request->segments();
         $category = Category::get();
         $rules = Rule::get();
         $attribute = Attribute::find($id);
         $attribute = new AttributeResource($attribute);
         // return $attribute;
 
-        return view('pages.attribute.edit' , [ 'attribute'=>$attribute , 'category' =>$category , 'rules' => $rules ]);
+        return view('pages.attribute.edit' , [ 'attribute' => $attribute , 'category' =>$category , 'rules' => $rules , 'segments' =>$segments ]);
     }
     public function attributevalue($id)
     {

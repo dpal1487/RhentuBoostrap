@@ -12,7 +12,7 @@ class Attribute extends Model
   protected $hidden = ['created_at', 'updated_at', 'category_id'];
   public function rules()
   {
-    return $this->hasMany(\App\Http\Models\Rule::class, 'attribute_id');
+    return $this->hasMany(AttributeRule::class, 'attribute_id' , 'id');
   }
   public function attribute()
   {
@@ -26,14 +26,11 @@ class Attribute extends Model
   {
     return $this->hasMany(AttributeValue::class,'attribute_id', 'id');
   }
-  public function attributeRule()
+  public function rule()
   {
     return $this->hasOne(AttributeRule::class, 'attribute_id' , 'id');
   }
-  public function attributeRules()
-  {
-    return $this->hasMany(AttributeRule::class, 'attribute_id' , 'id');
-  }
+
   public function category()
   {
     return $this->hasOne(Category::class, 'id', 'category_id');

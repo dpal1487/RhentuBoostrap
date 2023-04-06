@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\TimePeriod;
 use App\Models\Category;
 use App\Models\Time;
+use DB;
 
 use Illuminate\Support\Facades\Validator;
 use App\Http\Resources\TimePeriodResource;
@@ -18,27 +19,23 @@ class TimePeriodController extends Controller
      */
     public function index(Request $request)
     {
-        // $timePeriods = new TimePeriod();
-        // if ($request->q) {
-        //     $timePeriods = $timePeriods->where('name', 'like', "%{$request->q}%");
-        // }
-
-        $timePeriods = Category::paginate(100);
-        // $timePeriods = $timePeriods->paginate(100)->appends(request()->query());
-        $timePeriods = TimePeriodResource::collection($timePeriods);
-        // return TimePeriodResource::collection($timePeriods);
-        return view('pages.time-period.index', compact('timePeriods'));
+        $timePeriods = new Category();
+        if ($request->q) {
+            $timePeriods = $timePeriods->where('name', 'like', "%{$request->q}%");
+        }
+        $categories = Category::paginate(100);
+        return view('pages.time-period.index', ['categories' => $categories]);
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Request $request ,$id)
     {
-        $categories = Category::get();
+        $segments = $request->segments();
+        $category = Category::find($id);
         $times = Time::get();
-
-        return view('pages.time-period.add', ['categories' => $categories,'times' =>$times]);
+        return view('pages.time-period.add', ['category' => $category, 'times' => $times , 'segments' => $segments]);
     }
 
     /**
@@ -48,23 +45,26 @@ class TimePeriodController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'category' => 'required',
-            'add_time_conditions.*.time' => 'required'
+            'add_time_conditions.*.time' => 'required',
         ]);
 
         if ($validator->fails()) {
-            return response()->json([
-                'success'=>false,
-                'message' => $validator->errors()->first()
-                    ],400);
+            return response()->json(
+                [
+                    'success' => false,
+                    'message' => $validator->errors()->first(),
+                ],
+                400,
+            );
         }
 
         foreach ($request->add_time_conditions as $key => $value) {
             TimePeriod::create([
-                'category_id' =>$request->category,
+                'category_id' => $request->category,
                 'time_id' => $value['time'],
             ]);
         }
-        return response()->json(['success'=>true,'message'=>'Time Period created successfully']);
+        return response()->json(['success' => true, 'message' => 'Time Period created successfully']);
     }
 
     /**
@@ -78,58 +78,59 @@ class TimePeriodController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(TimePeriod $timePeriod , $id)
+    public function edit(Request $request , $id)
     {
-        $categories = Category::get();
+        $segments = $request->segments();
+        $category = Category::find($id);
         $times = Time::get();
+        $timePeriod = TimePeriod::where('category_id', '=', $id)->get();
 
-        $timePeriod = TimePeriod::where('category_id' , '=' , $id)->get();
-
-
-
-        dd($timePeriod);
-        $timePeriod = new TimePeriodResource($timePeriod);
-        return view('pages.time-period.edit' , [ 'timePeriod'=>$timePeriod ,'times' =>$times , 'categories' =>$categories ]);
+        return view('pages.time-period.edit', ['timePeriod' => TimePeriodResource::collection($timePeriod), 'times' => $times, 'category' => $category , 'segments' => $segments]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, TimePeriod $timePeriod , $id)
+    public function update(Request $request, TimePeriod $timePeriod, $id)
     {
-        $validator = Validator::make($request->all(), [
-            'category' => 'required',
-            'add_time_conditions.*.time' => 'required'
+        $timeCategory = DB::table('time_periods')
+            ->where('category_id', '=', $id)
+            ->delete();
 
+            $validator = Validator::make($request->all(), [
+            'category' => 'required',
+            'add_time_conditions.*.time' => 'required',
         ]);
 
         if ($validator->fails()) {
-            return response()->json([
-                        'error' => $validator->errors()->all()
-                    ]);
+            return response()->json(
+                [
+                    'success' => false,
+                    'message' => $validator->errors()->first(),
+                ],
+                400,
+            );
         }
-        $timePeriod = TimePeriod::find($id);
-        if($timePeriod){
-            foreach ($request->add_time_conditions as $key => $value) {
-                $timePeriod = TimePeriod::where(['id'=>$timePeriod->id])->update([
-                'category_id' =>$request->category,
+
+        foreach ($request->add_time_conditions as $key => $value) {
+            TimePeriod::create([
+                'category_id' => $request->category,
                 'time_id' => $value['time'],
             ]);
         }
-            return response()->json(['success'=>true,'message'=>'Time Period Updated successfully']);
-
-        }
+        return response()->json(['success' => true, 'message' => 'Time Period Updated successfully']);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(TimePeriod $timePeriod , $id)
+    public function destroy(TimePeriod $timePeriod, $id)
     {
-        $attribute = TimePeriod::find($id);
-        if($attribute->delete()){
-            return response()->json(['success'=>true,'message'=>'Time Period has been deleted successfully.']);
+
+        $attribute = TimePeriod::where('category_id', '=', $id);
+        if ($attribute->delete()) {
+            return response()->json(['success' => true, 'message' => 'Time Period has been deleted successfully.']);
         }
-        return response()->json(['success'=>false,'message'=>'Opps something went wrong!'],400);
+        return response()->json(['success' => false, 'message' => 'Opps something went wrong!'], 400);
     }
 }

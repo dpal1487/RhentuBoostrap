@@ -50,7 +50,7 @@ var PlanForm = function() {
                                 message: 'The Price field is required'
                             },
                             regexp: {
-                                regexp: /^[0-9]+$/,
+                                regexp:/^[1-9]\d*(\.\d+)?$/,
                                 message: 'only number allowd'
                             },
                         }

@@ -7,10 +7,11 @@
 <x-app-layout>
     <!--begin::Toolbar-->
     <div id="kt_app_toolbar" class="app-toolbar py-3 py-lg-6">
+        {{-- {{ dd(@$timePeriod[0]['id']) }} --}}
 
         <!--begin::Content container-->
         <div id="kt_app_content_container" class="app-container container-xxl col-12">
-            <form class="form d-flex flex-column flex-lg-row gap-5" action="{{ route('time-periods.update',['id'=>$timePeriod->id]) }}" id="time_period_form"
+            <form class="form d-flex flex-column flex-lg-row gap-5" action="{{ route('time-periods.update',['id'=>$category->id]) }}" id="time_period_form"
                 method="POST">
                 @csrf
                 <!--begin::Aside column-->

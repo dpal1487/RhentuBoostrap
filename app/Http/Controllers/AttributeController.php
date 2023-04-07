@@ -10,6 +10,7 @@ use App\Models\Category;
 use App\Models\Rule;
 use App\Models\AttributeRule;
 use Illuminate\Support\Facades\Validator;
+use DB;
 
 class AttributeController extends Controller
 {
@@ -111,9 +112,7 @@ class AttributeController extends Controller
             'type' => 'required',
             'display_order' => 'required',
             'status' => 'required'
-
         ]);
-
         if ($validator->fails()) {
             return response()->json([
                         'error' => $validator->errors()->all()
@@ -131,6 +130,19 @@ class AttributeController extends Controller
                 'display_order' =>$request->display_order,
                 'status' => $request->status,
             ]);
+
+            $attributeRule = DB::table('attribute_rules')
+            ->where('attribute_id', '=', $id)
+            ->delete();
+
+
+            foreach ($request->add_rule_conditions as $key => $value) {
+            AttributeRule::create([
+                'attribute_id' =>$id,
+                'rule_id' => $value['rule'],
+            ]);
+        }
+
             return response()->json(['success'=>true,'message'=>'Attribute Updated successfully']);
 
         }

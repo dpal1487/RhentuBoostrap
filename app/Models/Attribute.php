@@ -10,17 +10,15 @@ class Attribute extends Model
   use HasFactory;
   protected $fillable = ['name', 'category_id', 'field', 'key', 'type', 'render_as', 'display_order','data_type' ,'parent_id','status' ,'description'];
   protected $hidden = ['created_at', 'updated_at', 'category_id'];
-  public function rules()
+
+
+  public function parent()
   {
-    return $this->hasMany(AttributeRule::class, 'attribute_id' , 'id');
+    return $this->hasOne(Attribute::class, 'id','parent_id');
   }
   public function attribute()
   {
     return $this->hasMany(Attribute::class, 'parent_id');
-  }
-  public function parent()
-  {
-    return $this->hasOne(Attribute::class, 'id','parent_id');
   }
   public function values()
   {
@@ -29,6 +27,11 @@ class Attribute extends Model
   public function rule()
   {
     return $this->hasOne(AttributeRule::class, 'attribute_id' , 'id');
+  }
+
+  public function rules()
+  {
+    return $this->hasMany(AttributeRule::class, 'attribute_id' , 'id');
   }
 
   public function category()
@@ -41,7 +44,7 @@ class Attribute extends Model
 
     static::deleting(function($attribute) { // before delete() method call this
          $attribute->values()->delete();
-         $attribute->attributeRule()->delete();
+         $attribute->rules()->delete();
          // do the rest of the cleanup...
     });
 }

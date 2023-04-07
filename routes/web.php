@@ -52,6 +52,9 @@ use App\Http\Controllers\SubscriptionsController;
 // Route::get('/', function () {
 //     return view('welcome');
 // });
+Route::get('/search-box', function () {
+    return view('searchbox');
+});
 
 Route::middleware('auth')->group(function () {
     Route::get('/dashboard', [HomeController::class, 'index'])->name('dashboard');

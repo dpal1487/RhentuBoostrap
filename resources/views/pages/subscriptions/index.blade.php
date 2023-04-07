@@ -7,7 +7,7 @@
 
     <!--begin::Toolbar-->
     <div id="kt_app_toolbar" class="app-toolbar py-3 py-lg-6">
-        <x-header title="Enquires" />
+        <x-header title="Subscriptions" />
         <pre>
     </div>
     <!--end::Toolbar-->
@@ -55,10 +55,10 @@
                               </div>
                           </th>
                             <th class="min-w-150px">Name</th>
-                            <th class="min-w-150px">Email</th>
-                            <th class="min-w-150px">Mobile</th>
-                            <th class="min-w-150px">Message</th>
-                            <th class="min-w-150px">IP Address</th>
+                            <th class="min-w-150px">Plan</th>
+                            <th class="min-w-150px">Order Id</th>
+                            <th class="min-w-150px">Payment Id</th>
+                            <th class="min-w-150px">Quantity</th>
                             <th class="min-w-150px">Status</th>
                         </tr>
                         <!--end::Table row-->
@@ -73,24 +73,25 @@
                                 <input class="form-check-input" type="checkbox" value="1" />
                                 </div>
                              </td>
-                                <td>{{ $row->name }} </td>
-                                 <td>{{ $row->email }} </td>
-                                 <td>{{ $row->mobile }} </td>
-                                 <td>{{ $row->message }} </td>
-                                 <td>{{ $row->ip_address }} </td>
+                                <td>{{ $row->user->first_name }} {{ $row->user->last_name }} </td>
+                                 <td>{{ $row->plan->name ?? '' }} </td>
+                                 <td>{{ $row->order->order_id ?? ' ' }} </td>
+                                 <td>{{ $row->payment_id }} </td>
+                                 <td>{{ $row->quantity }} </td>
                                  <td>
-                                    <div class="w-120px me-5">
-                                        <select class="form-select form-select-solid statusChange" name="status" data-control="select2" data-hide-search="true" data-placeholder="Status" data-kt-ecommerce-order-filter="status" data-id="{{ $row->id }}" data-status="{{ $row->status }}">
-                                            <option value="1" @selected(@$row->status == '1')><div class="badge badge-light-success">Active</div></option>
-                                            <option value="0" @selected(@$row->status == '0')><div class="badge badge-light-success">Inactive</div></option>
-                                        </select>
-                                    </div>
-                                 </td>
+                                    @if ($row->status == 1)
+<div class="badge badge-light-success">Active</div>
+@else
+<div class="badge badge-light-info">In Active</div>
+@endif
+                                    <!--end::Badges-->
+                                </td>
                             </tr>
 @endforeach
                     </tbody>
                     <!--end::Table body-->
                 </table>
+
                 <div class="row">
                     <div class="col-sm-12 d-flex align-items-center justify-content-center justify-content-md-end">
                         {{ $result->links() }}
@@ -106,58 +107,57 @@
 </div>
 <!--end::Content-->
     @section('javascript')
-
-        <script src="{{ asset('assets/js/widgets.bundle.js') }}"></script>
-        <script src="{{ asset('assets/js/custom/widgets.js') }}"></script>
-        <script src="{{ asset('assets/js/custom/pages/enquires/index.js') }}"></script>
-        <script src="{{ asset('assets/js/custom/pages/enquires/form.js') }}"></script>
-    <script>
-        // import * as axios from 'axios';
-        $(document).ready(function() {
-            // alert( "this.value" );
-            $('.statusChange').on('change', async function() {
-                const {
-                    id: EnquireId,
-                    status: enquireStatusId
-                } = $(this)[0].dataset;
-                console.log("id", EnquireId, "value", enquireStatusId);
-                blockUI.block();
-                const res = await axios.post('{{ route('enquire.status') }}', {
-                        'enquire_id': EnquireId,
-                        'enquirestatus_id': enquireStatusId
-                    })
-                    .then((res) => {
-                        if (res.status === 200) {
-                            let resp = JSON.parse(res.request.response);
-                            Swal.fire({
-                                text: resp.success,
-                                icon: "success",
-                                buttonsStyling: false,
-                                confirmButtonText: "Ok, got it!",
-                                customClass: {
-                                    confirmButton: "btn btn-primary"
+    <script src="{{ asset('assets/js/widgets.bundle.js') }}"></script>
+                <script src="{{ asset('assets/js/custom/widgets.js') }}"></script>
+                <script src="{{ asset('assets/js/custom/pages/enquires/index.js') }}"></script>
+                <script src="{{ asset('assets/js/custom/pages/enquires/form.js') }}"></script>
+            <script>
+                // import * as axios from 'axios';
+                $(document).ready(function() {
+                    // alert( "this.value" );
+                    $('.statusChange').on('change', async function() {
+                        const {
+                            id: EnquireId,
+                            status: enquireStatusId
+                        } = $(this)[0].dataset;
+                        console.log("id", EnquireId, "value", enquireStatusId);
+                        blockUI.block();
+                        const res = await axios.post('{{ route('enquire.status') }}', {
+                                'enquire_id': EnquireId,
+                                'enquirestatus_id': enquireStatusId
+                            })
+                            .then((res) => {
+                                if (res.status === 200) {
+                                    let resp = JSON.parse(res.request.response);
+                                    Swal.fire({
+                                        text: resp.success,
+                                        icon: "success",
+                                        buttonsStyling: false,
+                                        confirmButtonText: "Ok, got it!",
+                                        customClass: {
+                                            confirmButton: "btn btn-primary"
+                                        }
+                                    });
+                                } else {
+                                    Swal.fire({
+                                        text: "Something Went Wrong !",
+                                        icon: "error",
+                                        buttonsStyling: false,
+                                        confirmButtonText: "Ok, got it!",
+                                        customClass: {
+                                            confirmButton: "btn btn-warning"
+                                        }
+                                    });
                                 }
-                            });
-                        } else {
-                            Swal.fire({
-                                text: "Something Went Wrong !",
-                                icon: "error",
-                                buttonsStyling: false,
-                                confirmButtonText: "Ok, got it!",
-                                customClass: {
-                                    confirmButton: "btn btn-warning"
-                                }
-                            });
-                        }
-                    })
-                    .catch((error) => {
-                        console.log(error.res.data);
-                    }).finally(() => {
-                        // window.location.reload()
-                        blockUI.release()
-                    })
-            });
-        });
-    </script>
+                            })
+                            .catch((error) => {
+                                console.log(error.res.data);
+                            }).finally(() => {
+                                // window.location.reload()
+                                blockUI.release()
+                            })
+                    });
+                });
+            </script>
 @endsection
 </x-app-layout>

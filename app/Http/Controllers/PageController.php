@@ -19,7 +19,7 @@ class PageController extends Controller
         if ($request->q) {
             $pages = $pages->where('code', 'like', "%{$request->q}%");
         }
-        $pages = $pages->paginate(10)->appends(request()->query());
+        $pages = $pages->paginate(10)->onEachSide(1)->appends(request()->query());
         $pages = PageResource::collection($pages);
         // return $pages;
         return view('pages.pages.index', compact('pages'));

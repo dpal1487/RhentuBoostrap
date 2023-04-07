@@ -135,8 +135,11 @@
                     </table>
                     <!--end::Table-->
                     <div class="row">
-                        {{ $reporttypes->links() }}
+                        <div class="col-sm-12 d-flex align-items-center justify-content-center justify-content-md-end">
+                            {{ $reporttypes->links() }}
+                        </div>
                     </div>
+                   
                 </div>
                 <!--end::Card body-->
             </div>

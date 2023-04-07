@@ -22,7 +22,7 @@ class AttributeController extends Controller
         if($request->q){
             $attributes = $attributes->where('name','like',"%{$request->q}%");
         }
-        $attributes = $attributes->paginate(100)->appends(request()->query());
+        $attributes = $attributes->paginate(10)->onEachSide(1)->appends(request()->query());
         $attributes = AttributeResource::collection($attributes);
 
         return view('pages.attribute.index' , compact('attributes' ));

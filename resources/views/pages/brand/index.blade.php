@@ -73,7 +73,7 @@
                     <tbody class="fw-semibold text-gray-600">
                         <!--begin::Table row-->
                             @foreach ($brands as $brand)
-                            <tr>
+<tr>
                                 <!--begin::Checkbox-->
                                 <td>
                                     <div class="form-check form-check-sm form-check-custom form-check-solid">
@@ -176,10 +176,7 @@
 
             <div class="row">
                 <div class="col-sm-12 d-flex align-items-center justify-content-center justify-content-md-end">
-                    <div class="dataTables_paginate paging_simple_numbers"
-                        id="kt_ecommerce_category_table_paginate">
                         {{ $brands->links() }}
-                    </div>
                 </div>
             </div>
             </div>
@@ -192,7 +189,7 @@
 <!--end::Content-->
     @section('javascript')
     <script src="{{ asset('assets/js/widgets.bundle.js') }}"></script>
-    <script src="{{ asset('assets/js/custom/widgets.js') }}"></script>
-    <script src="{{ asset('assets/js/custom/pages/brand/index.js') }}"></script>
+        <script src="{{ asset('assets/js/custom/widgets.js') }}"></script>
+        <script src="{{ asset('assets/js/custom/pages/brand/index.js') }}"></script>
 @endsection
 </x-app-layout>

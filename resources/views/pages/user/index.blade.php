@@ -99,10 +99,7 @@
                 </table>
                 <div class="row">
                     <div class="col-sm-12 d-flex align-items-center justify-content-center justify-content-md-end">
-                        <div class="dataTables_paginate paging_simple_numbers"
-                            id="kt_ecommerce_category_table_paginate">
-                            {{ $result->links() }}
-                        </div>
+                        {{ $result->links() }}
                     </div>
                 </div>
                 <!--end::Table-->

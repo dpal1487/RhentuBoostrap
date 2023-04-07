@@ -153,11 +153,10 @@
                     <!--end::Table body-->
                 </table>
                 <!--end::Table-->
-
                 <div class="row">
-
+                    <div class="col-sm-12 d-flex align-items-center justify-content-center justify-content-md-end">
                             {{ $attributes->links() }}
-
+                    </div>
                 </div>
             </div>
             <!--end::Card body-->

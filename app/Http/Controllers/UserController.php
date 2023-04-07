@@ -33,7 +33,7 @@ class UserController extends Controller
         if($request->q){
             $users = $users->where('name','like',"%{$request->q}%");
         }
-        $users = $users->paginate(10)->appends(request()->query());
+        $users = $users->paginate(10)->onEachSide(1)->appends(request()->query());
         // $data = User::latest()->paginate(10);
         return view('pages.user.index' , ['result' =>$users]);
     }

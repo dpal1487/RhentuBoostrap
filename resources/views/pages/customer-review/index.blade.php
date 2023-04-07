@@ -180,11 +180,10 @@
                         <!--end::Table body-->
                     </table>
                     <!--end::Table-->
-
                     <div class="row">
-
-                        {{ $reviews->links() }}
-
+                        <div class="col-sm-12 d-flex align-items-center justify-content-center justify-content-md-end">
+                            {{ $reviews->links() }}
+                        </div>
                     </div>
                 </div>
                 <!--end::Card body-->

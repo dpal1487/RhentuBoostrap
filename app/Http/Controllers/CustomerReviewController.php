@@ -19,7 +19,7 @@ class CustomerReviewController extends Controller
         if($request->q){
             $reviews = $reviews->where('name','like',"%{$request->q}%");
         }
-        $reviews = $reviews->paginate(10)->appends(request()->query());
+        $reviews = $reviews->paginate(10)->onEachSide(1)->appends(request()->query());
         $reviews = CustomerReviewResource::collection($reviews);
         // return $customer_reviews;
         return view('pages.customer-review.index' ,compact('reviews'));

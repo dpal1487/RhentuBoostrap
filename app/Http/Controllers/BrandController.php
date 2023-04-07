@@ -22,7 +22,7 @@ class BrandController extends Controller
         if($request->q){
             $brands = $brands->where('name','like',"%{$request->q}%");
         }
-        $brands = $brands->paginate(10)->appends(request()->query());
+        $brands = $brands->paginate(10)->onEachSide(1)->appends(request()->query());
         $brands = BrandResource::collection($brands);
         // return $brands;
         return view('pages.brand.index' ,compact('brands'));

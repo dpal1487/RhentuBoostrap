@@ -15,7 +15,7 @@ class ReportTypeController extends Controller
         if ($request->q) {
             $reporttypes = $reporttypes->where('title', 'like', "%{$request->q}%");
         }
-        $reporttypes = $reporttypes->paginate(10)->appends(request()->query());
+        $reporttypes = $reporttypes->paginate(10)->onEachSide(1)->appends(request()->query());
         $reporttypes = ReportTypeResource::collection($reporttypes);
         return view('pages.report-type.index', compact('reporttypes'));
     }

@@ -21,9 +21,8 @@ class FaqsCategoryController extends Controller
         if ($request->q) {
             $faqs = $faqs->where('name', 'like', "%{$request->q}%");
         }
-        $faqs = $faqs->paginate(10)->appends(request()->query());
+        $faqs = $faqs->paginate(10)->onEachSide(1)->appends(request()->query());
         $faqs = FAQsResource::collection($faqs);
-        // return $faqs;
         return view('pages.faqs.index', compact('faqs'));
     }
 
@@ -73,7 +72,6 @@ class FaqsCategoryController extends Controller
     {
         $faq = FAQsCategory::find($id);
         $faq = new FAQsResource($faq);
-        // return $faq;
         return view('pages.faqs.view', ['faq' => $faq]);
     }
 

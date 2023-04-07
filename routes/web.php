@@ -27,6 +27,9 @@ use App\Http\Controllers\NotificationTypeController;
 use App\Http\Controllers\ItemStatusController;
 use App\Http\Controllers\TimeController;
 use App\Http\Controllers\TimePeriodController;
+use App\Http\Controllers\SubscriptionsController;
+
+
 
 
 
@@ -304,6 +307,14 @@ Route::middleware('auth')->group(function () {
             Route::delete('{id}/delete', 'destroy')->name('time-periods.delete');
         });
     });
+
+    Route::controller(SubscriptionsController::class)->group(function () {
+        Route::group(['prefix' => 'subscriptions'], function () {
+            Route::get('/', 'index')->name('subscriptions.index');
+            Route::post('/status', 'status')->name('subscriptions.status');
+        });
+    });
+
     // admin profile page
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

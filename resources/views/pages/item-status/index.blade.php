@@ -140,8 +140,11 @@
                     </table>
                     <!--end::Table-->
                     <div class="row">
-                        {{ $ItemStatuss->links() }}
+                        <div class="col-sm-12 d-flex align-items-center justify-content-center justify-content-md-end">
+                            {{ $ItemStatuss->links() }}
+                        </div>
                     </div>
+                   
                 </div>
                 <!--end::Card body-->
             </div>

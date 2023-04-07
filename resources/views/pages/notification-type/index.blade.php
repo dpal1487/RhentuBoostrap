@@ -144,8 +144,11 @@
                     </table>
                     <!--end::Table-->
                     <div class="row">
-                        {{ $notificationtypes->links() }}
+                        <div class="col-sm-12 d-flex align-items-center justify-content-center justify-content-md-end">
+                            {{ $notificationtypes->links() }}
+                        </div>
                     </div>
+                    
                 </div>
                 <!--end::Card body-->
             </div>

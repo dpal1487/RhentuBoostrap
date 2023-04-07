@@ -23,7 +23,7 @@
                            <div>
                                <div class="row align-items-center">
                                    <!--begin::Select2-->
-                                   <div data-repeater-list="add_time_conditions" class="fv-row col-10">
+                                   <div data-repeater-list="add_time_conditions" class="fv-row col-10 col-lg-6">
                                        @if (!empty($timePeriod))
                                            @foreach ($timePeriod as $val)
                                                <div data-repeater-item="" class="d-flex align-items-center mb-4">

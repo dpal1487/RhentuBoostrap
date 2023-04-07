@@ -22,4 +22,13 @@ class Subscription extends Model
     public function plan(){
         return $this->hasOne(Plan::class,'id','plan_id');
     }
+    public function user(){
+        return $this->hasOne(User::class,'id','user_id');
+    }
+    public function order(){
+        return $this->hasOne(Order::class,'id','order_id');
+    }
+    public function payment(){
+        return $this->hasOne(Payment::class,'id','payment_id');
+    }
 }

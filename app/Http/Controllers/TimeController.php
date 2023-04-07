@@ -18,7 +18,7 @@ class TimeController extends Controller
         if ($request->q) {
             $times = $times->where('title', 'like', "%{$request->q}%");
         }
-        $times = $times->paginate(10)->appends(request()->query());
+        $times = $times->paginate(10)->onEachSide(1)->appends(request()->query());
         $times = TimeResource::collection($times);
         return view('pages.time.index', compact('times'));
     }

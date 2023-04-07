@@ -18,7 +18,7 @@ class CouponController extends Controller
         if ($request->q) {
             $coupons = $coupons->where('code', 'like', "%{$request->q}%");
         }
-        $coupons = $coupons->paginate(10)->appends(request()->query());
+        $coupons = $coupons->paginate(10)->onEachSide(1)->appends(request()->query());
         $coupons = CouponResource::collection($coupons);
         return view('pages.coupons.index', compact('coupons'));
     }

@@ -24,6 +24,7 @@
 
                     {{-- <hr> --}}
                 @endforeach
+
                 @if ($items->links()->paginator->hasPages())
                     <div class="mt-4 p-4 box has-text-centered w-fit mx-auto">
                         {{ $items->links() }}

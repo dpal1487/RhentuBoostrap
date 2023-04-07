@@ -143,7 +143,9 @@
                     </table>
                     <!--end::Table-->
                     <div class="row">
-                        {{ $times->links() }}
+                        <div class="col-sm-12 d-flex align-items-center justify-content-center justify-content-md-end">
+                            {{ $times->links() }}
+                        </div>
                     </div>
                 </div>
                 <!--end::Card body-->

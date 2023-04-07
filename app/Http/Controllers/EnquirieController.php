@@ -16,7 +16,7 @@ class EnquirieController extends Controller
         if($request->q){
             $enquiries = $enquiries->where('name','like',"%{$request->q}%");
         }
-        $enquiries = $enquiries->paginate(10)->appends(request()->query());
+        $enquiries = $enquiries->paginate(10)->onEachSide(1)->appends(request()->query());
         // $data = User::latest()->paginate(10);
         return view('pages.enquiries.index' , ['result' =>$enquiries]);
     }

@@ -24,7 +24,7 @@ class CategoryController extends Controller
         if($request->q){
             $categories = $categories->where('name','like',"%{$request->q}%");
         }
-        $categories = $categories->paginate(10)->appends(request()->query());
+        $categories = $categories->paginate(10)->onEachSide(1)->appends(request()->query());
         $categories = CategoryResource::collection($categories);
         // return $categories;
         return view('pages.category.index' ,compact('categories'));

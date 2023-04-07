@@ -19,7 +19,7 @@ class BannerController extends Controller
         if($request->q){
             $banners = $banners->where('title','like',"%{$request->q}%");
         }
-        $banners = $banners->paginate(100)->appends(request()->query());
+        $banners = $banners->paginate(10)->onEachSide(1)->appends(request()->query());
         $banners = BannerResource::collection($banners);
         return view('pages.banner.index' , compact('banners'));
     }

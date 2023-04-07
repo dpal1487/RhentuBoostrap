@@ -19,7 +19,7 @@ class ItemStatusController extends Controller
         if ($request->q) {
             $ItemStatuss = $ItemStatuss->where('label', 'like', "%{$request->q}%");
         }
-        $ItemStatuss = $ItemStatuss->paginate(10)->appends(request()->query());
+        $ItemStatuss = $ItemStatuss->paginate(10)->onEachSide(1)->appends(request()->query());
         $ItemStatuss = ItemStatusesResource::collection($ItemStatuss);
         return view('pages.item-status.index', compact('ItemStatuss'));
     }

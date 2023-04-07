@@ -23,7 +23,7 @@ class TimePeriodController extends Controller
         if ($request->q) {
             $timePeriods = $timePeriods->where('name', 'like', "%{$request->q}%");
         }
-        $categories = Category::paginate(100);
+        $categories = Category::paginate(10)->onEachSide(1);
         return view('pages.time-period.index', ['categories' => $categories]);
     }
 

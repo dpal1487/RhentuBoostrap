@@ -19,7 +19,7 @@ class PlanController extends Controller
         if ($request->q) {
             $plans = $plans->where('name', 'like', "%{$request->q}%");
         }
-        $plans = $plans->paginate(10)->appends(request()->query());
+        $plans = $plans->paginate(10)->onEachSide(1)->appends(request()->query());
         $plans = PlanResource::collection($plans);
         // return $plans;
         return view('pages.plan.index', compact('plans'));

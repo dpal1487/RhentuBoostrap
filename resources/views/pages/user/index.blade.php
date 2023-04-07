@@ -87,10 +87,10 @@
                                 <div class="menu-item px-3">
                                     <a href="/user/{{ $row->id }}/overview" class="menu-link px-3">View</a>
                                 </div>
-                                    <!--end::Menu-->
+                           <!--end::Menu-->
                                 </td>
                                 <!--end::Action=-->
-                            </tr>
+                      </tr>
                         <!--end::Table row-->
 @endforeach
 
@@ -113,14 +113,14 @@
 <!--end::Content-->
     @section('javascript')
     <script src="{{ asset('assets/plugins/custom/datatables/datatables.bundle.js') }}"></script>
-                <!--begin::Custom Javascript(used for this page only)-->
-              <script src="{{ asset('assets/js/custom/apps/ecommerce/catalog/categories.js') }}"></script>
-              <script src="{{ asset('assets/js/widgets.bundle.js') }}"></script>
-              <script src="{{ asset('assets/js/custom/widgets.js') }}"></script>
-              <script src="{{ asset('assets/js/custom/apps/chat/chat.js') }}"></script>
-              <script src="{{ asset('assets/js/custom/utilities/modals/upgrade-plan.js') }}"></script>
-              <script src="{{ asset('assets/js/custom/utilities/modals/create-app.js') }}"></script>
-              <script src="{{ asset('assets/js/custom/utilities/modals/users-search.js') }}"></script>
-              <!--end::Custom Javascript-->
+                                                                <!--begin::Custom Javascript(used for this page only)-->
+                                                              <script src="{{ asset('assets/js/custom/apps/ecommerce/catalog/categories.js') }}"></script>
+                                                              <script src="{{ asset('assets/js/widgets.bundle.js') }}"></script>
+                                                              <script src="{{ asset('assets/js/custom/widgets.js') }}"></script>
+                                                              <script src="{{ asset('assets/js/custom/apps/chat/chat.js') }}"></script>
+                                                              <script src="{{ asset('assets/js/custom/utilities/modals/upgrade-plan.js') }}"></script>
+                                                              <script src="{{ asset('assets/js/custom/utilities/modals/create-app.js') }}"></script>
+                                                              <script src="{{ asset('assets/js/custom/utilities/modals/users-search.js') }}"></script>
+                                                              <!--end::Custom Javascript-->
 @endsection
 </x-app-layout>

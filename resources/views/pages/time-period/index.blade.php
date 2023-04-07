@@ -119,7 +119,7 @@
                                 </td>
                                 <!--end::Action=-->
                             </tr>
-                        @endforeach
+@endforeach
                         <!--end::Table row-->
                     </tbody>
                     <!--end::Table body-->
@@ -141,7 +141,7 @@
 <!--end::Content-->
     @section('javascript')
     <script src="{{ asset('assets/js/widgets.bundle.js') }}"></script>
-                <script src="{{ asset('assets/js/custom/widgets.js') }}"></script>
-                <script src="{{ asset('assets/js/custom/pages/time-periods/index.js') }}"></script>
+                                                                            <script src="{{ asset('assets/js/custom/widgets.js') }}"></script>
+                                                                            <script src="{{ asset('assets/js/custom/pages/time-periods/index.js') }}"></script>
 @endsection
 </x-app-layout>

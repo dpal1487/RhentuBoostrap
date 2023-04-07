@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\banner;
+use App\Models\Banner;
 use Illuminate\Http\Request;
 use App\Http\Resources\BannerResource;
 use Illuminate\Support\Facades\Validator;

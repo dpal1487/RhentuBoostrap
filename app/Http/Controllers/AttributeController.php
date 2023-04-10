@@ -25,6 +25,8 @@ class AttributeController extends Controller
         $attributes = $attributes->paginate(10)->onEachSide(1)->appends(request()->query());
         $attributes = AttributeResource::collection($attributes);
 
+        // return $attributes;
+
         return view('pages.attribute.index' , compact('attributes' ));
     }
 

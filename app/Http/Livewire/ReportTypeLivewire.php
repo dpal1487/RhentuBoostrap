@@ -4,18 +4,21 @@ namespace App\Http\Livewire;
 
 use Livewire\Component;
 use Livewire\WithPagination;
-use App\Models\Attribute;
+use App\Models\ReportType;
 
 class ReportTypeLivewire extends Component
 {
     use WithPagination;
     protected $paginationTheme = 'bootstrap';
-    public $searchCategory;
+    public $searchReport;
     public function render()
     {
-        $searchCategory = '%'.$this->searchCategory.'%';
-        return view('livewire.report-type-livewire',[
-            'categories' => CategoryModel::where('name','like', $searchCategory)->paginate(10)->onEachSide(1)
+        $searchReport = '%' . $this->searchReport . '%';
+        return view('livewire.report-type-livewire', [
+            'reporttypes' => ReportType::where('title', 'like', $searchReport)
+                ->orWhere('description', 'like', $searchReport)
+                ->paginate(10)
+                ->onEachSide(1),
         ]);
     }
 }

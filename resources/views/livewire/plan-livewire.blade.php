@@ -4,8 +4,14 @@
         <!--begin::Card title-->
         <div class="card-title">
             <!--begin::Search-->
-            <input type="text"  class="form-control" placeholder="Search" wire:model="searchPlan" />
-
+            <input type="text"  class="form-control" placeholder="Search " wire:model="searchPlan" />
+            <div class="d-flex d-flex-end position-relative mx-5">
+                <select class="form-select" wire:model="searchStatus" >
+                    <option value="">All</option>
+                    <option value="1" >Active</option>
+                    <option value="0" >In Active</option>
+                </select>
+            </div>
             <!--end::Search-->
         </div>
         <!--end::Card title-->
@@ -73,10 +79,12 @@
                         </td>
 
                         <td>
-                            @if ($plan->status == 1)
+
+
+                            @if ($plan->is_active == 1)
                                 <div class="badge badge-light-success">Active</div>
                             @else
-                                <div class="badge badge-light-info">In Active</div>
+                                <div class="badge badge-light-danger">In Active</div>
                             @endif
                             <!--end::Badges-->
                         </td>

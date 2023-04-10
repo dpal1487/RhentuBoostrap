@@ -4,19 +4,23 @@ namespace App\Http\Livewire;
 
 use Livewire\Component;
 use Livewire\WithPagination;
-use App\Models\Attribute;
+use App\Models\Page;
 
 class PageLivewire extends Component
 {
     use WithPagination;
     protected $paginationTheme = 'bootstrap';
-    public $searchCategory;
+    public $searchPage;
     public function render()
     {
-        $searchCategory = '%'.$this->searchCategory.'%';
+        $searchPage = '%' . $this->searchPage . '%';
 
-        return view('livewire.page-livewire',[
-            'categories' => CategoryModel::where('name','like', $searchCategory)->paginate(10)->onEachSide(1)
+        return view('livewire.page-livewire', [
+            'pages' => Page::where('title', 'like', $searchPage)
+                ->orWhere('heading', 'like', $searchPage)
+                ->orWhere('heading', 'like', $searchPage)
+                ->paginate(10)
+                ->onEachSide(1),
         ]);
     }
 }

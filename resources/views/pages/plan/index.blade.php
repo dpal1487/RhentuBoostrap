@@ -27,11 +27,11 @@
     <!--end::Content container-->
 </div>
 <!--end::Content-->
-    @section('javascript')
 @livewireScripts
 
-    <script src="{{ asset('assets/js/widgets.bundle.js') }}"></script>
-        <script src="{{ asset('assets/js/custom/widgets.js') }}"></script>
-        <script src="{{ asset('assets/js/custom/pages/plan/index.js') }}"></script>
+@section('javascript')
+<script src="{{ asset('assets/js/widgets.bundle.js') }}"></script>
+<script src="{{ asset('assets/js/custom/pages/plan/index.js') }}"></script>
+<script src="{{ asset('assets/js/custom/widgets.js') }}"></script>
 @endsection
 </x-app-layout>

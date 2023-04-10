@@ -13,7 +13,7 @@
                     </svg>
                 </span>
                 <!--end::Svg Icon-->
-                <input type="text" class="form-control form-control-solid w-250px ps-14" placeholder="Search Banner" wire:model="searchBanner" />
+                <input type="text" class="form-control form-control-solid w-250px ps-14" placeholder="Search " wire:model="searchBanner" />
             </div>
             <!--end::Search-->
         </div>
@@ -101,7 +101,7 @@
                             @if ($banner->status == 1)
                             <div class="badge badge-light-success">Active</div>
                             @else
-                            <div class="badge badge-light-info">In Active</div>
+                            <div class="badge badge-light-danger">In Active</div>
                             @endif
                             <!--end::Badges-->
                         </td>

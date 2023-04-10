@@ -15,14 +15,15 @@ class PlanController extends Controller
      */
     public function index(Request $request)
     {
-        $plans = new Plan();
-        if ($request->q) {
-            $plans = $plans->where('name', 'like', "%{$request->q}%");
-        }
-        $plans = $plans->paginate(10)->onEachSide(1)->appends(request()->query());
-        $plans = PlanResource::collection($plans);
-        // return $plans;
-        return view('pages.plan.index', compact('plans'));
+        // $plans = new Plan();
+        // if ($request->q) {
+        //     $plans = $plans->where('name', 'like', "%{$request->q}%");
+        // }
+        // $plans = $plans->paginate(10)->onEachSide(1)->appends(request()->query());
+        // $plans = PlanResource::collection($plans);
+        // // return $plans;
+        // return view('pages.plan.index', compact('plans'));
+        return view('pages.plan.index');
     }
 
     /**

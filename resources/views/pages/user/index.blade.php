@@ -18,7 +18,7 @@
     <!--begin::Content container-->
     <div id="kt_app_content_container" class="app-container container-xxl">
         <!--begin::Category-->
-        @livewire('plan-livewire')
+        @livewire('user-livewire')
 
         <!--end::Category-->
     </div>

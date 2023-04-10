@@ -4,7 +4,7 @@
         <!--begin::Card title-->
         <div class="card-title">
             <!--begin::Search-->
-            <input type="text"  class="form-control" placeholder="Search" wire:model="searchUser" />
+            <input type="text"  class="form-control" placeholder="Search " wire:model="searchUser" />
 
             <!--end::Search-->
         </div>

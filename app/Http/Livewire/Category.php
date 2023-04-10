@@ -14,9 +14,16 @@ class Category extends Component
 
     public function render()
     {
-        $searchCategory = '%'.$this->searchCategory.'%';
-        return view('livewire.category',[
-            'categories' => CategoryModel::where('name','like', $searchCategory)->orWhere('description','like',$searchCategory)->paginate(10)->onEachSide(1)
+        $searchCategory = '%' . $this->searchCategory . '%';
+        return view('livewire.category', [
+            'categories' => CategoryModel::
+            // join('metas', 'categories.meta_id', '=', 'metas.id')
+                where('name', 'like', $searchCategory)
+                // ->orWhere('categories.description', 'like', $searchCategory)
+                // ->orWhere('metas.description', 'like', $searchCategory)
+
+                ->paginate(10)
+                ->onEachSide(1),
         ]);
     }
 }

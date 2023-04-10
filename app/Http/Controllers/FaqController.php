@@ -20,7 +20,7 @@ class FaqController extends Controller
 
         $faqs = new Faq();
         if($request->q){
-            $faqs = $faqs->where('name','like',"%{$request->q}%");
+            $faqs = $faqs->where('title','like',"%{$request->q}%");
         }
         $faqs = $faqs->paginate(10)->onEachSide(1)->appends(request()->query());
         $faqs = FAQsResource::collection($faqs);

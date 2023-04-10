@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Subscription;
 use App\Http\Resources\SubscriptionsResource;
-
+use DB;
 
 class SubscriptionsController extends Controller
 {
@@ -15,16 +15,19 @@ class SubscriptionsController extends Controller
     public function index(Request $request)
     {
         $subscriptions = new Subscription();
-        if($request->q){
-            $subscriptions = $subscriptions->where('name','like',"%{$request->q}%");
+        if ($request->q) {
+            $subscriptions = $subscriptions->where('name', 'like', "%{$request->q}%");
         }
-        $subscriptions = $subscriptions->paginate(10)->onEachSide(1)->appends(request()->query());
+        $subscriptions = $subscriptions
+            ->paginate(10)
+            ->onEachSide(1)
+            ->appends(request()->query());
         // $data = User::latest()->paginate(10);
         $subscriptions = SubscriptionsResource::collection($subscriptions);
 
         // return $subscriptions;
 
-        return view('pages.subscriptions.index' , ['result' =>$subscriptions]);
+        return view('pages.subscriptions.index', ['result' => $subscriptions]);
     }
 
     /**

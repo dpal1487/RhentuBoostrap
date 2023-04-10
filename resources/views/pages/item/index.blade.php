@@ -1,9 +1,16 @@
+@section('stylesheet')
+    <!--begin::Vendor Stylesheets(used for this page only)-->
+@livewireStyles()
+<style>
+    .btn:focus {
+        outline: none !important;
+    }
+</style>
+    <!--end::Vendor Stylesheets-->
+@endsection
 <x-app-layout>
-    <style>
-        .btn:focus {
-            outline: none !important;
-        }
-    </style>
+
+
 
    <!--begin::Toolbar-->
    <div id="kt_app_toolbar" class="app-toolbar py-3 py-lg-6">
@@ -16,15 +23,11 @@
         <!--begin::Content container-->
         <div id="kt_app_content_container" class="app-container container-xxl">
             <!--begin::Navbar-->
-
-
             <div class="card mb-5 mb-xxl-5 bg-transparent">
                 @foreach ($items as $item)
                     <x-item-card :item="$item" />
-
                     {{-- <hr> --}}
                 @endforeach
-
                 @if ($items->links()->paginator->hasPages())
                     <div class="mt-4 p-4 box has-text-centered w-fit mx-auto">
                         {{ $items->links() }}
@@ -36,12 +39,10 @@
         <!--end::Content container-->
     </div>
     @section('javascript')
+    @livewireScripts()
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-
-
         <script>
             const button = document.getElementById('kt_docs_sweetalert_basic');
-
             // import * as axios from 'axios';
             $(document).ready(function() {
                 // alert( "this.value" );

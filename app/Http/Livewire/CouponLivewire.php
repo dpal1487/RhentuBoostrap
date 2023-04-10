@@ -10,13 +10,18 @@ class CouponLivewire extends Component
 {
     use WithPagination;
     protected $paginationTheme = 'bootstrap';
-    public $searchCategory;
+    public $searchCoupon;
     public function render()
     {
-        $searchCategory = '%'.$this->searchCategory.'%';
+        $searchCoupon = '%' . $this->searchCoupon . '%';
 
-        return view('livewire.coupon-livewire',[
-            'categories' => CategoryModel::where('name','like', $searchCategory)->orWhere('description','like',$searchCategory)->paginate(10)->onEachSide(1)
+        return view('livewire.coupon-livewire', [
+            'coupons' => Coupon::where('code', 'like', $searchCoupon)
+                ->orWhere('descriptions', 'like', $searchCoupon)
+                ->orWhere('type', 'like', $searchCoupon)
+                ->orWhere('discount','like',$searchCoupon)
+                ->paginate(10)
+                ->onEachSide(1),
         ]);
     }
 }

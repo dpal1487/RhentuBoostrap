@@ -4,17 +4,20 @@ namespace App\Http\Livewire;
 
 use Livewire\Component;
 use Livewire\WithPagination;
-use App\Models\Attribute;
+use App\Models\Time;
 class TimeLivewire extends Component
 {
     use WithPagination;
     protected $paginationTheme = 'bootstrap';
-    public $searchCategory;
+    public $searchTime;
     public function render()
     {
-        $searchCategory = '%'.$this->searchCategory.'%';
-        return view('livewire.time-livewire',[
-            'categories' => CategoryModel::where('name','like', $searchCategory)->paginate(10)->onEachSide(1)
+        $searchTime = '%' . $this->searchTime . '%';
+        return view('livewire.time-livewire', [
+            'times' => Time::where('title', 'like', $searchTime)
+                ->orWhere('description', 'like', $searchTime)
+                ->paginate(10)
+                ->onEachSide(1),
         ]);
     }
 }

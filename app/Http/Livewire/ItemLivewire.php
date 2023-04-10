@@ -4,7 +4,7 @@ namespace App\Http\Livewire;
 
 use Livewire\Component;
 use Livewire\WithPagination;
-use App\Models\Attribute;
+use App\Models\Item;
 
 class ItemLivewire extends Component
 {
@@ -13,9 +13,12 @@ class ItemLivewire extends Component
     public $searchCategory;
     public function render()
     {
-        $searchCategory = '%'.$this->searchCategory.'%';
-        return view('livewire.item-livewire',[
-            'categories' => CategoryModel::where('name','like', $searchCategory)->paginate(10)->onEachSide(1)
+        $searchCategory = '%' . $this->searchCategory . '%';
+        return view('livewire.item-livewire', [
+            'item' => Item::where('name', 'like', $searchCategory)
+                ->orWhere('name', 'like', $searchCategory)
+                ->paginate(3)
+                ->onEachSide(1),
         ]);
     }
 }

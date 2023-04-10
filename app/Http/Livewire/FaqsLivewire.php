@@ -10,13 +10,13 @@ class FaqsLivewire extends Component
 {
     use WithPagination;
     protected $paginationTheme = 'bootstrap';
-    public $searchCategory;
+    public $searchFaqs;
     public function render()
     {
-        $searchCategory = '%'.$this->searchCategory.'%';
+        $searchFaqs = '%'.$this->searchFaqs.'%';
 
         return view('livewire.faqs-livewire',[
-            'categories' => CategoryModel::where('name','like', $searchCategory)->paginate(10)->onEachSide(1)
+            'categories' => CategoryModel::where('name','like', $searchFaqs)->paginate(10)->onEachSide(1)
         ]);
     }
 }

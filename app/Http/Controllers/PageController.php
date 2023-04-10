@@ -17,7 +17,7 @@ class PageController extends Controller
     {
         $pages = new Page();
         if ($request->q) {
-            $pages = $pages->where('code', 'like', "%{$request->q}%");
+            $pages = $pages->where('title', 'like', "%{$request->q}%");
         }
         $pages = $pages->paginate(10)->onEachSide(1)->appends(request()->query());
         $pages = PageResource::collection($pages);

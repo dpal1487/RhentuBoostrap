@@ -13,7 +13,14 @@
                     </svg>
                 </span>
                 <!--end::Svg Icon-->
-                <input type="text" class="form-control form-control-solid w-250px ps-14" placeholder="Search " wire:model="searchBanner" />
+                <input type="text" class="form-control form-control-solid w-250px ps-14" placeholder="Search " wire:model="q" />
+                <div class="d-flex d-flex-end position-relative mx-5">
+                    <select class="form-select" wire:model="status" >
+                        <option value="">All</option>
+                        <option value="1" >Active</option>
+                        <option value="0" >In Active</option>
+                    </select>
+                </div>
             </div>
             <!--end::Search-->
         </div>

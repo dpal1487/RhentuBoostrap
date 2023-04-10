@@ -10,20 +10,20 @@ class Category extends Component
 {
     use WithPagination;
     protected $paginationTheme = 'bootstrap';
-    public $searchCategory;
+    public $q;
+    public $status;
 
     public function render()
     {
-        $searchCategory = '%' . $this->searchCategory . '%';
-        return view('livewire.category', [
-            'categories' => CategoryModel::
-            // join('metas', 'categories.meta_id', '=', 'metas.id')
-                where('name', 'like', $searchCategory)
-                // ->orWhere('categories.description', 'like', $searchCategory)
-                // ->orWhere('metas.description', 'like', $searchCategory)
 
-                ->paginate(10)
-                ->onEachSide(1),
-        ]);
+        $categories = new CategoryModel();
+
+        if (!empty($this->q)) {
+            $categories = $categories->where('name', 'like', '%' . $this->q . '%');
+        } elseif ($this->status != null) {
+            $categories = $categories->where('status', '=' , intval($this->status));
+        }
+        return view('livewire.category', (['categories' => $categories->paginate(10)->onEachSide(1)]));
+
     }
 }

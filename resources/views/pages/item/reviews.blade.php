@@ -36,6 +36,8 @@
                             </div>
                             <div class="rating">
                                 <div class="d-flex">
+                                    @if ($itemreview->review != null)
+
                                         <div class="rating">
                                             <div class="rating-label checked">
                                                 <?php
@@ -57,6 +59,7 @@
                                             echo $unselected_stars;
                                             ?>
                                         </div>
+                                        @endif
                                 </div>
                                 <span class="mx-10 mt-2 fs-5 fw-bold">
                                     @if ($itemreview->review == null)

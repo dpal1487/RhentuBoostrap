@@ -16,7 +16,14 @@
                 </span>
                 <!--end::Svg Icon-->
                 <input type="text" class="form-control form-control-solid w-250px ps-14"
-                    placeholder="Search " wire:model="searchCategory" />
+                    placeholder="Search " wire:model="q" />
+                    <div class="d-flex d-flex-end position-relative mx-5">
+                        <select class="form-select" wire:model="status" >
+                            <option value="">All</option>
+                            <option value="1" >Active</option>
+                            <option value="0" >In Active</option>
+                        </select>
+                    </div>
             </div>
         </div>
         <!--end::Card title-->
@@ -153,7 +160,7 @@
                         <!--end::Type=-->
                         <!--begin::Action=-->
                         <td class="text-end">
-                            <a href="#" class="btn btn-sm btn-light btn-active-light-primary"
+                            <a href="" class="btn btn-sm btn-light btn-active-light-primary"
                                 data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">Actions
                                 <!--begin::Svg Icon | path: icons/duotune/arrows/arr072.svg-->
                                 <span class="svg-icon svg-icon-5 m-0">

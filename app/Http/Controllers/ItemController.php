@@ -16,14 +16,14 @@ class ItemController extends Controller
 
     public function index(Request $request)
     {
-        $title = "Item Details";
         // $data = User::find($id);
 
         $itemStatus = ItemStatus::all();
 
         $item = Item::paginate(3)->onEachSide(1);
 
-        return view('pages.item.index' , [ 'title' => $title ,'itemstatus' => $itemStatus , 'items' => ItemResource::collection($item)]);
+        return view('pages.item.index');
+        // return view('pages.item.index' , [ 'itemstatus' => $itemStatus , 'items' => ItemResource::collection($item)]);
     }
 
      public function updateStatus(Request $request)

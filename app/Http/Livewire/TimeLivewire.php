@@ -9,15 +9,18 @@ class TimeLivewire extends Component
 {
     use WithPagination;
     protected $paginationTheme = 'bootstrap';
-    public $searchTime;
+    public $q;
+    public $status;
     public function render()
     {
-        $searchTime = '%' . $this->searchTime . '%';
-        return view('livewire.time-livewire', [
-            'times' => Time::where('title', 'like', $searchTime)
-                ->orWhere('description', 'like', $searchTime)
-                ->paginate(10)
-                ->onEachSide(1),
-        ]);
+        $q = '%' . $this->q . '%';
+        $times = new Time();
+        if (!empty($this->q)) {
+            $times = $times->where('title', 'like', $q)->orWhere('description', 'like', $q);
+        } elseif ($this->status != null) {
+            $times = $times->where('status', '=', intval($this->status));
+        }
+
+        return view('livewire.time-livewire', ['times' => $times->paginate(10)->onEachSide(1)]);
     }
 }

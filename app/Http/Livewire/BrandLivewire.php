@@ -10,20 +10,20 @@ class BrandLivewire extends Component
 {
     use WithPagination;
     protected $paginationTheme = 'bootstrap';
-    public $searchBrand;
+    public $q;
+    public $status;
 
     public function render()
     {
-        $searchBrand = '%' . $this->searchBrand . '%';
-        return view('livewire.brand-livewire', [
-            'brands' => Brand::join('categories' ,'categories.id' ,'=' , 'brands.category_id')
-            ->where('brands.name', 'like', $searchBrand)
-                ->orWhere('brands.description', 'like', $searchBrand)
-                ->orWhere('categories.name', 'like', $searchBrand)
-                ->select('*' ,'brands.name as brandsname' ,'brands.description as brandsdescription' ,'categories.name as categoryname' )
+        $q = '%' . $this->q . '%';
+        $brands = new Brand();
 
-                ->paginate(10)
-                ->onEachSide(1),
-        ]);
+        if (!empty($this->q)) {
+            $brands = $brands->where('name', 'like', $q)->orWhere('description', 'like', $q);
+        } elseif ($this->status != null) {
+            $brands = $brands->where('status', '=', intval($this->status));
+        }
+        return view('livewire.brand-livewire', ['brands' => $brands->paginate(10)->onEachSide(1)]);
+
     }
 }

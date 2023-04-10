@@ -18,8 +18,15 @@
                         </svg>
                     </span>
                     <!--end::Svg Icon-->
-                    <input type="search" wire:model="searchTime"
+                    <input type="search" wire:model="q"
                         class="form-control form-control-solid w-250px ps-14" placeholder="Search " />
+                        <div class="d-flex d-flex-end position-relative mx-5">
+                            <select class="form-select" wire:model="status">
+                                <option value="">All</option>
+                                <option value="1">Active</option>
+                                <option value="0">In Active</option>
+                            </select>
+                        </div>
                 </div>
             <!--end::Search-->
         </div>
@@ -88,7 +95,7 @@
                             <!--end::Badges-->
                         </td>
                         <td class="text-end">
-                            <a href="#" class="btn btn-sm btn-light btn-active-light-primary"
+                            <a href="" class="btn btn-sm btn-light btn-active-light-primary"
                                 data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">Actions
                                 <span class="svg-icon svg-icon-5 m-0">
                                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none"

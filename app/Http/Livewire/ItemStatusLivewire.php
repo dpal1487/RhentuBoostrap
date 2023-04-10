@@ -10,16 +10,19 @@ class ItemStatusLivewire extends Component
 {
     use WithPagination;
     protected $paginationTheme = 'bootstrap';
-    public $searchItemStatus;
+    public $q;
+    public $status;
     public function render()
     {
-        $searchItemStatus = '%' . $this->searchItemStatus . '%';
-        return view('livewire.item-status-livewire', [
-            'ItemStatuss' => ItemStatus::where('text', 'like', $searchItemStatus)
-                ->orWhere('label', 'like', $searchItemStatus)
-                ->orWhere('description', 'like', $searchItemStatus)
-                ->paginate(10)
-                ->onEachSide(1),
-        ]);
+
+
+        $q = '%' . $this->q . '%';
+        $ItemStatuss = new ItemStatus();
+        if (!empty($this->q)) {
+            $ItemStatuss = $ItemStatuss->where('text', 'like', $q)->orWhere('description', 'like', $q)->orWhere('label' , 'like' , $q);
+        }
+        return view('livewire.item-status-livewire', ['ItemStatuss' => $ItemStatuss->paginate(10)->onEachSide(1)]);
+
+
     }
 }

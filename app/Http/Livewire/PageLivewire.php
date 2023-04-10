@@ -10,17 +10,20 @@ class PageLivewire extends Component
 {
     use WithPagination;
     protected $paginationTheme = 'bootstrap';
-    public $searchPage;
+    public $q;
+    public $status;
     public function render()
     {
-        $searchPage = '%' . $this->searchPage . '%';
+        $q = '%' . $this->q . '%';
+        $pages = new Page();
+        if (!empty($this->q)) {
+            $pages = $pages->where('title', 'like', $q)
+                ->orWhere('heading', 'like', $q);
+        } elseif ($this->status != null) {
+            $pages = $pages->where('status', '=', intval($this->status));
+        }
+        return view('livewire.page-livewire', ['pages' => $pages->paginate(10)->onEachSide(1)]);
 
-        return view('livewire.page-livewire', [
-            'pages' => Page::where('title', 'like', $searchPage)
-                ->orWhere('heading', 'like', $searchPage)
-                ->orWhere('heading', 'like', $searchPage)
-                ->paginate(10)
-                ->onEachSide(1),
-        ]);
+
     }
 }

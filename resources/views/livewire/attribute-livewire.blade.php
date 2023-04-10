@@ -17,14 +17,13 @@
                         </svg>
                     </span>
                     <!--end::Svg Icon-->
-                    <input type="search" wire:model="searchAttribute"  class="form-control form-control-solid w-250px ps-14"
+                    <input type="search" wire:model="q"  class="form-control form-control-solid w-250px ps-14"
                         placeholder="Search " />
                 </div>
                 <div class="d-flex align-items-left position-relative mx-5">
-                    <select class="form-select" name="status" wire:model="status"  data-control="select2"
+                    <select class="form-select" name="status" wire:model="status"
                         data-placeholder="Select an option">
-                        <option value=""></option>
-                        <option value="all">All</option>
+                        <option value="">All</option>
                         <option value="1" >Active</option>
                         <option value="0" >In Active</option>
                     </select>
@@ -68,6 +67,7 @@
                 <!--end::Table row-->
             </thead>
             <!--end::Table head-->
+
             <!--begin::Table body-->
             <tbody class="fw-semibold text-gray-600">
                 <!--begin::Table row-->
@@ -83,7 +83,7 @@
                                 <div class="ms-5">
                                     <!--begin::Title-->
                                     <a href="" class="text-gray-800 text-hover-primary fs-5 fw-bold mb-1"
-                                        attribute-filter="attribute_name">{{ $attribute->attributename }}</a>
+                                        attribute-filter="attribute_name">{{ $attribute->name }}</a>
                                     <!--end::Title-->
 
                                 </div>
@@ -113,7 +113,7 @@
                         </td>
 
                         <td class="text-end">
-                            <a href="#" class="btn btn-sm btn-light btn-active-light-primary"
+                            <a href="" class="btn btn-sm btn-light btn-active-light-primary"
                                 data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">Actions
                                 <span class="svg-icon svg-icon-5 m-0">
                                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none"

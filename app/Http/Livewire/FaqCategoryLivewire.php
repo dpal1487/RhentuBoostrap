@@ -10,12 +10,19 @@ class FaqCategoryLivewire extends Component
 {
     use WithPagination;
     protected $paginationTheme = 'bootstrap';
-    public $searchFaqCategory;
+    public $q;
+    public $status;
     public function render()
     {
-        $searchFaqCategory = '%'.$this->searchFaqCategory.'%';
-        return view('livewire.faq-category-livewire',[
-            'faqs' => FAQsCategory::where('title','like', $searchFaqCategory)->paginate(10)->onEachSide(1)
-        ]);
+
+        $faqs = new FAQsCategory();
+
+        if (!empty($this->q)) {
+            $faqs = $faqs->where('title', 'like', '%' . $this->q . '%');
+        } elseif ($this->status != null) {
+            $faqs = $faqs->where('status', '=', intval($this->status));
+        }
+        return view('livewire.faq-category-livewire', ['faqs' => $faqs->paginate(10)->onEachSide(1)]);
+
     }
 }

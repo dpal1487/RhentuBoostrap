@@ -19,9 +19,10 @@
                         </svg>
                     </span>
                     <!--end::Svg Icon-->
-                    <input type="search" wire:model="searchItemStatus"
+                    <input type="search" wire:model="q"
                         class="form-control form-control-solid w-250px ps-14"
                         placeholder="Search " />
+
                 </div>
 
             <!--end::Search-->
@@ -87,7 +88,7 @@
 
                         </td>
                         <td class="text-end">
-                            <a href="#" class="btn btn-sm btn-light btn-active-light-primary"
+                            <a href="" class="btn btn-sm btn-light btn-active-light-primary"
                                 data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">Actions
                                 <span class="svg-icon svg-icon-5 m-0">
                                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none"

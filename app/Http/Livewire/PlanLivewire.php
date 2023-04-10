@@ -10,52 +10,21 @@ class PlanLivewire extends Component
 {
     use WithPagination;
     protected $paginationTheme = 'bootstrap';
-    public $searchPlan;
-    public $searchStatus;
+    public $q;
+    public $status;
 
     public function render()
     {
-        $searchPlan = '%' . $this->searchPlan . '%';
+        $q = '%' . $this->q . '%';
+        $plans = new Plan();
 
-
-
-        // return view('livewire.plan-livewire', [
-        //     'plans' => Plan::where('name','like' ,$searchPlan ?? '' )
-        //                     ->orWhere('description','like' , $searchPlan ?? '')
-        //                     ->orWhere('price','like' , $searchPlan ?? '')
-        //                     ->when($this->searchStatus , function($query , $searchStatus)
-        //                     {
-        //                         return $query->where('is_active' , $searchStatus);
-        //                     })
-        //                     ->paginate(10)
-        //                     ->onEachSide(1)
-        // ]);
-        // return view('livewire.plan-livewire', [
-        //     'plans' => Plan::where('is_active' , $this->searchStatus ?? '')
-        //                     ->paginate(10)
-        //                     ->onEachSide(1)
-        // ]);
-
-
-        if ($this->searchStatus == '') {
-            $plans = Plan::where('name', 'like', $searchPlan)
-                ->orWhere('description', 'like', $searchPlan)
-                ->orWhere('price', 'like', $searchPlan)
-                ->paginate(10)
-                ->onEachSide(1);
-            return view('livewire.plan-livewire', ['plans' => $plans]);
-        }elseif ($this->searchStatus == 1) {
-            $plans = Plan::where('is_active', '=', 1)
-
-                ->paginate(10)
-                ->onEachSide(1);
-            return view('livewire.plan-livewire', ['plans' => $plans]);
-        } elseif ($this->searchStatus == 0) {
-            $plans = Plan::where('is_active', '=', 0)
-
-                ->paginate(10)
-                ->onEachSide(1);
-            return view('livewire.plan-livewire', ['plans' => $plans]);
+        if (!empty($this->q)) {
+            $plans = $plans->where('name', 'like', $q)->orWhere('description', 'like', $q)->orWhere('price', 'like', $q);
+        } elseif ($this->status != null) {
+            $plans = $plans->where('is_active', '=', intval($this->status));
         }
+        return view('livewire.plan-livewire', ['plans' => $plans->paginate(10)->onEachSide(1)]);
+
+
     }
 }

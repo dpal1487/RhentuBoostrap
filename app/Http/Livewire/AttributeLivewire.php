@@ -10,20 +10,21 @@ class AttributeLivewire extends Component
 {
     use WithPagination;
     protected $paginationTheme = 'bootstrap';
-    public $searchAttribute;
+    public $q;
+    public $status;
 
     public function render()
     {
-        $searchAttribute = '%' . $this->searchAttribute . '%';
-        return view('livewire.attribute-livewire', [
-            'attributes' => Attribute::join('categories', 'attributes.category_id', '=', 'categories.id')
-                ->where('attributes.name', 'like', $searchAttribute)
-                ->orWhere('data_type', 'like', $searchAttribute)
-                ->orWhere('field', 'like', $searchAttribute)
-                ->orWhere('categories.name', 'like', $searchAttribute)
-                ->select('*' ,'attributes.name as attributename' ,'categories.name as categoryname' )
-                ->paginate(10)
-                ->onEachSide(1),
-        ]);
+        // $searchAttribute = '%' . $this->searchAttribute . '%';
+
+        $attributes = new Attribute();
+
+        if (!empty($this->q)) {
+            $attributes = $attributes->where('name', 'like', '%' . $this->q . '%');
+        } elseif ($this->status != null) {
+            $attributes = $attributes->where('status', '=', intval($this->status));
+        }
+        return view('livewire.attribute-livewire', ['attributes' => $attributes->paginate(10)->onEachSide(1)]);
+
     }
 }

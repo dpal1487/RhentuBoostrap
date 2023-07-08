@@ -28,8 +28,7 @@
         <!--end::Theme mode setup on page load-->
         <!--Begin::Google Tag Manager (noscript) -->
         <noscript>
-            <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5FS8GGP" height="0" width="0"
-                style="display:none;visibility:hidden"></iframe>
+            <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5FS8GGP" height="0" width="0" style="display:none;visibility:hidden"></iframe>
         </noscript>
         <!--End::Google Tag Manager (noscript) -->
         <!--begin::Root-->
@@ -71,26 +70,23 @@
                                 <!--begin::Input group=-->
                                 <div class="fv-row mb-8">
                                     <!--begin::Email-->
-                                    <input type="text" placeholder="Email" name="email" autocomplete="off"
-                                        class="form-control bg-transparent" />
-                                        <x-input-error :messages="$errors->get('email')" class="mt-2" />
+                                    <input type="text" placeholder="Email" name="email" autocomplete="off" class="form-control bg-transparent" />
+                                    <x-input-error :messages="$errors->get('email')" class="mt-2" />
                                     <!--end::Email-->
                                 </div>
                                 <!--end::Input group=-->
                                 <div class="fv-row mb-8">
                                     <!--begin::Password-->
-                                    <input type="password" placeholder="Password" name="password" autocomplete="off"
-                                        class="form-control bg-transparent" />
-                                        <x-input-error :messages="$errors->get('password')" class="mt-2" />
+                                    <input type="password" placeholder="Password" name="password" autocomplete="off" class="form-control bg-transparent" />
+                                    <x-input-error :messages="$errors->get('password')" class="mt-2" />
                                     <!--end::Password-->
                                 </div>
-                                  <div class="fv-row mb-8">
+                                <div class="fv-row mb-8">
                                     <label class="form-check form-check-inline">
 
-                                        <input class="form-check-input" id="remember_me" type="checkbox" name="remember"
-                                            />
+                                        <input class="form-check-input" id="remember_me" type="checkbox" name="remember" />
                                         <span class="form-check-label fw-semibold text-gray-700 fs-base ms-1">Remember me
-                                            </span>
+                                        </span>
                                     </label>
                                 </div>
                                 <!--end::Input group=-->
@@ -110,8 +106,7 @@
                                         <!--end::Indicator label-->
                                         <!--begin::Indicator progress-->
                                         <span class="indicator-progress">Please wait...
-                                            <span
-                                                class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+                                            <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
                                         <!--end::Indicator progress-->
                                     </button>
                                 </div>
@@ -133,19 +128,16 @@
                 </div>
                 <!--end::Body-->
                 <!--begin::Aside-->
-                <div class="d-flex flex-lg-row-fluid w-lg-50 bgi-size-cover bgi-position-center order-1 order-lg-2"
-                    style="background-image: url(../../../assets/media/misc/auth-bg.png)">
+                <div class="d-flex flex-lg-row-fluid w-lg-50 bgi-size-cover bgi-position-center order-1 order-lg-2" style="background-image: url(../../../assets/media/misc/auth-bg.png)">
                     <!--begin::Content-->
                     <div class="d-flex flex-column flex-center py-7 py-lg-15 px-5 px-md-15 w-100">
                         <!--begin::Logo-->
                         <a href="../../../index.html" class="mb-0 mb-lg-12">
-                            <img alt="Logo" src="../../../assets/media/logos/custom-1.png"
-                                class="h-60px h-lg-75px" />
+                            <img alt="Logo" src="../../../assets/media/logos/custom-1.png" class="h-60px h-lg-75px" />
                         </a>
                         <!--end::Logo-->
                         <!--begin::Image-->
-                        <img class="d-none d-lg-block mx-auto w-275px w-md-50 w-xl-500px mb-10 mb-lg-20"
-                            src="../../../assets/media/misc/auth-screens.png" alt="" />
+                        <img class="d-none d-lg-block mx-auto w-275px w-md-50 w-xl-500px mb-10 mb-lg-20" src="../../../assets/media/misc/auth-screens.png" alt="" />
                         <!--end::Image-->
                         <!--begin::Title-->
                         <h1 class="d-none d-lg-block text-white fs-2qx fw-bolder text-center mb-7">Fast, Efficient and
@@ -174,11 +166,11 @@
             var hostUrl = "../../../assets/index.html";
         </script>
         <!--begin::Global Javascript Bundle(mandatory for all pages)-->
-        <script src="../../../assets/plugins/global/plugins.bundle.js"></script>
-        <script src="../../../assets/js/scripts.bundle.js"></script>
+        <script src="{{ asset('assets/plugins/global/plugins.bundle.js')}}"></script>
+        <script src="{{ asset('assets/js/scripts.bundle.js')}}"></script>
         <!--end::Global Javascript Bundle-->
         <!--begin::Custom Javascript(used for this page only)-->
-        <script src="../../../assets/js/custom/authentication/sign-in/general.js"></script>
+        <script src="{{ asset('assets/js/custom/authentication/sign-in/general.js')}}"></script>
         <!--end::Custom Javascript-->
         <!--end::Javascript-->
         <!-- Email Address -->
